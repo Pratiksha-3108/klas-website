@@ -1,0 +1,227 @@
+.footer {
+  font-family: var(--font-sans);
+}
+
+.mainFooter {
+  background-color: #4F4742; /* Requested background color */
+  color: #FFFFFF;
+  padding: 80px 0 70px;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 2fr;
+  gap: 60px;
+}
+
+.brandCol {
+  display: flex;
+  flex-direction: column;
+  padding-left: 40px;
+}
+
+.brandLogo {
+  font-family: 'Cinzel', 'Times New Roman', Georgia, serif;
+  font-size: 48px;
+  font-weight: 500;
+  color: #E2C896; /* Warm gold serif logo text */
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+  line-height: 1;
+}
+
+.brandTagline {
+  font-family: var(--font-inter), 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.45;
+  color: #F0EBE6; /* Soft warm cream off-white matching UI */
+  margin-bottom: 28px;
+  letter-spacing: 1.2px;
+  padding-left: 8px;
+}
+
+.socials {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  color: #F0EBE6;
+  transition: opacity 0.2s ease, transform 0.2s ease, color 0.2s ease;
+}
+
+.socialLink:hover {
+  opacity: 0.8;
+  transform: translateY(-2px);
+}
+
+.socialIconImage {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  display: block;
+}
+
+.linksCol {
+  display: flex;
+  flex-direction: column;
+}
+
+.heading {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 600;
+  color: #D6D1CD;
+  letter-spacing: 1.5px;
+  margin-bottom: 24px;
+  text-transform: uppercase;
+}
+
+.linkList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 0;
+  margin: 0;
+}
+
+.linkList a {
+  font-size: 14px;
+  font-weight: 500;
+  color: #FFFFFF;
+  transition: color 0.2s ease;
+}
+
+.linkList a:hover {
+  color: #E2C896;
+}
+
+.contactCol {
+  display: flex;
+  flex-direction: column;
+  padding-left: 140px;
+}
+
+.contactList {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.contactItem {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.contactIcon {
+  color: #FFFFFF;
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+.contactText {
+  font-size: 14px;
+  line-height: 1.45;
+  font-weight: 500;
+  color: #FFFFFF;
+}
+
+.contactLink {
+  font-size: 14px;
+  font-weight: 600;
+  color: #FFFFFF;
+  transition: color 0.2s ease;
+}
+
+.contactLink:hover {
+  color: #E2C896;
+}
+
+/* Bottom Bar with Light Cream Background */
+.bottomBarWrapper {
+  background-color: #F0EBE6;
+  padding: 20px 0;
+}
+
+.bottomBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  color: #5C5550;
+}
+
+.copyright {
+  font-weight: 400;
+}
+
+.legal {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.legalLink {
+  color: #5C5550;
+  transition: color 0.2s ease;
+}
+
+.legalLink:hover {
+  color: #3B3432;
+}
+
+.separator {
+  color: #A8A29E;
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+
+  .brandCol {
+    grid-column: span 2;
+    padding-left: 0;
+  }
+
+  .contactCol {
+    padding-left: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .mainFooter {
+    padding: 60px 0 50px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .brandCol {
+    grid-column: span 1;
+  }
+
+  .bottomBar {
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+}
