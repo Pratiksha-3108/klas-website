@@ -55,7 +55,7 @@ const projectsData: Project[] = [
   {
     id: 6,
     title: 'Upcoming Project',
-    category: 'Warehousing',
+    category: 'Retail, Commercial & IT',
     image: '/assets/our_project6.png',
     location: 'Ghodbunder Road, Thane (W)',
     area: 'Sq. Ft 300,000',
@@ -64,23 +64,31 @@ const projectsData: Project[] = [
   {
     id: 7,
     title: 'Upcoming Project',
-    category: 'Warehousing',
-    image: '/assets/our_project7.png',
-    location: 'Chembur (E), Mumbai',
+    category: 'Residential',
+    image: '/assets/our_project3.png',
+    location: 'Ghodbunder Road, Thane (W)',
     isUpcoming: true
   },
   {
     id: 8,
     title: 'Upcoming Project',
-    category: 'Warehousing',
-    image: '/assets/our_project6.png',
-    location: 'Bandra (W), Mumbai',
+    category: 'Residential',
+    image: '/assets/our_project7.png',
+    location: 'Chembur (E), Mumbai',
     isUpcoming: true
   },
   {
     id: 9,
     title: 'Upcoming Project',
-    category: 'Warehousing',
+    category: 'Residential',
+    image: '/assets/our_project6.png',
+    location: 'Bandra (W), Mumbai',
+    isUpcoming: true
+  },
+  {
+    id: 10,
+    title: 'Upcoming Project',
+    category: 'Residential',
     image: '/assets/our_project7.png',
     location: 'South Mumbai',
     isUpcoming: true
