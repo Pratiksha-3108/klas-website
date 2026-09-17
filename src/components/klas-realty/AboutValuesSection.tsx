@@ -235,8 +235,7 @@ export default function AboutValuesSection() {
         .leftCol {
           display: flex;
           flex-direction: column;
-          position: sticky;
-          top: 120px;
+          position: relative;
         }
 
         .title {

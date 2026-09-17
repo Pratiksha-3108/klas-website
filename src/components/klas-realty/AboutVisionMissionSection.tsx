@@ -151,7 +151,7 @@ export default function AboutVisionMissionSection() {
           font-size: 40px;
           font-weight: 500;
           line-height: 1.25;
-          color: #26221f;
+          color: #4F4742;
           margin: 0 0 48px 0;
           max-width: 980px;
           letter-spacing: -0.01em;
