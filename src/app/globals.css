@@ -1,8 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap');
+
 :root {
-  --background: #F0EBE6; /* Requested warm grey/beige background */
-  --foreground: #22201E; /* Dark charcoal/brown */
-  --primary: #3B3432;    /* Dark brown/grey for prominent elements */
-  --accent: #C5A880;     /* Luxury gold color */
+  --font-montserrat: 'Montserrat', sans-serif;
+  --background: #FFFFFF;
+  /* Pure white background */
+  --foreground: #22201E;
+  /* Dark charcoal/brown */
+  --primary: #3B3432;
+  /* Dark brown/grey for prominent elements */
+  --accent: #C5A880;
+  /* Luxury gold color */
   --accent-light: #EAE2D8;
   --accent-dark: #A6875C;
   --font-serif: var(--font-inter), var(--font-playfair), sans-serif;
@@ -42,7 +49,12 @@ body {
 }
 
 /* Typography */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-serif);
   font-weight: 500;
   color: var(--primary);

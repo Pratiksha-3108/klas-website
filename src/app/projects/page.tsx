@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
-import ProjectsHero from '@/components/projects/ProjectsHero';
-import HomeProjectsSection from '@/components/home/HomeProjectsSection';
+import ProjectsHero from '@/components/klas-realty/ProjectsHero';
+import HomeProjectsSection from '@/components/klas-realty/HomeProjectsSection';
 
 export const metadata: Metadata = {
   title: 'Projects & Portfolio | KLAS Realty',

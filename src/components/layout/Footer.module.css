@@ -3,48 +3,46 @@
 }
 
 .mainFooter {
-  background-color: #4F4742; /* Requested background color */
+  background-color: #453E3B; /* Exact espresso brown from screenshot */
   color: #FFFFFF;
   padding: 80px 0 70px;
 }
 
 .container {
-  max-width: 1400px;
+  max-width: 1360px;
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 48px;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: 1.5fr 1fr 2fr;
-  gap: 60px;
+  grid-template-columns: 1.8fr 1fr 1fr 1.6fr;
+  gap: 52px;
 }
 
 .brandCol {
   display: flex;
   flex-direction: column;
-  padding-left: 40px;
 }
 
 .brandLogo {
-  font-family: 'Cinzel', 'Times New Roman', Georgia, serif;
-  font-size: 48px;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 46px;
   font-weight: 500;
-  color: #E2C896; /* Warm gold serif logo text */
+  color: #F3CD8A;
   letter-spacing: 2px;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
   line-height: 1;
 }
 
 .brandTagline {
   font-family: var(--font-inter), 'Inter', sans-serif;
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 1.45;
-  color: #F0EBE6; /* Soft warm cream off-white matching UI */
-  margin-bottom: 28px;
-  letter-spacing: 1.2px;
-  padding-left: 8px;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.35;
+  color: #FFFFFF;
+  margin-bottom: 24px;
+  letter-spacing: 0.2px;
 }
 
 .socials {
@@ -57,10 +55,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 24px;
-  height: 24px;
-  color: #F0EBE6;
-  transition: opacity 0.2s ease, transform 0.2s ease, color 0.2s ease;
+  width: 22px;
+  height: 22px;
+  color: #FFFFFF;
+  transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
 .socialLink:hover {
@@ -69,8 +67,8 @@
 }
 
 .socialIconImage {
-  width: 24px;
-  height: 24px;
+  width: 22px;
+  height: 22px;
   object-fit: contain;
   display: block;
 }
@@ -83,10 +81,10 @@
 .heading {
   font-family: var(--font-sans);
   font-size: 13px;
-  font-weight: 600;
-  color: #D6D1CD;
+  font-weight: 700;
+  color: #BEB7B0;
   letter-spacing: 1.5px;
-  margin-bottom: 24px;
+  margin-bottom: 22px;
   text-transform: uppercase;
 }
 
@@ -94,7 +92,7 @@
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 12px;
   padding: 0;
   margin: 0;
 }
@@ -113,18 +111,17 @@
 .contactCol {
   display: flex;
   flex-direction: column;
-  padding-left: 140px;
 }
 
 .contactList {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 16px;
 }
 
 .contactItem {
   display: flex;
-  gap: 12px;
+  gap: 10px;
   align-items: flex-start;
 }
 
@@ -135,15 +132,19 @@
 }
 
 .contactText {
-  font-size: 14px;
-  line-height: 1.45;
-  font-weight: 500;
+  font-size: 13.5px;
+  line-height: 1.4;
+  font-weight: 400;
   color: #FFFFFF;
+}
+
+.contactText strong {
+  font-weight: 700;
 }
 
 .contactLink {
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 700;
   color: #FFFFFF;
   transition: color 0.2s ease;
 }
@@ -152,10 +153,11 @@
   color: #E2C896;
 }
 
-/* Bottom Bar with Light Cream Background */
+/* Bottom Bar with Pure White Background */
 .bottomBarWrapper {
-  background-color: #F0EBE6;
-  padding: 20px 0;
+  background-color: #FFFFFF;
+  padding: 18px 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.04);
 }
 
 .bottomBar {
@@ -163,7 +165,7 @@
   justify-content: space-between;
   align-items: center;
   font-size: 13px;
-  color: #5C5550;
+  color: #55504C;
 }
 
 .copyright {
@@ -177,12 +179,12 @@
 }
 
 .legalLink {
-  color: #5C5550;
+  color: #55504C;
   transition: color 0.2s ease;
 }
 
 .legalLink:hover {
-  color: #3B3432;
+  color: #111111;
 }
 
 .separator {
@@ -192,31 +194,22 @@
 @media (max-width: 1024px) {
   .grid {
     grid-template-columns: 1fr 1fr;
-    gap: 40px;
+    gap: 36px;
   }
 
-  .brandCol {
-    grid-column: span 2;
-    padding-left: 0;
-  }
-
-  .contactCol {
-    padding-left: 0;
+  .container {
+    padding: 0 24px;
   }
 }
 
 @media (max-width: 600px) {
   .mainFooter {
-    padding: 60px 0 50px;
+    padding: 60px 0 40px;
   }
 
   .grid {
     grid-template-columns: 1fr;
-    gap: 36px;
-  }
-
-  .brandCol {
-    grid-column: span 1;
+    gap: 32px;
   }
 
   .bottomBar {

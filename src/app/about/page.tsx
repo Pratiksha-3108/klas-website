@@ -1,6 +1,9 @@
 import type { Metadata } from 'next';
-import AboutHero from '@/components/about/AboutHero';
-import HomeAboutSection from '@/components/home/HomeAboutSection';
+import AboutHero from '@/components/klas-realty/AboutHero';
+import AboutWhoWeAreSection from '@/components/klas-realty/AboutWhoWeAreSection';
+import AboutStatsSection from '@/components/klas-realty/AboutStatsSection';
+import AboutVisionMissionSection from '@/components/klas-realty/AboutVisionMissionSection';
+import AboutValuesSection from '@/components/klas-realty/AboutValuesSection';
 
 export const metadata: Metadata = {
   title: 'About Us | KLAS Realty',
@@ -11,7 +14,10 @@ export default function AboutPage() {
   return (
     <>
       <AboutHero />
-      <HomeAboutSection />
+      <AboutWhoWeAreSection />
+      <AboutStatsSection />
+      <AboutVisionMissionSection />
+      <AboutValuesSection />
     </>
   );
 }

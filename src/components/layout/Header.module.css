@@ -8,35 +8,40 @@
   align-items: center;
   z-index: 1000;
   transition: var(--transition-smooth);
-  background: #F0EBE6;
+  background: #FFFFFF;
   border-bottom: 1px solid rgba(197, 168, 128, 0.15);
 }
 
 .scrolled {
-  background: #F0EBE6;
+  background: #FFFFFF;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
   height: 54px;
 }
 
 .container {
   width: 100%;
-  max-width: 1400px;
+  max-width: 1680px;
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 48px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.logoLink {
-  display: flex;
-  align-items: center;
+.goldLogo {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 38px;
+  font-weight: 500;
+  color: #F3CD8A;
+  text-decoration: none;
+  letter-spacing: 0px;
+  line-height: 100%;
+  text-transform: uppercase;
+  transition: opacity 0.2s ease;
 }
 
-.logo {
-  object-fit: contain;
-  height: 34px;
-  width: auto;
+.goldLogo:hover {
+  opacity: 0.85;
 }
 
 .rightGroup {
@@ -54,7 +59,7 @@
 .navLink {
   font-size: 14px;
   font-weight: 500;
-  color: var(--primary);
+  color: #978E89;
   position: relative;
   padding: 4px 0;
   letter-spacing: 0.3px;

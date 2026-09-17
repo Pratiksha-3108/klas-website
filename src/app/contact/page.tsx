@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
-import ContactHero from '@/components/contact/ContactHero';
-import ContactForm from '@/components/contact/ContactForm';
+import ContactHero from '@/components/klas-realty/ContactHero';
+import ContactForm from '@/components/klas-realty/ContactForm';
 
 export const metadata: Metadata = {
   title: 'Contact Us | KLAS Realty',

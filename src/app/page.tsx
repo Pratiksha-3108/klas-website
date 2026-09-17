@@ -1,15 +1,15 @@
-import Hero from '@/components/home/Hero';
-import HomeProjectsSection from '@/components/home/HomeProjectsSection';
-import HomeResultsSection from '@/components/home/HomeResultsSection';
-import HomeClientsSection from '@/components/home/HomeClientsSection';
+import type { Metadata } from 'next';
+import KlasHero from '@/components/klas/KlasHero';
+
+export const metadata: Metadata = {
+  title: 'KLAS | Transforming Land Into Landmark Projects',
+  description: 'KLAS holds a robust portfolio of high-value assets across India currently under Joint Venture Development of Residential & Commercial projects.',
+};
 
 export default function Home() {
   return (
     <>
-      <Hero />
-      <HomeProjectsSection />
-      <HomeResultsSection />
-      <HomeClientsSection />
+      <KlasHero />
     </>
   );
 }

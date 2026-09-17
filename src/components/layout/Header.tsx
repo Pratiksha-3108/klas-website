@@ -1,11 +1,12 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import styles from './Header.module.css';
 
 export default function Header() {
+  const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -22,6 +23,19 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const shouldHideHeader =
+    pathname === '/' ||
+    pathname?.startsWith('/family') ||
+    pathname?.startsWith('/klas-family') ||
+    pathname?.startsWith('/animation') ||
+    pathname?.startsWith('/klas-animation') ||
+    pathname?.startsWith('/klas-technology') ||
+    pathname?.startsWith('/klas');
+
+  if (shouldHideHeader) {
+    return null;
+  }
+
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
@@ -33,15 +47,8 @@ export default function Header() {
   return (
     <header className={`${styles.header} ${isScrolled ? styles.scrolled : ''}`}>
       <div className={styles.container}>
-        <Link href="/" className={styles.logoLink} onClick={closeMobileMenu}>
-          <Image
-            src="/assets/logo_nav.png"
-            alt="KLAS Realty Logo"
-            width={130}
-            height={40}
-            className={styles.logo}
-            priority
-          />
+        <Link href="/" className={styles.goldLogo} onClick={closeMobileMenu}>
+          KLAS
         </Link>
 
         {/* Desktop Navigation */}
@@ -53,16 +60,10 @@ export default function Header() {
             <Link href="/about" className={styles.navLink}>
               About
             </Link>
-            <Link href="/projects" className={styles.navLink}>
-              Projects
+            <Link href="/contact" className={styles.navLink}>
+              Contact
             </Link>
           </nav>
-
-          <div className={styles.desktopActions}>
-            <Link href="/contact" className={styles.ctaButton}>
-              Contact us
-            </Link>
-          </div>
         </div>
 
         {/* Mobile Burger Button */}
@@ -86,11 +87,8 @@ export default function Header() {
           <Link href="/about" className={styles.mobileNavLink} onClick={closeMobileMenu}>
             About
           </Link>
-          <Link href="/projects" className={styles.mobileNavLink} onClick={closeMobileMenu}>
-            Projects
-          </Link>
-          <Link href="/contact" className={`${styles.mobileNavLink} ${styles.mobileCta}`} onClick={closeMobileMenu}>
-            Contact us
+          <Link href="/contact" className={styles.mobileNavLink} onClick={closeMobileMenu}>
+            Contact
           </Link>
         </nav>
       </div>

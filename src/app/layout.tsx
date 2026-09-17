@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display, Plus_Jakarta_Sans } from "next/font/google";
+import StyledJsxRegistry from "@/lib/registry";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import "./globals.css";
@@ -35,9 +36,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable} ${plusJakarta.variable}`}>
       <body>
-        <Header />
-        <main>{children}</main>
-        <Footer />
+        <StyledJsxRegistry>
+          <Header />
+          <main>{children}</main>
+          <Footer />
+        </StyledJsxRegistry>
       </body>
     </html>
   );
