@@ -100,16 +100,25 @@ export default function KlasHero({ initialCategory = 'Realty' }: KlasHeroProps) 
       {/* 4 Category Words Sub-Navigation Line */}
       <div className="categoryNavWrapper">
         <div className="categoryNavContainer">
-          {categories.map((cat) => (
-            <Link
-              key={cat.id}
-              href={cat.href}
-              className={`categoryTab ${cat.label === activeCategory ? 'activeCategoryTab' : ''}`}
-              onClick={() => setActiveCategory(cat.label as any)}
-            >
-              <span>{cat.label}</span>
-            </Link>
-          ))}
+          {categories.map((cat) => {
+            const isActive = cat.label === activeCategory;
+            return (
+              <button
+                key={cat.id}
+                type="button"
+                className="categoryTab"
+                onClick={() => setActiveCategory(cat.label as any)}
+                style={{
+                  borderBottom: isActive ? '2.5px solid #4F4742' : '2.5px solid transparent',
+                  color: isActive ? '#22201E' : '#5C5852',
+                  fontWeight: isActive ? 700 : 500,
+                  opacity: isActive ? 1 : 0.75,
+                }}
+              >
+                <span>{cat.label}</span>
+              </button>
+            );
+          })}
         </div>
       </div>
 
@@ -175,7 +184,7 @@ export default function KlasHero({ initialCategory = 'Realty' }: KlasHeroProps) 
         .navContainer {
           max-width: 1680px;
           margin: 0 auto;
-          padding: 0 120px 0 48px;
+          padding: 0 48px 0 48px;
           display: flex;
           justify-content: flex-end;
           align-items: center;
@@ -193,11 +202,37 @@ export default function KlasHero({ initialCategory = 'Realty' }: KlasHeroProps) 
           font-weight: 500;
           color: #978E89;
           text-decoration: none;
+          position: relative;
+          padding: 4px 0;
           transition: color 0.2s ease;
         }
 
+        .navItem::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 2px;
+          background-color: var(--accent);
+          transform: scaleX(0);
+          transform-origin: right;
+          transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
         .navItem:hover {
-          color: #000000;
+          color: var(--accent-dark);
+        }
+
+        .navItem:hover::after,
+        .activeNavItem::after {
+          transform: scaleX(1);
+          transform-origin: left;
+        }
+
+        .activeNavItem {
+          color: var(--accent-dark);
+          font-weight: 600;
         }
 
         .klasBannerContainer {
@@ -233,54 +268,46 @@ export default function KlasHero({ initialCategory = 'Realty' }: KlasHeroProps) 
         }
 
         .categoryNavContainer {
-          max-width: 1680px;
+          max-width: 1400px;
           margin: 0 auto;
-          padding: 0 48px 0 240px;
+          padding: 0 160px;
           display: flex;
           align-items: center;
-          justify-content: flex-start;
-          gap: 260px;
+          justify-content: space-between;
+          gap: 24px;
         }
 
         .categoryTab {
           position: relative;
-          display: inline-block;
-          padding-bottom: 12px;
+          display: inline-flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          padding: 0 30px 10px 30px;
           font-family: var(--font-inter), 'Inter', sans-serif;
           font-size: 16px;
-          font-weight: 400;
-          color: #4F4742;
+          font-weight: 500;
+          color: #5C5852;
           text-decoration: none;
-          transition: opacity 0.2s ease;
+          white-space: nowrap;
+          background: transparent;
+          border: none;
+          border-bottom: 2.5px solid transparent;
+          transition: border-color 0.2s ease, color 0.2s ease, opacity 0.2s ease;
           opacity: 0.75;
+          cursor: pointer;
         }
 
         .categoryTab:hover {
           opacity: 1;
+          color: #22201E;
         }
 
         .activeCategoryTab {
-          color: #4F4742;
+          color: #22201E;
           font-weight: 700;
           opacity: 1;
-        }
-
-        .categoryTab::after {
-          content: '';
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          width: 100%;
-          height: 4px;
-          background-color: #4F4742;
-          border-radius: 2px;
-          opacity: 0;
-          transition: opacity 0.2s ease;
-        }
-
-        .categoryTab:hover::after,
-        .activeCategoryTab::after {
-          opacity: 1;
+          border-bottom: 2.5px solid #4F4742;
         }
 
         .heroBannerContainer {
