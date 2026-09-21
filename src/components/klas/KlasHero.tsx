@@ -315,14 +315,14 @@ export default function KlasHero({ initialCategory = 'Realty' }: KlasHeroProps) 
           width: 100%;
           min-height: 580px;
           overflow: hidden;
-          background-color: #F9F9F9;
+          background-color: #ffffff;
         }
 
         .bgImageWrapper {
           position: absolute;
           top: 0;
           right: 0;
-          width: 100%;
+          width: 55%;
           height: 100%;
           z-index: 1;
           pointer-events: none;
