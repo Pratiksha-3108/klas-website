@@ -66,7 +66,7 @@ export default function KlasHero({ initialCategory = 'Realty' }: KlasHeroProps) 
     'Realty': '/assets/klas/klas_hero1.png',
     'Family Office': '/assets/klas-family/hero_family.png',
     'Animation': '/assets/klas-animation/animation_hero.png',
-    'Technology': '/assets/klas-animation/tech_hero.png',
+    'Technology': '/assets/klas-animation/tech_hero1.png',
   };
 
   const currentContent = contentMap[activeCategory as keyof typeof contentMap] || contentMap['Realty'];
@@ -317,14 +317,14 @@ export default function KlasHero({ initialCategory = 'Realty' }: KlasHeroProps) 
           width: 100%;
           min-height: 580px;
           overflow: hidden;
-          background-color: #ffffff;
+          background-color: #F9F9F9;
         }
 
         .bgImageWrapper {
           position: absolute;
           top: 0;
           right: 0;
-          width: 55%;
+          width: 72%;
           height: 100%;
           z-index: 1;
           pointer-events: none;
@@ -333,6 +333,7 @@ export default function KlasHero({ initialCategory = 'Realty' }: KlasHeroProps) 
         .fullHeroImg {
           object-fit: cover !important;
           object-position: right center !important;
+          mix-blend-mode: multiply;
         }
 
         .heroBody {
