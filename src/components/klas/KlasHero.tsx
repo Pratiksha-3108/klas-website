@@ -260,10 +260,10 @@ export default function KlasHero({ initialCategory = 'Realty' }: KlasHeroProps) 
 
         .categoryNavWrapper {
           width: 100%;
-          border-bottom: none;
+          border-bottom: 1px solid #F0EFEE;
           margin-top: 64px;
           margin-bottom: 0;
-          padding-bottom: 16px;
+          padding-bottom: 5px;
           background-color: #ffffff;
         }
 
@@ -284,6 +284,7 @@ export default function KlasHero({ initialCategory = 'Realty' }: KlasHeroProps) 
           align-items: center;
           justify-content: center;
           padding: 0 30px 10px 30px;
+          margin-bottom: 0;
           font-family: var(--font-inter), 'Inter', sans-serif;
           font-size: 16px;
           font-weight: 500;
@@ -296,6 +297,7 @@ export default function KlasHero({ initialCategory = 'Realty' }: KlasHeroProps) 
           transition: border-color 0.2s ease, color 0.2s ease, opacity 0.2s ease;
           opacity: 0.75;
           cursor: pointer;
+          z-index: 2;
         }
 
         .categoryTab:hover {

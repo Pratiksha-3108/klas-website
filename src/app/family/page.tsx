@@ -22,9 +22,9 @@ export default function FamilyPage() {
       <FamilyAboutSection />
       <FamilyMissionSection />
       <FamilyVisionSection />
+      <FamilyInvestmentApproachSection />
       <FamilyValuesSection />
       <FamilyFocusAreaSection />
-      <FamilyInvestmentApproachSection />
       <FamilyDisclaimerSection />
     </>
   );
