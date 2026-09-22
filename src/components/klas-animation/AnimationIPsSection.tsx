@@ -27,7 +27,7 @@ const ipData: IPCard[] = [
     title: 'Hanuman (2005)',
     age: 'AGE: 13+',
     genre: 'ADVENTURE, ACTION',
-    image: '/assets/klas-animation/prop2.png',
+    image: '/assets/klas-animation/animation2nd.png',
     description:
       'Hanuman (2005) is India’s first animated feature film, portraying the life of Lord Hanuman—from his divine birth to his pivotal role in the Ramayana.\n\nBlessed by the Gods with unmatched strength, intelligence, and immortality, Hanuman embodies courage and devotion. The film traces his playful childhood, the discovery of his extraordinary powers, and his pivotal role in aiding Lord Ram—culminating in the epic triumph over Ravana and the rescue of Sita.',
   },
@@ -36,7 +36,7 @@ const ipData: IPCard[] = [
     title: 'Hanu The Hero',
     age: 'AGE: 9+',
     genre: 'ADVENTURE, ACTION, COMEDY',
-    image: '/assets/klas-animation/prop3.png',
+    image: '/assets/klas-animation/animation3rd.png',
     description:
       'Set in the enchanting Anjan Kingdom, a lush river-valley realm where humans, animals, and Vanars coexist, Hanu the Hero follows the adventures of Hanu, a powerful young Vanar who watches over the kingdom from his sky-high treehouse. Alongside his brilliant best friend Jamy, the inventive son of the Bear Guard commander, Hanu protects Princess Aarya and the citizens of Anjan with a mix of strength, strategy, and cutting-edge gadgets.\n\nFrom daring rescues to playful escapades in the kingdom’s unique treehouse school, the series blends action, friendship, and humour—celebrating courage, creativity, and the harmony between nature and humanity.',
   },
@@ -52,7 +52,7 @@ const ipData: IPCard[] = [
 ];
 
 export default function AnimationIPsSection() {
-  const [activeCardId, setActiveCardId] = useState<string>('kinderheroes');
+  const [activeCardId, setActiveCardId] = useState<string | null>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const handleCardHover = (id: string) => {
@@ -122,10 +122,6 @@ export default function AnimationIPsSection() {
                       fill
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       className="cardImage"
-                      style={{
-                        objectFit: card.id === 'hanu-the-hero' ? 'contain' : 'cover',
-                        padding: card.id === 'hanu-the-hero' ? '12px' : '0',
-                      }}
                     />
                   </div>
 
@@ -269,7 +265,7 @@ export default function AnimationIPsSection() {
         }
 
         .ipCard {
-          width: 300px;
+          width: 320px;
           background: #ffffff;
           border-radius: 4px;
           box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
@@ -289,7 +285,7 @@ export default function AnimationIPsSection() {
         .imageWrapper {
           position: relative;
           width: 100%;
-          height: 240px;
+          height: 280px;
           background-color: #ffffff;
         }
 
@@ -370,6 +366,7 @@ export default function AnimationIPsSection() {
                       border-color 0.35s ease;
         }
 
+        .ipCard:hover .cardDescription,
         .ipCard.expanded .cardDescription {
           border-top-color: #F0EBE6;
           max-height: 1000px;
