@@ -24,7 +24,7 @@ const fadeInUpVariants: Variants = {
 interface AwardItem {
   id: string;
   number: string;
-  title: string;
+  title: React.ReactNode;
 }
 
 const awardsData: AwardItem[] = [
@@ -51,7 +51,13 @@ const awardsData: AwardItem[] = [
   {
     id: '05',
     number: '05 /',
-    title: "12th Annual Star Screen Awards - Special Recognition Award for 'Hanuman' (Mar 2006)",
+    title: (
+      <>
+        12th Annual Star Screen Awards - Special Recognition Award for
+        <br />
+        &apos;Hanuman&apos; (Mar 2006)
+      </>
+    ),
   },
   {
     id: '06',
@@ -76,7 +82,7 @@ interface CountUpProps {
   duration?: number;
 }
 
-function CountUpNumber({ end, suffix = '+', duration = 800 }: CountUpProps) {
+function CountUpNumber({ end, suffix = '+', duration = 2500 }: CountUpProps) {
   const [count, setCount] = useState(0);
   const ref = useRef<HTMLSpanElement>(null);
   const hasAnimated = useRef(false);
@@ -189,21 +195,21 @@ export default function AnimationAwardsSection() {
         <div className="statsGrid">
           <div className="statCard">
             <h3 className="statNumber">
-              <CountUpNumber end={5} suffix="+" duration={800} />
+              <CountUpNumber end={5} suffix="+" duration={2500} />
             </h3>
             <p className="statLabel">Countries Global Production Delivered</p>
           </div>
 
           <div className="statCard">
             <h3 className="statNumber">
-              <CountUpNumber end={20} suffix="+" duration={800} />
+              <CountUpNumber end={20} suffix="+" duration={2500} />
             </h3>
             <p className="statLabel">Years of Experience</p>
           </div>
 
           <div className="statCard">
             <h3 className="statNumber">
-              <CountUpNumber end={10} suffix="+" duration={800} />
+              <CountUpNumber end={10} suffix="+" duration={2500} />
             </h3>
             <p className="statLabel">Awards Nationally & Globally</p>
           </div>
@@ -261,6 +267,8 @@ export default function AnimationAwardsSection() {
           align-items: center;
           gap: 20px;
           padding-right: 24px;
+          transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+          transform-origin: left center;
         }
 
         .awardNumber {
@@ -269,6 +277,7 @@ export default function AnimationAwardsSection() {
           font-weight: 700;
           color: #3A3430;
           flex-shrink: 0;
+          transition: color 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .awardTitle {
@@ -277,6 +286,22 @@ export default function AnimationAwardsSection() {
           font-weight: 600;
           color: #3A3430;
           line-height: 1.4;
+          transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), font-size 0.3s ease, color 0.3s ease, font-weight 0.3s ease;
+          transform-origin: left center;
+        }
+
+        .awardRow:hover .awardTitle,
+        .awardRow.hovered .awardTitle {
+          transform: scale(1.06) translateX(4px);
+          font-size: 23px;
+          font-weight: 700;
+          color: #111111;
+        }
+
+        .awardRow:hover .awardNumber,
+        .awardRow.hovered .awardNumber {
+          transform: scale(1.05);
+          color: #111111;
         }
 
         .awardRight {

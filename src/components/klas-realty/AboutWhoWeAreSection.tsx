@@ -2,27 +2,81 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 
+const TEXT_1 = "technology companies, becoming one of the pioneers of the Indian I.T. industry.";
+const TEXT_2 = "From 2000 onwards, KLAS expanded into Real Estate and Animation, laying the foundation for the group's next phase of growth. The film Hanuman ignited the wave of Indian animation and paved the way for future IPs to be born in the country.";
+const TEXT_3 = "Today, KLAS operates across Technology, Capital Markets, Real Estate and Animation — a diversified group built on decades of pioneering ventures and still expanding into new industries.";
+
+interface ScrollWordsProps {
+  text: string;
+  sectionProgress: number;
+  startIndex: number;
+  totalWords: number;
+}
+
+function ScrollWords({ text, sectionProgress, startIndex, totalWords }: ScrollWordsProps) {
+  const words = text.split(' ');
+
+  return (
+    <>
+      {words.map((word, idx) => {
+        const globalWordIdx = startIndex + idx;
+        const fraction = globalWordIdx / Math.max(totalWords - 1, 1);
+
+        // Window size determines how gradually each word transitions
+        const windowSize = 0.22;
+        const wordStart = fraction * (1 - windowSize);
+
+        const rawProgress = (sectionProgress - wordStart) / windowSize;
+        const p = Math.min(Math.max(rawProgress, 0), 1);
+
+        // Cubic easing for silky smooth visual feel
+        const easedP = p * p * (3 - 2 * p);
+
+        // RGB interpolation from #A69B95 (166, 155, 149) to #4F4742 (79, 71, 66)
+        const r = Math.round(166 - easedP * (166 - 79));
+        const g = Math.round(155 - easedP * (155 - 71));
+        const b = Math.round(149 - easedP * (149 - 66));
+
+        const fontWeight = Math.round(400 + easedP * 300); // 400 -> 700 Bold
+        const opacity = 0.75 + easedP * 0.25;
+
+        return (
+          <span
+            key={idx}
+            style={{
+              color: `rgb(${r}, ${g}, ${b})`,
+              fontWeight: fontWeight,
+              opacity: opacity,
+              transition: 'color 0.1s ease-out, opacity 0.1s ease-out, font-weight 0.1s ease-out',
+            }}
+          >
+            {word}{idx < words.length - 1 ? ' ' : ''}
+          </span>
+        );
+      })}
+    </>
+  );
+}
+
 export default function AboutWhoWeAreSection() {
-  const [activeParagraphs, setActiveParagraphs] = useState<number[]>([]);
-  const p1Ref = useRef<HTMLSpanElement>(null);
-  const p2Ref = useRef<HTMLParagraphElement>(null);
-  const p3Ref = useRef<HTMLParagraphElement>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
+      if (!sectionRef.current) return;
+      const rect = sectionRef.current.getBoundingClientRect();
       const windowHeight = window.innerHeight;
 
-      const checkHighlight = (ref: React.RefObject<HTMLElement | null>, idx: number) => {
-        if (!ref.current) return;
-        const rect = ref.current.getBoundingClientRect();
-        if (rect.top < windowHeight * 0.75) {
-          setActiveParagraphs((prev) => (prev.includes(idx) ? prev : [...prev, idx]));
-        }
-      };
+      // Start highlighting when top of right section enters at 85% of viewport
+      // Complete highlight when bottom of right section reaches 30% of viewport
+      const startPoint = windowHeight * 0.85;
+      const endPoint = windowHeight * 0.30;
+      const totalDist = startPoint - endPoint + rect.height;
+      const currentDist = startPoint - rect.top;
 
-      checkHighlight(p1Ref, 0);
-      checkHighlight(p2Ref, 1);
-      checkHighlight(p3HighlightRef, 2);
+      const p = Math.min(Math.max(currentDist / totalDist, 0), 1);
+      setScrollProgress(p);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -31,11 +85,10 @@ export default function AboutWhoWeAreSection() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const isP1Active = activeParagraphs.includes(0);
-  const isP2Active = activeParagraphs.includes(1);
-  const isP3Active = activeParagraphs.includes(2);
-
-  const p3HighlightRef = p3Ref;
+  const count1 = TEXT_1.split(' ').length;
+  const count2 = TEXT_2.split(' ').length;
+  const count3 = TEXT_3.split(' ').length;
+  const totalWords = count1 + count2 + count3;
 
   return (
     <section className="whoWeAreSection">
@@ -50,38 +103,37 @@ export default function AboutWhoWeAreSection() {
           </div>
 
           {/* Right Column */}
-          <div className="rightCol">
+          <div className="rightCol" ref={sectionRef}>
             <p className="paragraph">
               <span className="darkText">
                 KLAS&apos;s journey began in 1985 with Silverline Electronics, Data
                 Consultancy Services &amp; Data Punch Services. Over the decades,
                 Silverline grew into one of India&apos;s largest{' '}
               </span>
-              <span
-                ref={p1Ref}
-                className={`scrollText ${isP1Active ? 'active' : ''}`}
-              >
-                technology companies, becoming one of the pioneers of the Indian I.T. industry.
-              </span>
+              <ScrollWords
+                text={TEXT_1}
+                sectionProgress={scrollProgress}
+                startIndex={0}
+                totalWords={totalWords}
+              />
             </p>
 
-            <p
-              ref={p2Ref}
-              className={`paragraph scrollText ${isP2Active ? 'active' : ''}`}
-            >
-              From 2000 onwards, KLAS expanded into Real Estate and Animation,
-              laying the foundation for the group&apos;s next phase of growth. The film
-              Hanuman ignited the wave of Indian animation and paved the way for
-              future IPs to be born in the country.
+            <p className="paragraph">
+              <ScrollWords
+                text={TEXT_2}
+                sectionProgress={scrollProgress}
+                startIndex={count1}
+                totalWords={totalWords}
+              />
             </p>
 
-            <p
-              ref={p3Ref}
-              className={`paragraph scrollText ${isP3Active ? 'active' : ''}`}
-            >
-              Today, KLAS operates across Technology, Capital Markets, Real Estate
-              and Animation — a diversified group built on decades of pioneering
-              ventures and still expanding into new industries.
+            <p className="paragraph">
+              <ScrollWords
+                text={TEXT_3}
+                sectionProgress={scrollProgress}
+                startIndex={count1 + count2}
+                totalWords={totalWords}
+              />
             </p>
           </div>
         </div>
@@ -149,17 +201,7 @@ export default function AboutWhoWeAreSection() {
 
         .darkText {
           color: #4F4742;
-          font-weight: 400;
-        }
-
-        .scrollText {
-          color: #A69B95;
-          font-weight: 400;
-          transition: color 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-
-        .scrollText.active {
-          color: #4F4742;
+          font-weight: 700;
         }
 
         @media (max-width: 1024px) {
@@ -211,3 +253,4 @@ export default function AboutWhoWeAreSection() {
     </section>
   );
 }
+

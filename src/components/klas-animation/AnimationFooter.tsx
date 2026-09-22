@@ -148,7 +148,7 @@ export default function AnimationFooter() {
       <style jsx>{`
         .footer {
           width: 100%;
-          background-color: #443c37;
+          background-color: #4F4742;
           color: #ffffff;
           padding: 70px 0 60px;
           font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;

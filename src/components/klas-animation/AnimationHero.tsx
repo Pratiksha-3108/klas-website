@@ -81,7 +81,7 @@ export default function AnimationHero() {
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          padding-top: 120px;
+          padding-top: 380px;
         }
 
         .title {
@@ -129,6 +129,10 @@ export default function AnimationHero() {
             margin-top: 70px;
           }
 
+          .content {
+            padding-top: 280px;
+          }
+
           .title {
             font-size: 44px;
             gap: 12px;
@@ -138,6 +142,10 @@ export default function AnimationHero() {
         @media (max-width: 640px) {
           .hero {
             height: 460px;
+          }
+
+          .content {
+            padding-top: 220px;
           }
 
           .title {

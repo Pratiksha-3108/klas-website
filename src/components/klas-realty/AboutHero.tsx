@@ -8,8 +8,8 @@ export default function AboutHero() {
     <section className="hero">
       <div className="heroImageWrapper">
         <Image
-          src="/assets/about/klas-who.png"
-          alt="KLAS About Hero - Skyscrapers"
+          src="/assets/about/about-hero.png"
+          alt="KLAS About Hero"
           fill
           priority
           sizes="100vw"
