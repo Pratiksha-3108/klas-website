@@ -183,7 +183,7 @@ export default function HomeClientsSection() {
 
         .clientImage {
           max-height: 84px;
-          max-width: 160px;
+          max-width: 135px;
           width: auto;
           height: auto;
           object-fit: contain;

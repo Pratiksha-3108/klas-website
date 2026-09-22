@@ -125,7 +125,7 @@ export default function KlasHero({ initialCategory = 'Realty' }: KlasHeroProps) 
       {/* Main Hero Banner Container: Image starts BELOW the 4 words */}
       <div className="heroBannerContainer">
         {/* Background Image Spanning Full Width & Height of this lower section */}
-        <div className="bgImageWrapper">
+        <div className={`bgImageWrapper category-${activeCategory.toLowerCase().replace(/\s+/g, '-')}`}>
           <Image
             src={heroImage}
             alt="KLAS Hero Illustration"
@@ -150,14 +150,11 @@ export default function KlasHero({ initialCategory = 'Realty' }: KlasHeroProps) 
                   <span key={idx} className="descLine">{line}</span>
                 ))}
               </p>
-              <Link href={exploreHref} className="exploreLink">
-                <Image
-                  src="/assets/klas-animation/explore_icon.png"
-                  alt="Explore"
-                  width={120}
-                  height={24}
-                  className="exploreIcon"
-                />
+              <Link href={exploreHref} className="exploreBtn">
+                <span className="exploreBtnText">Explore</span>
+                <svg className="exploreBtnArrow" width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M11 1L17 7M17 7L11 13M17 7H1" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
               </Link>
             </div>
           </div>
@@ -324,14 +321,44 @@ export default function KlasHero({ initialCategory = 'Realty' }: KlasHeroProps) 
           position: absolute;
           top: 0;
           right: 0;
-          width: 72%;
+          width: 85%;
           height: 100%;
           z-index: 1;
           pointer-events: none;
         }
 
+        .category-realty {
+          width: 85%;
+          right: 0;
+          top: 0;
+          height: 100%;
+          padding-top: 8px;
+        }
+
+        .category-realty .fullHeroImg {
+          object-fit: contain !important;
+          object-position: right top !important;
+        }
+
+        .category-family-office {
+          width: 74%;
+          right: 0;
+        }
+
+        .category-technology {
+          width: 90%;
+          right: 0;
+          top: -20px;
+          height: calc(100% + 20px);
+        }
+
+        .category-technology .fullHeroImg {
+          object-fit: contain !important;
+          object-position: right top !important;
+        }
+
         .fullHeroImg {
-          object-fit: cover !important;
+          object-fit: contain !important;
           object-position: right center !important;
           mix-blend-mode: multiply;
         }
@@ -389,25 +416,72 @@ export default function KlasHero({ initialCategory = 'Realty' }: KlasHeroProps) 
           display: block;
         }
 
-        .exploreLink {
+        :global(.exploreBtn) {
+          font-family: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+          font-size: 16px;
+          font-weight: 600;
+          letter-spacing: 0.02em;
+          text-transform: none;
+          background: transparent;
+          border: none;
+          padding: 10px 22px;
+          color: #4F4742;
+          position: relative;
           display: inline-flex;
           align-items: center;
+          gap: 12px;
           text-decoration: none;
-          transition: opacity 0.2s ease;
+          transition: color 0.4s ease;
+          cursor: pointer;
+          overflow: hidden;
+          margin-top: 16px;
+          z-index: 1;
         }
 
-        .exploreLink:hover {
-          opacity: 0.75;
+        :global(.exploreBtn::before) {
+          content: "";
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          height: 3px;
+          width: 0;
+          background-color: #4F4742;
+          transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+          z-index: 2;
         }
 
-        .exploreIcon {
-          display: block;
-          object-fit: contain;
-          transition: transform 0.2s ease;
+        :global(.exploreBtn:hover::before) {
+          width: 100%;
         }
 
-        .exploreLink:hover .exploreIcon {
-          transform: translateX(4px);
+        :global(.exploreBtn::after) {
+          content: "";
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          height: 0;
+          width: 100%;
+          background-color: #4F4742;
+          transition: height 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+          transition-delay: 0.22s;
+          z-index: -1;
+        }
+
+        :global(.exploreBtn:hover::after) {
+          height: 100%;
+        }
+
+        :global(.exploreBtn:hover) {
+          color: #ffffff;
+          transition-delay: 0.22s;
+        }
+
+        :global(.exploreBtnArrow) {
+          transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), stroke 0.35s ease;
+        }
+
+        :global(.exploreBtn:hover .exploreBtnArrow) {
+          transform: translateX(6px);
         }
 
         @media (max-width: 1024px) {

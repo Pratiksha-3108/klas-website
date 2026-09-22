@@ -30,6 +30,36 @@
   align-items: center;
 }
 
+.goldLogo {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 38px;
+  font-weight: 500;
+  color: #F3CD8A;
+  text-decoration: none;
+  letter-spacing: 0px;
+  line-height: 100%;
+  text-transform: uppercase;
+  transition: opacity 0.2s ease;
+}
+
+.goldLogo:hover {
+  opacity: 0.85;
+}
+
+.aboutNavLink {
+  font-family: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  color: #978E89;
+  text-decoration: none;
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+.aboutNavLink:hover {
+  color: #4F4742;
+  opacity: 0.85;
+}
+
 .realtyLogo {
   font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   font-size: 40px;
@@ -162,6 +192,19 @@
 
 .mobileNavLink:hover {
   opacity: 0.7;
+}
+
+.aboutMobileNavLink {
+  font-size: 22px;
+  font-weight: 500;
+  color: #978E89;
+  font-family: var(--font-inter), 'Inter', sans-serif;
+  padding: 10px;
+  text-decoration: none;
+}
+
+.aboutMobileNavLink:hover {
+  color: #4F4742;
 }
 
 .mobileContactPill {

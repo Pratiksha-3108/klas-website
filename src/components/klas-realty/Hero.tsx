@@ -20,14 +20,18 @@ export default function Hero() {
         <div className="textGrid">
           <div className="titleColumn">
             <h1 className="title">
-              <span className="animatedLine">Transforming Land Into</span>
-              <span className="animatedLine delayLine">Landmark Projects</span>
+              <div className="lineMask line1">
+                <span className="lineText">Transforming Land Into</span>
+              </div>
+              <div className="lineMask line2">
+                <span className="lineText">Landmark Projects</span>
+              </div>
             </h1>
           </div>
           <div className="descColumn">
             <p className="description">
               Established in 2000, KLAS holds a robust portfolio of high-value assets across
-              India which are currently under Joint Venture Development of Residential &
+              India which are currently under Joint Venture Development of Residential &amp;
               Commercial projects – totalling 1+ million sq. ft. of planned built-up area.
             </p>
           </div>
@@ -50,8 +54,6 @@ export default function Hero() {
         .imageWrapper {
           width: 97%;
           margin: 0 auto;
-          aspect-ratio: 16 / 10;
-          max-height: 650px;
           position: relative;
           overflow: hidden;
           border-radius: 0;
@@ -59,10 +61,10 @@ export default function Hero() {
         }
 
         .heroImage {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          object-position: 80% center;
+          width: 100% !important;
+          height: auto !important;
+          display: block !important;
+          object-fit: contain !important;
           animation: zoomOut 3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
@@ -107,21 +109,47 @@ export default function Hero() {
           font-size: 42px;
           font-weight: 600;
           line-height: 1.18;
-          color: #3B3432;
+          color: #4F4742;
           letter-spacing: 0.06em; /* 6% letter spacing */
           display: flex;
           flex-direction: column;
         }
 
-        .animatedLine {
+        .lineMask {
           display: block;
-          opacity: 0;
-          animation: fadeInUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
-          will-change: opacity, transform;
+          overflow: hidden;
+          padding-bottom: 4px;
         }
 
-        .delayLine {
-          animation-delay: 0.45s;
+        .lineText {
+          display: inline-block;
+          white-space: nowrap;
+          opacity: 0;
+          clip-path: inset(0 100% 0 0);
+          animation: sweepLineFromLeft 1.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+          will-change: clip-path, opacity;
+        }
+
+        .line1 .lineText {
+          animation-delay: 0.15s;
+        }
+
+        .line2 .lineText {
+          animation-delay: 1.80s;
+        }
+
+        @keyframes sweepLineFromLeft {
+          0% {
+            opacity: 0;
+            clip-path: inset(0 100% 0 0);
+          }
+          10% {
+            opacity: 1;
+          }
+          100% {
+            opacity: 1;
+            clip-path: inset(0 0% 0 0);
+          }
         }
 
         .descColumn {
@@ -168,10 +196,6 @@ export default function Hero() {
             padding-bottom: 40px;
           }
           
-          .imageWrapper {
-            aspect-ratio: 16 / 9;
-          }
-          
           .textGrid {
             grid-template-columns: 1fr;
             gap: 20px;
@@ -192,10 +216,6 @@ export default function Hero() {
         }
 
         @media (max-width: 480px) {
-          .imageWrapper {
-            aspect-ratio: 4 / 3;
-          }
-          
           .title {
             font-size: 30px;
           }
