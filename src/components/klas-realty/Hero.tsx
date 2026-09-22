@@ -9,12 +9,12 @@ export default function Hero() {
       <div className="container">
         <div className="imageWrapper">
           <Image
-            src="/assets/klas-realty/hero.png"
+            src="/assets/klas-realty/hero1.png"
             alt="KLAS Realty Landmark Projects Banner"
-            width={1760}
-            height={1033}
-            className="heroImage"
+            fill
             priority
+            sizes="100vw"
+            className="heroImage"
           />
         </div>
         <div className="textGrid">
@@ -52,28 +52,34 @@ export default function Hero() {
         }
 
         .imageWrapper {
-          width: 97%;
-          margin: 0 auto;
           position: relative;
+          width: 97%;
+          aspect-ratio: 1760 / 912;
+          max-height: calc(100vh - 100px);
+          margin: 0 auto;
           overflow: hidden;
           border-radius: 0;
           box-shadow: none;
         }
 
-        .heroImage {
-          width: 100% !important;
-          height: auto !important;
-          display: block !important;
-          object-fit: contain !important;
-          animation: zoomOut 3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        :global(.heroImage) {
+          object-fit: cover !important;
+          object-position: bottom center !important;
+          transform: scale(1.15);
+          transform-origin: center center;
+          will-change: transform;
+        }
+
+        :global(.hero.animate .heroImage) {
+          animation: zoomOut 6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
         }
 
         @keyframes zoomOut {
-          from {
+          0% {
             transform: scale(1.15);
           }
-          to {
-            transform: scale(1);
+          100% {
+            transform: scale(1.0);
           }
         }
 
@@ -169,6 +175,10 @@ export default function Hero() {
         }
 
         @media (max-width: 1024px) {
+          .imageWrapper {
+            width: 100%;
+          }
+
           .container {
             padding: 0 24px;
           }

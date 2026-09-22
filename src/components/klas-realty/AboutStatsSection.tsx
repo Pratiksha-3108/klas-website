@@ -317,21 +317,43 @@ export default function AboutStatsSection() {
         }
 
         @media (max-width: 600px) {
+          .statsSection {
+            min-height: 480px;
+            padding: 80px 0 40px;
+          }
+
           .statsGrid {
             grid-template-columns: repeat(2, 1fr);
-            row-gap: 28px;
+            row-gap: 24px;
+            column-gap: 12px;
           }
 
           .container {
-            padding: 0 20px 32px;
+            padding: 0 16px 32px;
+          }
+
+          .statItem {
+            padding: 0 8px;
+            min-height: 80px;
+          }
+
+          .statItem:first-child {
+            padding-left: 8px;
           }
 
           .value {
-            font-size: 26px;
+            font-size: 24px;
+            margin-bottom: 6px;
           }
 
           .label {
-            font-size: 9.5px;
+            font-size: 10.5px;
+            line-height: 1.35;
+          }
+
+          :global(.label span) {
+            white-space: normal !important;
+            display: inline !important;
           }
         }
       `}</style>

@@ -23,7 +23,7 @@ export default function AboutHero() {
           width: 100%;
           min-height: calc(100vh - 80px);
           height: 680px;
-          margin-top: 64px;
+          margin-top: 80px;
           overflow: hidden;
           background-color: #FFFFFF;
         }
@@ -38,21 +38,26 @@ export default function AboutHero() {
 
         .heroImage {
           object-fit: cover;
-          object-position: center;
+          object-position: top center;
         }
 
         @media (max-width: 1024px) {
           .hero {
             height: 560px;
             min-height: 60vh;
-            margin-top: 64px;
+            margin-top: 80px;
           }
         }
 
         @media (max-width: 640px) {
           .hero {
-            height: 480px;
-            min-height: 50vh;
+            height: 380px;
+            min-height: 340px;
+            margin-top: 80px;
+          }
+
+          :global(.heroImage) {
+            object-position: top center !important;
           }
         }
       `}</style>

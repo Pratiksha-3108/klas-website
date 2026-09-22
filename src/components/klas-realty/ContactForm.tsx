@@ -464,13 +464,13 @@ export default function ContactForm() {
         .formInput:focus,
         .formSelect:focus,
         .formTextarea:focus {
-          border-color: #0B2B26;
-          box-shadow: 0 0 0 3px rgba(11, 43, 38, 0.08);
+          border-color: #4F4742;
+          box-shadow: 0 0 0 3px rgba(79, 71, 66, 0.12);
         }
 
         .formSelect {
           appearance: none;
-          background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%3C%230B2B26' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+          background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%3C%234F4742' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
           background-repeat: no-repeat;
           background-position: right 16px center;
           padding-right: 40px;
@@ -485,7 +485,7 @@ export default function ContactForm() {
           align-items: center;
           justify-content: center;
           gap: 10px;
-          background-color: #0B2B26;
+          background-color: #4F4742;
           color: #FFFFFF;
           padding: 14px 28px;
           border-radius: 8px;
@@ -499,7 +499,7 @@ export default function ContactForm() {
         }
 
         .sendBtn:hover {
-          background-color: #061B18;
+          background-color: #3b3531;
           transform: translateY(-1px);
         }
 
@@ -523,7 +523,7 @@ export default function ContactForm() {
           width: 48px;
           height: 48px;
           border-radius: 50%;
-          background-color: #0B2B26;
+          background-color: #4F4742;
           color: #FFFFFF;
           font-size: 24px;
           display: flex;
@@ -534,7 +534,7 @@ export default function ContactForm() {
 
         .successCard h3 {
           font-size: 20px;
-          color: #0B2B26;
+          color: #4F4742;
           margin-bottom: 8px;
         }
 
@@ -546,7 +546,7 @@ export default function ContactForm() {
 
         .resetBtn {
           padding: 10px 24px;
-          background-color: #0B2B26;
+          background-color: #4F4742;
           color: #FFFFFF;
           border-radius: 6px;
           font-size: 14px;

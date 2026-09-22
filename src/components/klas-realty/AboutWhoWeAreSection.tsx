@@ -229,28 +229,37 @@ export default function AboutWhoWeAreSection() {
 
         @media (max-width: 640px) {
           .whoWeAreSection {
-            padding: 50px 0;
+            padding: 48px 0;
           }
 
           .container {
             padding: 0 20px;
           }
 
+          .grid {
+            gap: 24px;
+          }
+
           .title {
-            font-size: 30px;
+            font-size: 28px;
+            margin: 0 0 12px 0;
           }
 
           .subtitle {
-            font-size: 17px;
+            font-size: 16px;
+            line-height: 1.45;
+          }
+
+          .rightCol {
+            gap: 20px;
           }
 
           .paragraph {
-            font-size: 17px;
-            line-height: 1.55;
+            font-size: 16px;
+            line-height: 1.6;
           }
         }
       `}</style>
     </section>
   );
 }
-

@@ -246,12 +246,42 @@ export default function AboutVisionMissionSection() {
         }
 
         @media (max-width: 480px) {
+          .visionMissionSection {
+            padding: 48px 0;
+          }
+
           .container {
             padding: 0 20px;
+            gap: 44px;
+          }
+
+          .heading {
+            font-size: 22px;
+            line-height: 1.35;
+            margin-bottom: 24px;
+          }
+
+          .cardsGrid {
+            gap: 16px;
           }
 
           .card {
-            padding: 28px 22px;
+            padding: 22px 18px;
+          }
+
+          .cardNum {
+            font-size: 15px;
+            margin-bottom: 6px;
+          }
+
+          .cardTitle {
+            font-size: 16px;
+            margin-bottom: 6px;
+          }
+
+          .cardDesc {
+            font-size: 13.5px;
+            line-height: 1.5;
           }
         }
       `}</style>

@@ -44,12 +44,12 @@ export default function Header() {
     setIsMobileMenuOpen(false);
   };
 
-  const isAboutPage = pathname === '/about';
+  const isAboutOrContactPage = pathname === '/about' || pathname === '/contact';
 
   return (
     <header className={`${styles.header} ${isScrolled ? styles.scrolled : ''}`}>
       <div className={styles.container}>
-        {isAboutPage ? (
+        {isAboutOrContactPage ? (
           <Link href="/realty" className={styles.goldLogo} onClick={closeMobileMenu}>
             KLAS
           </Link>
@@ -62,7 +62,7 @@ export default function Header() {
         {/* Desktop Navigation */}
         <div className={styles.rightGroup}>
           <nav className={styles.desktopNav}>
-            {isAboutPage ? (
+            {isAboutOrContactPage ? (
               <>
                 <Link href="/realty" className={styles.aboutNavLink}>
                   Home
@@ -108,7 +108,7 @@ export default function Header() {
       {/* Mobile Navigation Drawer */}
       <div className={`${styles.mobileDrawer} ${isMobileMenuOpen ? styles.drawerOpen : ''}`}>
         <nav className={styles.mobileNav}>
-          {isAboutPage ? (
+          {isAboutOrContactPage ? (
             <>
               <Link href="/realty" className={styles.aboutMobileNavLink} onClick={closeMobileMenu}>
                 Home

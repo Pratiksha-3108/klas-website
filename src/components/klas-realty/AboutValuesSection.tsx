@@ -1,9 +1,47 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
+import { motion, Variants } from 'framer-motion';
+
+// Premium architectural easing curve
+const EASE_PREMIUM = [0.22, 1, 0.36, 1] as const;
+
+// 1. Horizontal Masked Reveal Variant (clip-path inset left to right)
+const imageMaskRevealVariants: Variants = {
+  hidden: {
+    clipPath: 'inset(0% 100% 0% 0%)',
+  },
+  visible: (index: number = 0) => ({
+    clipPath: 'inset(0% 0% 0% 0%)',
+    transition: {
+      duration: 1.1, // 1100ms
+      delay: index * 0.12, // 120ms stagger between cards
+      ease: EASE_PREMIUM,
+    },
+  }),
+};
+
+// 2. Subtle Text Fade + TranslateY Variant
+const textFadeSlideVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 18,
+  },
+  visible: (customDelay: number = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8,
+      delay: 0.25 + customDelay * 0.12, // 120ms stagger starting 250ms after section reveal begins
+      ease: EASE_PREMIUM,
+    },
+  }),
+};
 
 export default function AboutValuesSection() {
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
   const values = [
     {
       title: 'Diversified Excellence',
@@ -47,6 +85,7 @@ export default function AboutValuesSection() {
       number: '01',
       tag: 'REALTY',
       title: 'REALTY',
+      subtitle: 'Real Estate Development & Asset Management',
       image: '/assets/about/realty-about.jpg',
       href: '/realty',
     },
@@ -54,6 +93,7 @@ export default function AboutValuesSection() {
       number: '02',
       tag: 'FAMILY OFFICE',
       title: 'FAMILY OFFICE',
+      subtitle: 'Capital Markets, Wealth Stewardship & Investments',
       image: '/assets/about/office-about.png',
       href: '/klas-family',
     },
@@ -61,6 +101,7 @@ export default function AboutValuesSection() {
       number: '03',
       tag: 'ANIMATION',
       title: 'ANIMATION',
+      subtitle: 'Creative Media Studio & Digital Content',
       image: '/assets/about/animation-about.png',
       href: '/klas-animation',
     },
@@ -68,6 +109,7 @@ export default function AboutValuesSection() {
       number: '04',
       tag: 'TECHNOLOGY',
       title: 'TECHNOLOGY',
+      subtitle: 'Digital Solutions, AI Ventures & Innovation',
       image: encodeURI('/assets/about/Technology -about.png'),
       href: '/klas-technology',
     },
@@ -108,105 +150,223 @@ export default function AboutValuesSection() {
       <section className="divisionsSection">
         <div className="divisionsContainer">
           <div className="headerContainer">
-            <h2 className="divisionsTitle">READY TO KNOW MORE?</h2>
-            <p className="divisionsSubtitle">Explore Our Divisions</p>
+            <motion.h2
+              className="divisionsTitle"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: '-60px' }}
+              variants={textFadeSlideVariants}
+              custom={0}
+            >
+              READY TO KNOW MORE?
+            </motion.h2>
+            <motion.p
+              className="divisionsSubtitle"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: '-60px' }}
+              variants={textFadeSlideVariants}
+              custom={1}
+            >
+              Explore Our Divisions — <span className="subtitleHighlight">Four businesses. One vision for long-term growth.</span>
+            </motion.p>
           </div>
 
-          <div className="cardsGrid">
-            {divisions.map((item, index) => (
-              <Link
-                key={index}
-                href={item.href}
-                className="card"
-                style={{
-                  position: 'relative',
-                  overflow: 'hidden',
-                  height: '420px',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'space-between',
-                  padding: '28px 24px',
-                  textDecoration: 'none',
-                  boxSizing: 'border-box',
-                }}
-              >
-                <div
-                  className="imageWrapper"
+          <div
+            className="cardsAccordion"
+            onMouseLeave={() => setHoveredIndex(null)}
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              width: '100%',
+              height: '440px',
+              gap: 0,
+              boxSizing: 'border-box',
+              overflow: 'hidden',
+            }}
+          >
+            {divisions.map((item, index) => {
+              const isHovered = hoveredIndex === index;
+              const flexVal = hoveredIndex === null ? 1 : isHovered ? 1.15 : 0.95;
+
+              return (
+                <Link
+                  key={index}
+                  href={item.href}
+                  className={`card ${isHovered ? 'active' : 'inactive'}`}
+                  onMouseEnter={() => setHoveredIndex(index)}
+                  onFocus={() => setHoveredIndex(index)}
                   style={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    width: '100%',
+                    display: 'block',
+                    textDecoration: 'none',
                     height: '100%',
-                    zIndex: 1,
-                    overflow: 'hidden',
-                    pointerEvents: 'none',
+                    flex: flexVal,
+                    transition: 'flex 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
+                    minWidth: 0,
                   }}
                 >
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className="cardImage"
-                    style={{
-                      position: 'absolute',
-                      top: 0,
-                      left: 0,
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'cover',
-                      filter: 'grayscale(100%) contrast(1.05) brightness(0.85)',
-                      transition: 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), filter 0.6s ease',
-                    }}
-                  />
                   <div
-                    className="overlay"
+                    className="cardInner"
                     style={{
-                      position: 'absolute',
-                      top: 0,
-                      left: 0,
+                      position: 'relative',
                       width: '100%',
                       height: '100%',
-                      background:
-                        'linear-gradient(180deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.1) 40%, rgba(0, 0, 0, 0.75) 100%)',
-                      transition: 'background 0.4s ease',
+                      overflow: 'hidden',
+                      borderRadius: 0,
+                      backgroundColor: '#16181d',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      justifyContent: 'space-between',
+                      padding: '32px 28px',
+                      boxSizing: 'border-box',
+                      borderRight: index < divisions.length - 1 ? '1px solid rgba(255, 255, 255, 0.15)' : 'none',
                     }}
-                  />
-                </div>
-
-                {/* Top Bar inside card */}
-                <div className="cardTop">
-                  <span className="cardBadge">
-                    {item.number} — {item.tag}
-                  </span>
-                  <div className="arrowCircle">
-                    <svg
-                      width="14"
-                      height="14"
-                      viewBox="0 0 16 16"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="arrowIcon"
+                  >
+                    {/* Horizontal Masked Image Reveal */}
+                    <motion.div
+                      className="imageWrapper"
+                      initial="hidden"
+                      whileInView="visible"
+                      viewport={{ once: true, margin: '-40px' }}
+                      variants={imageMaskRevealVariants}
+                      custom={index}
+                      style={{
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        width: '100%',
+                        height: '100%',
+                        zIndex: 1,
+                        overflow: 'hidden',
+                        pointerEvents: 'none',
+                      }}
                     >
-                      <path
-                        d="M3.33334 12.6667L12.6667 3.33334M12.6667 3.33334H4.66667M12.6667 3.33334V11.3333"
-                        stroke="currentColor"
-                        strokeWidth="1.67"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
+                      <img
+                        src={item.image}
+                        alt={item.title}
+                        className="cardImage"
+                        style={{
+                          position: 'absolute',
+                          top: 0,
+                          left: 0,
+                          width: '100%',
+                          height: '100%',
+                          objectFit: 'cover',
+                          filter: isHovered
+                            ? 'grayscale(0%) brightness(1.05) contrast(1.05)'
+                            : 'grayscale(75%) brightness(0.7) contrast(1.05)',
+                          transform: 'scale(1)',
+                          transition: 'transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease',
+                        }}
                       />
-                    </svg>
-                  </div>
-                </div>
+                      <div
+                        className="overlay"
+                        style={{
+                          position: 'absolute',
+                          top: 0,
+                          left: 0,
+                          right: 0,
+                          bottom: 0,
+                          width: '100%',
+                          height: '100%',
+                          background: isHovered
+                            ? 'linear-gradient(180deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.1) 45%, rgba(0, 0, 0, 0.88) 100%)'
+                            : 'linear-gradient(180deg, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.15) 45%, rgba(0, 0, 0, 0.85) 100%)',
+                          transition: 'background 0.5s ease',
+                        }}
+                      />
+                    </motion.div>
 
-                {/* Bottom content inside card */}
-                <div className="cardBottom">
-                  <h3 className="cardTitle">{item.title}</h3>
-                  <div className="titleUnderline" />
-                </div>
-              </Link>
-            ))}
+                    {/* Top Bar inside card */}
+                    <div
+                      className="cardTop"
+                      style={{
+                        position: 'relative',
+                        zIndex: 2,
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                        width: '100%',
+                      }}
+                    >
+                      <motion.span
+                        className="cardBadge"
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        variants={textFadeSlideVariants}
+                        custom={2 + index}
+                      >
+                        {item.number} — {item.tag}
+                      </motion.span>
+                      <motion.div
+                        className="arrowCircle"
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        variants={textFadeSlideVariants}
+                        custom={2.5 + index}
+                      >
+                        <svg
+                          width="14"
+                          height="14"
+                          viewBox="0 0 16 16"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="arrowIcon"
+                        >
+                          <path
+                            d={
+                              isHovered
+                                ? "M2.66666 8H13.3333M13.3333 8L8.66666 3.33334M13.3333 8L8.66666 12.6667"
+                                : "M3.33334 12.6667L12.6667 3.33334M12.6667 3.33334H4.66667M12.6667 3.33334V11.3333"
+                            }
+                            stroke="currentColor"
+                            strokeWidth="1.67"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </motion.div>
+                    </div>
+
+                    {/* Bottom content inside card */}
+                    <div
+                      className="cardBottom"
+                      style={{
+                        position: 'relative',
+                        zIndex: 2,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'flex-start',
+                        width: '100%',
+                      }}
+                    >
+                      <motion.h3
+                        className="cardTitle"
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        variants={textFadeSlideVariants}
+                        custom={3 + index}
+                      >
+                        {item.title}
+                      </motion.h3>
+                      <motion.div
+                        className="titleUnderline"
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        variants={textFadeSlideVariants}
+                        custom={3.5 + index}
+                      />
+                    </div>
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -355,107 +515,115 @@ export default function AboutValuesSection() {
           margin: 0;
         }
 
-        .cardsGrid {
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          width: 100%;
-          gap: 0;
+        .subtitleHighlight {
+          color: #a39587;
+          font-weight: 300;
         }
 
-        .card {
-          border-right: 1px solid rgba(255, 255, 255, 0.15);
-        }
-
-        .card:last-child {
-          border-right: none;
-        }
-
-        .card:hover .cardImage {
-          transform: scale(1.06) !important;
-          filter: grayscale(60%) contrast(1.1) brightness(0.95) !important;
-        }
-
-        .cardTop {
-          position: relative;
-          z-index: 2;
+        /* Accordion Layout */
+        .cardsAccordion {
           display: flex;
-          justify-content: space-between;
-          align-items: center;
+          flex-direction: row;
           width: 100%;
+          height: 480px;
+          gap: 16px;
+          box-sizing: border-box;
         }
 
-        .cardBadge {
+        :global(.divisionsSection .cardBadge) {
           font-family: var(--font-inter), 'Inter', sans-serif;
           font-size: 13px;
           font-weight: 600;
           letter-spacing: 0.12em;
           color: #FFF0D7;
           text-transform: uppercase;
+          white-space: nowrap;
         }
 
-        .arrowCircle {
-          width: 36px;
-          height: 36px;
+        :global(.divisionsSection .arrowCircle) {
+          width: 38px;
+          height: 38px;
           border-radius: 50%;
-          border: 1px solid rgba(255, 255, 255, 0.4);
+          border: 1px solid rgba(255, 255, 255, 0.35);
           background-color: rgba(255, 255, 255, 0.08);
-          backdrop-filter: blur(4px);
+          backdrop-filter: blur(6px);
           display: flex;
           align-items: center;
           justify-content: center;
           color: #ffffff;
-          transition: all 0.3s ease;
+          transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+          flex-shrink: 0;
         }
 
-        .card:hover .arrowCircle {
+        :global(.divisionsSection .card.active .arrowCircle) {
           background-color: #ffffff;
           border-color: #ffffff;
           color: #111111;
-          transform: translate(2px, -2px);
+          transform: translateX(4px);
         }
 
-        .arrowIcon {
+        :global(.divisionsSection .arrowIcon) {
           transition: transform 0.3s ease;
         }
 
-        .cardBottom {
-          position: relative;
-          z-index: 2;
-          display: flex;
-          flex-direction: column;
-          align-items: flex-start;
+        :global(.divisionsSection .divisionTag) {
+          font-family: var(--font-inter), 'Inter', sans-serif;
+          font-size: 11px;
+          font-weight: 600;
+          letter-spacing: 0.22em;
+          color: rgba(255, 255, 255, 0.65);
+          text-transform: uppercase;
+          margin-bottom: 6px;
         }
 
-        .cardTitle {
+        :global(.divisionsSection .cardTitle) {
           font-family: var(--font-inter), 'Inter', sans-serif;
-          font-size: 24px;
-          font-weight: 500;
-          line-height: 28px;
+          font-size: 26px;
+          font-weight: 600;
+          line-height: 1.2;
           letter-spacing: -0.5px;
-          vertical-align: middle;
           color: #ffffff;
           text-transform: uppercase;
-          margin: 0 0 10px 0;
+          margin: 0;
+          white-space: nowrap;
         }
 
-        .titleUnderline {
-          width: 32px;
+        :global(.divisionsSection .cardSubtitle) {
+          font-family: var(--font-inter), 'Inter', sans-serif;
+          font-size: 14px;
+          font-weight: 400;
+          line-height: 1.45;
+          color: rgba(255, 255, 255, 0.85);
+          margin: 0;
+          max-height: 0;
+          opacity: 0;
+          transform: translateY(8px);
+          overflow: hidden;
+          transition: opacity 0.4s ease 0.1s, transform 0.4s ease 0.1s, max-height 0.4s ease, margin 0.4s ease;
+        }
+
+        :global(.divisionsSection .card.active .cardSubtitle),
+        :global(.divisionsSection .cardSubtitle.visible) {
+          max-height: 60px;
+          opacity: 1;
+          transform: translateY(0);
+          margin-top: 8px;
+        }
+
+        :global(.divisionsSection .titleUnderline) {
+          width: 28px;
           height: 2px;
           background-color: #C2B49D;
-          transition: width 0.3s ease;
+          margin-top: 14px;
+          transition: width 0.4s ease, background-color 0.4s ease;
         }
 
-        .card:hover .titleUnderline {
-          width: 48px;
+        :global(.divisionsSection .card.active .titleUnderline) {
+          width: 54px;
+          background-color: #E6D7C3;
         }
 
-        @media (max-width: 1200px) {
-          .cardsGrid {
-            grid-template-columns: repeat(2, 1fr);
-            gap: 0;
-          }
-        }
-
+        /* Responsive Breakpoints */
         @media (max-width: 1024px) {
           .valuesSection {
             padding: 70px 0;
@@ -487,16 +655,59 @@ export default function AboutValuesSection() {
           .subtitle {
             max-width: 100%;
           }
+
+          .cardsAccordion {
+            height: 440px;
+            gap: 12px;
+          }
+
+          :global(.divisionsSection .cardTitle) {
+            font-size: 22px;
+          }
+        }
+
+        @media (max-width: 860px) {
+          .cardsAccordion {
+            flex-direction: column;
+            height: auto;
+            gap: 16px;
+          }
+
+          :global(.divisionsSection .card) {
+            height: 220px !important;
+            flex: none !important;
+            width: 100%;
+          }
+
+          :global(.divisionsSection .card.active) {
+            height: 260px !important;
+          }
+
+          :global(.divisionsSection .cardSubtitle) {
+            max-height: 60px;
+            opacity: 1;
+            transform: translateY(0);
+            margin-top: 6px;
+          }
+
+          :global(.divisionsSection .titleUnderline) {
+            width: 44px;
+          }
         }
 
         @media (max-width: 640px) {
+          .subLine {
+            display: inline;
+            white-space: normal;
+          }
+
           .valuesSection {
-            padding: 50px 0;
+            padding: 48px 0;
           }
 
           .divisionsSection {
             padding-top: 40px;
-            padding-bottom: 50px;
+            padding-bottom: 48px;
           }
 
           .container,
@@ -510,8 +721,8 @@ export default function AboutValuesSection() {
 
           .valueItem {
             grid-template-columns: 1fr;
-            gap: 8px;
-            padding: 20px 0;
+            gap: 6px;
+            padding: 18px 0;
           }
 
           .title,
@@ -521,7 +732,8 @@ export default function AboutValuesSection() {
 
           .subtitle,
           .divisionsSubtitle {
-            font-size: 17px;
+            font-size: 16px;
+            line-height: 1.45;
           }
 
           .itemTitle {
@@ -530,18 +742,11 @@ export default function AboutValuesSection() {
 
           .itemContent {
             font-size: 14px;
-          }
-
-          .cardsGrid {
-            grid-template-columns: 1fr;
-            gap: 0;
-          }
-
-          .cardTitle {
-            font-size: 22px;
+            line-height: 1.55;
           }
         }
       `}</style>
     </>
   );
 }
+
