@@ -163,12 +163,14 @@ export default function HomeResultsSection() {
         }
 
         .container {
-          max-width: 1400px;
+          max-width: 1440px;
           margin: 0 auto;
           padding: 0 24px;
         }
 
         .mainGrid {
+          width: 97%;
+          margin: 0 auto;
           display: grid;
           grid-template-columns: 1fr 2.2fr;
           gap: 80px;
@@ -179,7 +181,7 @@ export default function HomeResultsSection() {
           display: flex;
           flex-direction: column;
           gap: 8px;
-          padding-left: 40px;
+          padding-left: 0;
           opacity: 0;
           transform: translateY(30px);
           transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);

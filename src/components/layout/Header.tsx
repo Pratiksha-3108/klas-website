@@ -47,21 +47,24 @@ export default function Header() {
   return (
     <header className={`${styles.header} ${isScrolled ? styles.scrolled : ''}`}>
       <div className={styles.container}>
-        <Link href="/" className={styles.goldLogo} onClick={closeMobileMenu}>
-          KLAS
+        <Link href="/realty" className={styles.realtyLogo} onClick={closeMobileMenu}>
+          Realty
         </Link>
 
         {/* Desktop Navigation */}
         <div className={styles.rightGroup}>
           <nav className={styles.desktopNav}>
-            <Link href="/" className={styles.navLink}>
+            <Link href="/realty" className={styles.navLink}>
               Home
             </Link>
             <Link href="/about" className={styles.navLink}>
               About
             </Link>
-            <Link href="/contact" className={styles.navLink}>
-              Contact
+            <Link href="/projects" className={styles.navLink}>
+              Projects
+            </Link>
+            <Link href="/contact" className={styles.contactPill}>
+              Contact us
             </Link>
           </nav>
         </div>
@@ -81,14 +84,17 @@ export default function Header() {
       {/* Mobile Navigation Drawer */}
       <div className={`${styles.mobileDrawer} ${isMobileMenuOpen ? styles.drawerOpen : ''}`}>
         <nav className={styles.mobileNav}>
-          <Link href="/" className={styles.mobileNavLink} onClick={closeMobileMenu}>
+          <Link href="/realty" className={styles.mobileNavLink} onClick={closeMobileMenu}>
             Home
           </Link>
           <Link href="/about" className={styles.mobileNavLink} onClick={closeMobileMenu}>
             About
           </Link>
-          <Link href="/contact" className={styles.mobileNavLink} onClick={closeMobileMenu}>
-            Contact
+          <Link href="/projects" className={styles.mobileNavLink} onClick={closeMobileMenu}>
+            Projects
+          </Link>
+          <Link href="/contact" className={styles.mobileContactPill} onClick={closeMobileMenu}>
+            Contact us
           </Link>
         </nav>
       </div>

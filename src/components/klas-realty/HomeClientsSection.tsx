@@ -54,8 +54,8 @@ export default function HomeClientsSection() {
                   <Image
                     src={logo.src}
                     alt={logo.alt}
-                    width={220}
-                    height={76}
+                    width={240}
+                    height={100}
                     className="clientImage"
                   />
                 </div>
@@ -73,12 +73,14 @@ export default function HomeClientsSection() {
         }
 
         .container {
-          max-width: 1400px;
+          max-width: 1440px;
           margin: 0 auto;
           padding: 0 24px;
         }
 
         .mainGrid {
+          width: 97%;
+          margin: 0 auto;
           display: grid;
           grid-template-columns: 320px 1fr;
           gap: 60px;
@@ -88,7 +90,7 @@ export default function HomeClientsSection() {
         .titleColumn {
           display: flex;
           flex-direction: column;
-          padding-left: 40px;
+          padding-left: 0;
         }
 
         .title {
@@ -125,6 +127,7 @@ export default function HomeClientsSection() {
           overflow: hidden;
           display: flex;
           align-items: center;
+          padding: 16px 0;
         }
 
         .sliderWrapper::before,
@@ -165,9 +168,9 @@ export default function HomeClientsSection() {
           display: flex;
           align-items: center;
           justify-content: center;
-          height: 64px;
+          height: 100px;
           min-width: 140px;
-          padding: 0 12px;
+          padding: 4px 12px;
           flex-shrink: 0;
           opacity: 0.95;
           transition: opacity 0.3s ease, transform 0.3s ease;
@@ -179,7 +182,7 @@ export default function HomeClientsSection() {
         }
 
         .clientImage {
-          max-height: 52px;
+          max-height: 84px;
           max-width: 160px;
           width: auto;
           height: auto;

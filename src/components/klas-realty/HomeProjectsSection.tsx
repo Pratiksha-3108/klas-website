@@ -246,17 +246,18 @@ export default function HomeProjectsSection() {
         }
 
         .container {
-          max-width: 1400px;
+          max-width: 1440px;
           margin: 0 auto;
           padding: 0 24px;
         }
 
         .headerRow {
+          width: 97%;
+          margin: 0 auto 56px;
           display: flex;
           align-items: flex-start;
           justify-content: space-between;
           gap: 40px;
-          margin-bottom: 56px;
         }
 
         .titleGroup {
@@ -265,7 +266,7 @@ export default function HomeProjectsSection() {
           align-items: flex-start;
           gap: 12px;
           text-align: left;
-          padding-left: 40px;
+          padding-left: 0;
           opacity: 0;
           transform: translateY(30px);
           transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);

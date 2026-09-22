@@ -36,22 +36,22 @@ export default function Hero() {
 
       <style jsx>{`
         .hero {
-          padding-top: 64px; /* Flush directly under fixed header */
+          padding-top: 80px; /* Flush directly under 80px fixed header */
           padding-bottom: 40px;
           background-color: var(--background);
         }
 
         .container {
-          max-width: 1400px;
+          max-width: 1440px;
           margin: 0 auto;
           padding: 0 24px;
         }
 
         .imageWrapper {
-          width: 94%;
+          width: 97%;
           margin: 0 auto;
           aspect-ratio: 16 / 10;
-          max-height: 620px;
+          max-height: 650px;
           position: relative;
           overflow: hidden;
           border-radius: 0;
@@ -76,10 +76,11 @@ export default function Hero() {
         }
 
         .textGrid {
+          width: 97%;
+          margin: 72px auto 0;
           display: grid;
           grid-template-columns: 1fr 1fr;
           gap: 40px;
-          margin-top: 72px;
           align-items: start;
           animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
@@ -98,7 +99,7 @@ export default function Hero() {
         .titleColumn {
           display: flex;
           flex-direction: column;
-          padding-left: 40px;
+          padding-left: 0;
         }
 
         .title {
