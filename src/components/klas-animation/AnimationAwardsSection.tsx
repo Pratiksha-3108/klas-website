@@ -25,6 +25,7 @@ interface AwardItem {
   id: string;
   number: string;
   title: React.ReactNode;
+  image?: string;
 }
 
 const awardsData: AwardItem[] = [
@@ -32,21 +33,25 @@ const awardsData: AwardItem[] = [
     id: '01',
     number: '01 /',
     title: "IIFA Award - Special Award for 'Hanuman' (Aug 2006)",
+    image: '/assets/klas-animation/IIFA.jpeg',
   },
   {
     id: '02',
     number: '02 /',
     title: "Apsara Awards - Best Visual Effects Award for 'Hanuman' (2006)",
+    image: '/assets/klas-animation/apsara_award.jpeg',
   },
   {
     id: '03',
     number: '03 /',
     title: "Zee Cine Awards - Best Visual Effects for 'Hanuman' (2006)",
+    image: '/assets/klas-animation/ZEE.jpeg',
   },
   {
     id: '04',
     number: '04 /',
     title: 'FICCI - BAF Awards - Special Contribution to Indian animation trophy',
+    image: '/assets/klas-animation/FICCI.jpeg',
   },
   {
     id: '05',
@@ -73,6 +78,7 @@ const awardsData: AwardItem[] = [
     id: '08',
     number: '08 /',
     title: 'I.T. People Industry Creator Award to Mr. Kumar Subramanian',
+    image: '/assets/klas-animation/IT.jpeg',
   },
 ];
 
@@ -178,7 +184,7 @@ export default function AnimationAwardsSection() {
                   {/* Hover Trophy Image */}
                   <div className="trophyBox">
                     <Image
-                      src="/assets/klas-animation/award.png"
+                      src={award.image || '/assets/klas-animation/award.png'}
                       alt="Award Trophy"
                       fill
                       sizes="(max-width: 768px) 100vw, 300px"
@@ -249,7 +255,7 @@ export default function AnimationAwardsSection() {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          padding: 24px 28px;
+          padding: 18px 28px;
           border-bottom: 1px solid #ECE6E0;
           background-color: #ffffff;
           transition: background-color 0.25s ease;
@@ -306,8 +312,8 @@ export default function AnimationAwardsSection() {
 
         .awardRight {
           position: relative;
-          width: 120px;
-          height: 74px;
+          width: 110px;
+          height: 92px;
           display: flex;
           align-items: center;
           justify-content: flex-end;
@@ -339,11 +345,11 @@ export default function AnimationAwardsSection() {
         }
 
         .trophyBox {
-          width: 120px;
-          height: 74px;
+          width: 110px;
+          height: 92px;
           position: absolute;
           right: 0;
-          border-radius: 4px;
+          border-radius: 0;
           overflow: hidden;
           opacity: 0;
           transform: scale(0.92);
