@@ -6,7 +6,7 @@ import Image from 'next/image';
 
 export default function AnimationCreativeControlSection() {
   return (
-    <section id="creative-control" className="section">
+    <section id="process" className="section">
       {/* Right Image Container spanning 100% height from top to bottom of section */}
       <div className="imageWrapper">
         <Image

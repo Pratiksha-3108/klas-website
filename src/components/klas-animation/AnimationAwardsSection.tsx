@@ -147,7 +147,7 @@ export default function AnimationAwardsSection() {
   const [hoveredId, setHoveredId] = useState<string | null>('02');
 
   return (
-    <section id="major-awards" className="section">
+    <section id="awards" className="section">
       <div className="container">
         {/* Section Header */}
         <h2 className="sectionTitle">MAJOR AWARDS</h2>

@@ -50,11 +50,11 @@ export default function Header() {
     <header className={`${styles.header} ${isScrolled ? styles.scrolled : ''}`}>
       <div className={styles.container}>
         {isAboutOrContactPage ? (
-          <Link href="/realty" className={styles.goldLogo} onClick={closeMobileMenu}>
+          <Link href="/" className={styles.goldLogo} onClick={closeMobileMenu}>
             KLAS
           </Link>
         ) : (
-          <Link href="/realty" className={styles.realtyLogo} onClick={closeMobileMenu}>
+          <Link href="/" className={styles.realtyLogo} onClick={closeMobileMenu}>
             Realty
           </Link>
         )}
@@ -64,7 +64,7 @@ export default function Header() {
           <nav className={styles.desktopNav}>
             {isAboutOrContactPage ? (
               <>
-                <Link href="/realty" className={styles.aboutNavLink}>
+                <Link href="/" className={styles.aboutNavLink}>
                   Home
                 </Link>
                 <Link href="/about" className={styles.aboutNavLink}>
@@ -76,7 +76,7 @@ export default function Header() {
               </>
             ) : (
               <>
-                <Link href="/realty" className={styles.navLink}>
+                <Link href="/" className={styles.navLink}>
                   Home
                 </Link>
                 <Link href="/about" className={styles.navLink}>
@@ -110,7 +110,7 @@ export default function Header() {
         <nav className={styles.mobileNav}>
           {isAboutOrContactPage ? (
             <>
-              <Link href="/realty" className={styles.aboutMobileNavLink} onClick={closeMobileMenu}>
+              <Link href="/" className={styles.aboutMobileNavLink} onClick={closeMobileMenu}>
                 Home
               </Link>
               <Link href="/about" className={styles.aboutMobileNavLink} onClick={closeMobileMenu}>
@@ -122,7 +122,7 @@ export default function Header() {
             </>
           ) : (
             <>
-              <Link href="/realty" className={styles.mobileNavLink} onClick={closeMobileMenu}>
+              <Link href="/" className={styles.mobileNavLink} onClick={closeMobileMenu}>
                 Home
               </Link>
               <Link href="/about" className={styles.mobileNavLink} onClick={closeMobileMenu}>
