@@ -157,6 +157,16 @@ export default function AboutValuesSection() {
               viewport={{ once: true, margin: '-60px' }}
               variants={textFadeSlideVariants}
               custom={0}
+              style={{
+                fontFamily: "var(--font-inter), 'Inter', -apple-system, sans-serif",
+                fontSize: '38px',
+                fontWeight: 700,
+                lineHeight: 1.15,
+                color: '#4F4742',
+                letterSpacing: '0.02em',
+                textTransform: 'uppercase',
+                margin: '0 0 20px 0',
+              }}
             >
               READY TO KNOW MORE?
             </motion.h2>
@@ -167,8 +177,16 @@ export default function AboutValuesSection() {
               viewport={{ once: true, margin: '-60px' }}
               variants={textFadeSlideVariants}
               custom={1}
+              style={{
+                fontFamily: "var(--font-inter), 'Inter', sans-serif",
+                fontSize: '17.5px',
+                fontWeight: 400,
+                lineHeight: 1.5,
+                color: '#756A62',
+                margin: 0,
+              }}
             >
-              Explore Our Divisions — <span className="subtitleHighlight">Four businesses. One vision for long-term growth.</span>
+              Explore Our Divisions
             </motion.p>
           </div>
 
@@ -399,23 +417,23 @@ export default function AboutValuesSection() {
         }
 
         .title {
-          font-family: var(--font-inter), 'Inter', -apple-system, sans-serif;
-          font-size: 38px;
-          font-weight: 700;
-          line-height: 1.15;
-          color: #4f4742;
-          letter-spacing: 0.02em;
-          text-transform: uppercase;
-          margin: 0 0 20px 0;
+          font-family: var(--font-inter), 'Inter', -apple-system, sans-serif !important;
+          font-size: 38px !important;
+          font-weight: 700 !important;
+          line-height: 1.15 !important;
+          color: #4F4742 !important;
+          letter-spacing: 0.02em !important;
+          text-transform: uppercase !important;
+          margin: 0 0 20px 0 !important;
         }
 
         .subtitle {
-          font-family: var(--font-inter), 'Inter', sans-serif;
-          font-size: 17.5px;
-          font-weight: 400;
-          line-height: 1.5;
-          color: #756a62;
-          margin: 0;
+          font-family: var(--font-inter), 'Inter', sans-serif !important;
+          font-size: 17.5px !important;
+          font-weight: 400 !important;
+          line-height: 1.5 !important;
+          color: #756A62 !important;
+          margin: 0 !important;
           max-width: 480px;
         }
 
@@ -444,36 +462,60 @@ export default function AboutValuesSection() {
           display: grid;
           grid-template-columns: 240px 1fr;
           gap: 32px;
-          padding: 26px 0;
+          padding: 22px 24px;
+          margin: 0 -24px;
           border-bottom: 1px solid #E7E1D6;
           align-items: start;
+          border-radius: 0;
+          cursor: pointer;
+          background-color: transparent;
+          transition: background-color 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
         }
 
         .valueItem:first-child {
-          padding-top: 4px;
+          margin-top: -4px;
+        }
+
+        .valueItem:hover {
+          background-color: #F5F0EC;
+          transform: translateY(-2px);
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
         }
 
         .valueItem:last-child {
           border-bottom: none;
-          padding-bottom: 0;
         }
 
         .itemTitle {
-          font-family: var(--font-inter), 'Inter', sans-serif;
-          font-size: 17.5px;
-          font-weight: 700;
-          color: #4f4742;
-          line-height: 1.4;
-          margin: 0;
+          font-family: var(--font-inter), 'Inter', sans-serif !important;
+          font-size: 19.5px !important;
+          font-weight: 700 !important;
+          color: #4F4742 !important;
+          line-height: 1.4 !important;
+          margin: 0 !important;
+          transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
+        }
+
+        .valueItem:hover .itemTitle {
+          transform: scale(1.07);
+          transform-origin: left center;
+          color: #221E1B !important;
         }
 
         .itemContent {
-          font-family: var(--font-inter), 'Inter', sans-serif;
-          font-size: 14.5px;
-          font-weight: 400;
-          color: #5c5852;
-          line-height: 1.6;
-          margin: 0;
+          font-family: var(--font-inter), 'Inter', sans-serif !important;
+          font-size: 16.5px !important;
+          font-weight: 400 !important;
+          color: #5c5852 !important;
+          line-height: 1.6 !important;
+          margin: 0 !important;
+          transition: color 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .valueItem:hover .itemContent {
+          color: #332D29 !important;
+          transform: scale(1.04);
+          transform-origin: left center;
         }
 
         /* READY TO KNOW MORE? Divisions Section */
@@ -495,29 +537,24 @@ export default function AboutValuesSection() {
           margin-bottom: 40px;
         }
 
-        .divisionsTitle {
-          font-family: var(--font-inter), 'Inter', -apple-system, sans-serif;
-          font-size: 38px;
-          font-weight: 700;
-          line-height: 1.15;
-          color: #4f4742;
-          letter-spacing: 0.02em;
-          text-transform: uppercase;
-          margin: 0 0 12px 0;
+        :global(.divisionsTitle) {
+          font-family: var(--font-inter), 'Inter', -apple-system, sans-serif !important;
+          font-size: 38px !important;
+          font-weight: 700 !important;
+          line-height: 1.15 !important;
+          color: #4F4742 !important;
+          letter-spacing: 0.02em !important;
+          text-transform: uppercase !important;
+          margin: 0 0 20px 0 !important;
         }
 
-        .divisionsSubtitle {
-          font-family: var(--font-inter), 'Inter', sans-serif;
-          font-size: 20px;
-          font-weight: 400;
-          line-height: 1.4;
-          color: #756a62;
-          margin: 0;
-        }
-
-        .subtitleHighlight {
-          color: #a39587;
-          font-weight: 300;
+        :global(.divisionsSubtitle) {
+          font-family: var(--font-inter), 'Inter', sans-serif !important;
+          font-size: 17.5px !important;
+          font-weight: 400 !important;
+          line-height: 1.5 !important;
+          color: #756A62 !important;
+          margin: 0 !important;
         }
 
         /* Accordion Layout */
@@ -726,14 +763,14 @@ export default function AboutValuesSection() {
           }
 
           .title,
-          .divisionsTitle {
-            font-size: 28px;
+          :global(.divisionsTitle) {
+            font-size: 28px !important;
           }
 
           .subtitle,
-          .divisionsSubtitle {
-            font-size: 16px;
-            line-height: 1.45;
+          :global(.divisionsSubtitle) {
+            font-size: 16px !important;
+            line-height: 1.45 !important;
           }
 
           .itemTitle {

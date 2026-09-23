@@ -102,71 +102,91 @@ export default function AnimationIPsSection() {
             </button>
           </div>
         </div>
+      </div>
 
-        {/* IP Cards Carousel */}
-        <div className="carouselWrapper" ref={scrollContainerRef}>
-          <div className="cardsGrid">
-            {ipData.map((card) => {
-              const isExpanded = activeCardId === card.id;
-              return (
-                <div
-                  key={card.id}
-                  className={`ipCard ${isExpanded ? 'expanded' : ''}`}
-                  onMouseEnter={() => handleCardHover(card.id)}
-                  onClick={() => handleCardHover(card.id)}
-                >
-                  <div className="imageWrapper">
-                    <Image
-                      src={card.image}
-                      alt={card.title}
-                      fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      className="cardImage"
-                    />
-                  </div>
-
-                  <div className="cardBody">
-                    <div className="cardHeader">
-                      <div className="titleMeta">
-                        <h3 className="cardTitle">{card.title}</h3>
-                        <p className="cardMeta">
-                          {card.age} <span className="dot">•</span> {card.genre}
-                        </p>
-                      </div>
-
-                      <div className="iconCircle">
-                        <Image
-                          src="/assets/klas-animation/icon1.png"
-                          alt="IP Icon"
-                          width={18}
-                          height={18}
-                          className="iconImg"
-                        />
-                      </div>
-                    </div>
-
-                    <div className="cardDescription">
-                      <p>{card.description}</p>
-                    </div>
-
-                    <div className="toggleChevronWrapper">
-                      <svg
-                        width="16"
-                        height="16"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        className={`chevronIcon ${isExpanded ? 'rotated' : ''}`}
-                      >
-                        <path d="M6 9l6 6 6-6" />
-                      </svg>
-                    </div>
-                  </div>
+      {/* IP Cards Carousel (Full Bleed Track) */}
+      <div className="carouselWrapper" ref={scrollContainerRef}>
+        <div className="cardsGrid">
+          {ipData.map((card) => {
+            const isExpanded = activeCardId === card.id;
+            return (
+              <div
+                key={card.id}
+                className={`ipCard ${isExpanded ? 'expanded' : ''}`}
+                onMouseEnter={() => setActiveCardId(card.id)}
+                onClick={() => {
+                  setActiveCardId((prevId) => (prevId === card.id ? null : card.id));
+                }}
+              >
+                <div className="imageWrapper">
+                  <Image
+                    src={card.image}
+                    alt={card.title}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 360px"
+                    className="cardImage"
+                  />
                 </div>
-              );
-            })}
-          </div>
+
+                <div className="cardBody">
+                  <div className="cardHeader">
+                    <div className="titleMeta">
+                      <h3 className="cardTitle">{card.title}</h3>
+                      <p className="cardMeta">
+                        {card.age} <span className="dot">•</span> {card.genre}
+                      </p>
+                    </div>
+
+                    <button
+                      type="button"
+                      className={`iconCircleBtn ${isExpanded ? 'active' : ''}`}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setActiveCardId((prevId) => (prevId === card.id ? null : card.id));
+                      }}
+                      aria-label={isExpanded ? 'Close card' : 'Open card'}
+                    >
+                      <Image
+                        src="/assets/klas-animation/icon1.png"
+                        alt="IP Icon"
+                        width={34}
+                        height={34}
+                        className="iconImg"
+                      />
+                    </button>
+                  </div>
+
+                  <div className="cardDescription">
+                    <p>{card.description}</p>
+                  </div>
+
+                  <button
+                    type="button"
+                    className="toggleChevronWrapper"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setActiveCardId((prevId) => (prevId === card.id ? null : card.id));
+                    }}
+                    aria-label={isExpanded ? 'Close card' : 'Open card'}
+                  >
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className={`chevronIcon ${isExpanded ? 'rotated' : ''}`}
+                    >
+                      <path d="M6 9l6 6 6-6" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
 
@@ -259,13 +279,15 @@ export default function AnimationIPsSection() {
 
         .cardsGrid {
           display: flex;
-          gap: 32px;
+          gap: 28px;
           align-items: flex-start;
           min-width: max-content;
+          padding-left: max(48px, calc((100vw - 1400px) / 2 + 48px));
+          padding-right: max(48px, calc((100vw - 1400px) / 2 + 48px));
         }
 
         .ipCard {
-          width: 320px;
+          width: 360px;
           background: #ffffff;
           border-radius: 4px;
           box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
@@ -285,7 +307,7 @@ export default function AnimationIPsSection() {
         .imageWrapper {
           position: relative;
           width: 100%;
-          height: 280px;
+          height: 310px;
           background-color: #ffffff;
         }
 
@@ -337,15 +359,23 @@ export default function AnimationIPsSection() {
           margin: 0 4px;
         }
 
-        .iconCircle {
-          width: 36px;
-          height: 36px;
-          border-radius: 50%;
-          border: 1px solid #EAE5E0;
+        .iconCircleBtn {
+          width: 34px;
+          height: 34px;
+          border: none;
+          background: transparent;
+          padding: 0;
           display: flex;
           align-items: center;
           justify-content: center;
           flex-shrink: 0;
+          cursor: pointer;
+          transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+
+        .iconCircleBtn:hover {
+          transform: scale(1.08);
+          opacity: 0.85;
         }
 
         .iconImg {
@@ -389,8 +419,11 @@ export default function AnimationIPsSection() {
           align-items: center;
           justify-content: center;
           width: 100%;
-          padding: 12px 0 0;
+          padding: 14px 0 4px;
           color: #8C827A;
+          background: transparent;
+          border: none;
+          cursor: pointer;
           transition: color 0.2s ease;
         }
 
