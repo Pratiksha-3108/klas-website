@@ -349,6 +349,20 @@ export default function KlasHero({ initialCategory = 'Realty' }: KlasHeroProps) 
           right: 0;
         }
 
+        .category-animation {
+          width: 96%;
+          right: -2%;
+          top: -5%;
+          height: 110%;
+        }
+
+        .category-animation .fullHeroImg {
+          object-fit: contain !important;
+          object-position: right center !important;
+          transform: scale(1.12);
+          transform-origin: right center;
+        }
+
         .category-technology {
           width: 90%;
           right: 0;
@@ -479,7 +493,7 @@ export default function KlasHero({ initialCategory = 'Realty' }: KlasHeroProps) 
           text-transform: none;
           background: transparent;
           border: none;
-          padding: 10px 22px 10px 0;
+          padding: 12px 24px 12px 18px;
           color: #4F4742;
           position: relative;
           display: inline-flex;

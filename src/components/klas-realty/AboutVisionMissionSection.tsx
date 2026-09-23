@@ -99,7 +99,7 @@ export default function AboutVisionMissionSection() {
         .visionMissionSection {
           width: 100%;
           background-color: #ffffff;
-          padding: 110px 0 120px;
+          padding: 110px 0 0;
         }
 
         .container {
@@ -236,7 +236,7 @@ export default function AboutVisionMissionSection() {
           }
 
           .visionMissionSection {
-            padding: 70px 0;
+            padding: 70px 0 0;
           }
 
           .heading {
@@ -247,7 +247,7 @@ export default function AboutVisionMissionSection() {
 
         @media (max-width: 480px) {
           .visionMissionSection {
-            padding: 48px 0;
+            padding: 48px 0 0;
           }
 
           .container {

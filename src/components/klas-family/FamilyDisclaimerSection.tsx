@@ -50,7 +50,7 @@ export default function FamilyDisclaimerSection() {
       <style jsx>{`
         .section {
           width: 100%;
-          padding: 100px 0 90px;
+          padding: 90px 0 20px;
           background-color: #ffffff;
         }
 
@@ -106,7 +106,7 @@ export default function FamilyDisclaimerSection() {
 
         @media (max-width: 1024px) {
           .section {
-            padding: 80px 0 70px;
+            padding: 70px 0 20px;
           }
 
           .title {
@@ -125,7 +125,7 @@ export default function FamilyDisclaimerSection() {
 
         @media (max-width: 640px) {
           .section {
-            padding: 60px 0 60px;
+            padding: 50px 0 20px;
           }
 
           .container {

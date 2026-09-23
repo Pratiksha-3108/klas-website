@@ -393,8 +393,7 @@ export default function AboutValuesSection() {
         .valuesSection {
           width: 100%;
           background-color: #ffffff;
-          padding: 100px 0 120px;
-          border-top: 1px solid rgba(197, 168, 128, 0.15);
+          padding: 110px 0 0;
         }
 
         .container {
@@ -522,8 +521,7 @@ export default function AboutValuesSection() {
         .divisionsSection {
           width: 100%;
           background-color: #ffffff;
-          padding-top: 80px;
-          padding-bottom: 100px;
+          padding: 110px 0;
           overflow: hidden;
         }
 
@@ -663,12 +661,11 @@ export default function AboutValuesSection() {
         /* Responsive Breakpoints */
         @media (max-width: 1024px) {
           .valuesSection {
-            padding: 70px 0;
+            padding: 70px 0 0;
           }
 
           .divisionsSection {
-            padding-top: 60px;
-            padding-bottom: 70px;
+            padding: 70px 0;
           }
 
           .container,
@@ -739,12 +736,11 @@ export default function AboutValuesSection() {
           }
 
           .valuesSection {
-            padding: 48px 0;
+            padding: 48px 0 0;
           }
 
           .divisionsSection {
-            padding-top: 40px;
-            padding-bottom: 48px;
+            padding: 48px 0;
           }
 
           .container,
