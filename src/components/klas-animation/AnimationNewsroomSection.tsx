@@ -16,61 +16,73 @@ const newsItems: NewsCard[] = [
     id: 'news-1',
     image: '/assets/klas-animation/Newsroom1.png',
     alt: 'Animated Movies That Impart Knowledge',
+    link: 'https://www.animationxpress.com/animation/10-enjoyable-animated-movies-that-impart-knowledge-about-the-indian-culture-and-mythology/?amp=1',
   },
   {
     id: 'news-2',
     image: '/assets/klas-animation/Newsroom2.png',
     alt: 'Hanuman sets the Cash Registers Ringing',
+    link: 'https://www.animationxpress.com/animation/hanuman-sets-the-cash-registers-ringing/?amp=1',
   },
   {
     id: 'news-3',
     image: '/assets/klas-animation/Newsroom3.png',
     alt: 'The Hanuman Effect',
+    link: 'https://www.animationxpress.com/animation/animated-theatricals-in-india-and-the-hanuman-effect/',
   },
   {
     id: 'news-4',
     image: '/assets/klas-animation/Newsroom4.png',
     alt: 'Hanuman gets Major Theatrical Release',
+    link: 'https://www.awn.com/news/animated-hanuman-gets-major-theatrical-release-india',
   },
   {
     id: 'news-5',
     image: '/assets/klas-animation/Newsroom5.png',
-    alt: 'Animation News 5',
+    alt: 'Sahara’s chance to push Animation with Hanuman',
+    link: 'https://www.animationxpress.com/animation/saharas-chance-to-push-animation-with-hanuman/?amp=1',
   },
   {
     id: 'news-6',
     image: '/assets/klas-animation/Newsroom6.png',
-    alt: 'Animation News 6',
+    alt: 'Can Hanuman lift the Animation Industry?',
+    link: 'https://m.economictimes.com/can-hanuman-lift-animation-industry/articleshow/1277719.cms',
   },
   {
     id: 'news-7',
     image: '/assets/klas-animation/Newsroom7.png',
-    alt: 'Animation News 7',
+    alt: 'Amo Communications and Godrej Aadhaar take ‘Hanuman’ to rural India',
+    link: "https://www.exchange4media.com/marketing-news/amo-communications-and-godrej-aadhaar-take-'hanuman'-to-rural-india-19105.html",
   },
   {
     id: 'news-8',
     image: '/assets/klas-animation/Newsroom8.png',
-    alt: 'Animation News 8',
+    alt: 'Hanuman, a hit in metros, grosses Rs 70 million',
+    link: 'https://indiantelevision.com/news-headline/hanuman-a-hit-in-metros-grosses-rs-70-million-051114/',
   },
   {
     id: 'news-9',
     image: '/assets/klas-animation/Newsroom9.png',
-    alt: 'Animation News 9',
+    alt: 'Hanuman Lands into Limca Book of Records',
+    link: 'https://www.news18.com/news/india/hanuman-lands-into-limca-book-of-records-228027.html',
   },
   {
     id: 'news-10',
     image: '/assets/klas-animation/Newsroom10.png',
-    alt: 'Animation News 10',
+    alt: 'Indian Feature Animation Explodes',
+    link: 'https://www.awn.com/animationworld/indian-feature-animation-explodes',
   },
   {
     id: 'news-11',
     image: '/assets/klas-animation/Newsroom11.png',
-    alt: 'Animation News 11',
+    alt: 'Mahavatar Narsimha overtakes Hanuman’s box-office record',
+    link: 'https://www.hollywoodreporterindia.com/features/insight/mahavatar-narsimha-earns-17-crore-at-box-office-becomes-highest-grossing-indian-animated-film-ever',
   },
   {
     id: 'news-12',
     image: '/assets/klas-animation/Newsroom12.png',
-    alt: 'Animation News 12',
+    alt: 'Gulf News Names Hanuman as the ~20-year prior record-holder',
+    link: 'https://gulfnews.com/entertainment/south-indian/mahavatar-narsimha-becomes-indias-first-1-billion-animated-film-1.500221700',
   },
 ];
 
@@ -156,7 +168,13 @@ export default function AnimationNewsroomSection() {
       >
         <div className="cardsWrapper">
           {displayItems.map((item, idx) => (
-            <div key={`${item.id}-${idx}`} className="newsCard">
+            <a
+              key={`${item.id}-${idx}`}
+              href={item.link || '#newsroom'}
+              target={item.link ? '_blank' : '_self'}
+              rel="noopener noreferrer"
+              className="newsCard"
+            >
               <div className="imageBox">
                 <Image
                   src={item.image}
@@ -167,7 +185,7 @@ export default function AnimationNewsroomSection() {
                   draggable={false}
                 />
               </div>
-            </div>
+            </a>
           ))}
         </div>
       </div>
@@ -246,6 +264,8 @@ export default function AnimationNewsroomSection() {
         }
 
         .newsCard {
+          display: block;
+          text-decoration: none;
           width: 288px;
           height: 288px;
           background: #ffffff;
