@@ -140,22 +140,48 @@ export default function KlasHero({ initialCategory = 'Realty' }: KlasHeroProps) 
         <div className="heroBody">
           <div className="container">
             <div className="contentCol">
-              <h1 className="title">
-                {currentContent.titleLines.map((line, idx) => (
-                  <span key={idx} className="titleLine">{line}</span>
-                ))}
+              <h1 className="title" key={activeCategory}>
+                {currentContent.titleLines.map((line, lineIdx) => {
+                  // count total words in all previous lines for global stagger offset
+                  const wordsBeforeLine = currentContent.titleLines
+                    .slice(0, lineIdx)
+                    .reduce((acc, l) => acc + l.split(' ').length, 0);
+                  return (
+                    <span key={lineIdx} className="titleLineReveal">
+                      {line.split(' ').map((word, wordIdx) => (
+                        <span
+                          key={wordIdx}
+                          className="titleWord"
+                          style={{
+                            animationDelay: `${(wordsBeforeLine + wordIdx) * 0.18}s`,
+                          }}
+                        >
+                          {word}
+                        </span>
+                      ))}
+                    </span>
+                  );
+                })}
               </h1>
-              <p className="description">
+              <p
+                className="description"
+                style={{ animationDelay: '1.6s' }}
+              >
                 {currentContent.descLines.map((line, idx) => (
                   <span key={idx} className="descLine">{line}</span>
                 ))}
               </p>
-              <Link href={exploreHref} className="exploreBtn">
-                <span className="exploreBtnText">Explore</span>
-                <svg className="exploreBtnArrow" width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M11 1L17 7M17 7L11 13M17 7H1" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </Link>
+              <div
+                className="exploreBtnWrap"
+                style={{ animationDelay: '2.2s' }}
+              >
+                <Link href={exploreHref} className="exploreBtn">
+                  <span className="exploreBtnText">Explore</span>
+                  <svg className="exploreBtnArrow" width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M11 1L17 7M17 7L11 13M17 7H1" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
@@ -190,46 +216,24 @@ export default function KlasHero({ initialCategory = 'Realty' }: KlasHeroProps) 
         .navLinks {
           display: flex;
           align-items: center;
-          gap: 48px;
+          gap: 36px;
         }
 
-        .navItem {
-          font-family: var(--font-inter), 'Inter', sans-serif;
-          font-size: 16px;
-          font-weight: 500;
-          color: #978E89;
-          text-decoration: none;
-          position: relative;
-          padding: 4px 0;
-          transition: color 0.2s ease;
+        :global(.navItem) {
+          font-family: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+          font-size: 15px !important;
+          font-weight: 500 !important;
+          color: #978E89 !important;
+          text-decoration: none !important;
+          padding: 4px 0 !important;
+          display: inline-block !important;
+          transition: color 0.2s ease, font-weight 0.2s ease, opacity 0.2s ease !important;
         }
 
-        .navItem::after {
-          content: '';
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          width: 100%;
-          height: 2px;
-          background-color: var(--accent);
-          transform: scaleX(0);
-          transform-origin: right;
-          transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .navItem:hover {
-          color: var(--accent-dark);
-        }
-
-        .navItem:hover::after,
-        .activeNavItem::after {
-          transform: scaleX(1);
-          transform-origin: left;
-        }
-
-        .activeNavItem {
-          color: var(--accent-dark);
-          font-weight: 600;
+        :global(.navItem:hover) {
+          color: #4F4742 !important;
+          font-weight: 600 !important;
+          opacity: 0.85 !important;
         }
 
         .klasBannerContainer {
@@ -387,20 +391,58 @@ export default function KlasHero({ initialCategory = 'Realty' }: KlasHeroProps) 
           max-width: 680px;
         }
 
+        @keyframes blurReveal {
+          0% {
+            filter: blur(16px);
+            opacity: 0;
+            color: #B0AAA6;
+          }
+          100% {
+            filter: blur(0px);
+            opacity: 1;
+            color: #2B2523;
+          }
+        }
+
         .title {
           font-family: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
           font-size: 39px;
           font-weight: 700;
-          line-height: 1.22;
+          line-height: 1.3;
           letter-spacing: 0.04em;
           color: #2B2523;
           margin: 0 0 24px 0;
           text-transform: uppercase;
         }
 
-        .titleLine {
+        .titleLineReveal {
           display: block;
           white-space: nowrap;
+        }
+
+        .titleWord {
+          display: inline-block;
+          margin-right: 0.28em;
+          filter: blur(16px);
+          opacity: 0;
+          color: #B0AAA6;
+          animation: blurReveal 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+          animation-fill-mode: both;
+        }
+
+        .titleWord:last-child {
+          margin-right: 0;
+        }
+
+        @keyframes fadeInUp {
+          0% {
+            opacity: 0;
+            transform: translateY(24px);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0);
+          }
         }
 
         .description {
@@ -410,10 +452,23 @@ export default function KlasHero({ initialCategory = 'Realty' }: KlasHeroProps) 
           color: #6E6763;
           margin: 0 0 36px 0;
           font-weight: 400;
+          opacity: 0;
+          transform: translateY(24px);
+          animation: fadeInUp 1s cubic-bezier(0.22, 1, 0.36, 1) both;
+          animation-fill-mode: both;
         }
 
         .descLine {
           display: block;
+        }
+
+        .exploreBtnWrap {
+          opacity: 0;
+          transform: translateY(20px);
+          animation: fadeInUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+          animation-fill-mode: both;
+          margin-top: 8px;
+          display: inline-block;
         }
 
         :global(.exploreBtn) {
@@ -424,7 +479,7 @@ export default function KlasHero({ initialCategory = 'Realty' }: KlasHeroProps) 
           text-transform: none;
           background: transparent;
           border: none;
-          padding: 10px 22px;
+          padding: 10px 22px 10px 0;
           color: #4F4742;
           position: relative;
           display: inline-flex;
@@ -434,7 +489,7 @@ export default function KlasHero({ initialCategory = 'Realty' }: KlasHeroProps) 
           transition: color 0.4s ease;
           cursor: pointer;
           overflow: hidden;
-          margin-top: 16px;
+          margin-top: 0;
           z-index: 1;
         }
 
