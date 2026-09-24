@@ -168,9 +168,9 @@ export default function HomeClientsSection() {
           display: flex;
           align-items: center;
           justify-content: center;
-          height: 44px;
-          min-width: 68px;
-          padding: 2px 8px;
+          height: 52px;
+          min-width: 120px;
+          padding: 4px 12px;
           flex-shrink: 0;
           opacity: 0.95;
           transition: opacity 0.3s ease, transform 0.3s ease;
@@ -182,17 +182,12 @@ export default function HomeClientsSection() {
         }
 
         .clientImage {
-          max-height: 28px;
-          max-width: 68px;
+          max-height: 40px;
+          max-width: 130px;
           width: auto;
           height: auto;
           object-fit: contain;
           display: block;
-        }
-
-        :global(.cybageLogo) {
-          max-height: 22px !important;
-          max-width: 80px !important;
         }
 
         @keyframes autoScroll {

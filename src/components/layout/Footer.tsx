@@ -27,15 +27,14 @@ export default function Footer() {
 
   const quickLinks = isFamily
     ? [
-        { label: 'Home', href: '/family' },
+        { label: 'Home', href: '/' },
         { label: 'About', href: '/family#about' },
         { label: 'Values', href: '/family#values' },
         { label: 'Focus Area', href: '/family#focus-area' },
       ]
     : [
-        { label: 'Home', href: '/realty' },
+        { label: 'Home', href: '/' },
         { label: 'About', href: '/about' },
-        { label: 'Projects', href: '/projects' },
         { label: 'Contact', href: '/contact' },
       ];
 

@@ -61,13 +61,19 @@ export default function AnimationIPsSection() {
 
   const handleScrollLeft = () => {
     if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({ left: -332, behavior: 'smooth' });
+      const scrollAmount = window.innerWidth <= 768 
+        ? scrollContainerRef.current.clientWidth 
+        : 388;
+      scrollContainerRef.current.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
     }
   };
 
   const handleScrollRight = () => {
     if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({ left: 332, behavior: 'smooth' });
+      const scrollAmount = window.innerWidth <= 768 
+        ? scrollContainerRef.current.clientWidth 
+        : 388;
+      scrollContainerRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
     }
   };
 
@@ -118,71 +124,73 @@ export default function AnimationIPsSection() {
                   setActiveCardId((prevId) => (prevId === card.id ? null : card.id));
                 }}
               >
-                <div className="imageWrapper">
-                  <Image
-                    src={card.image}
-                    alt={card.title}
-                    fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 360px"
-                    className="cardImage"
-                  />
-                </div>
+                <div className="cardInner">
+                  <div className="imageWrapper">
+                    <Image
+                      src={card.image}
+                      alt={card.title}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 360px"
+                      className="cardImage"
+                    />
+                  </div>
 
-                <div className="cardBody">
-                  <div className="cardHeader">
-                    <div className="titleMeta">
-                      <h3 className="cardTitle">{card.title}</h3>
-                      <p className="cardMeta">
-                        {card.age} <span className="dot">•</span> {card.genre}
-                      </p>
+                  <div className="cardBody">
+                    <div className="cardHeader">
+                      <div className="titleMeta">
+                        <h3 className="cardTitle">{card.title}</h3>
+                        <p className="cardMeta">
+                          {card.age} <span className="dot">•</span> {card.genre}
+                        </p>
+                      </div>
+
+                      <button
+                        type="button"
+                        className={`iconCircleBtn ${isExpanded ? 'active' : ''}`}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setActiveCardId((prevId) => (prevId === card.id ? null : card.id));
+                        }}
+                        aria-label={isExpanded ? 'Close card' : 'Open card'}
+                      >
+                        <Image
+                          src="/assets/klas-animation/icon1.png"
+                          alt="IP Icon"
+                          width={34}
+                          height={34}
+                          className="iconImg"
+                        />
+                      </button>
+                    </div>
+
+                    <div className="cardDescription">
+                      <p>{card.description}</p>
                     </div>
 
                     <button
                       type="button"
-                      className={`iconCircleBtn ${isExpanded ? 'active' : ''}`}
+                      className="toggleChevronWrapper"
                       onClick={(e) => {
                         e.stopPropagation();
                         setActiveCardId((prevId) => (prevId === card.id ? null : card.id));
                       }}
                       aria-label={isExpanded ? 'Close card' : 'Open card'}
                     >
-                      <Image
-                        src="/assets/klas-animation/icon1.png"
-                        alt="IP Icon"
-                        width={34}
-                        height={34}
-                        className="iconImg"
-                      />
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className={`chevronIcon ${isExpanded ? 'rotated' : ''}`}
+                      >
+                        <path d="M6 9l6 6 6-6" />
+                      </svg>
                     </button>
                   </div>
-
-                  <div className="cardDescription">
-                    <p>{card.description}</p>
-                  </div>
-
-                  <button
-                    type="button"
-                    className="toggleChevronWrapper"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setActiveCardId((prevId) => (prevId === card.id ? null : card.id));
-                    }}
-                    aria-label={isExpanded ? 'Close card' : 'Open card'}
-                  >
-                    <svg
-                      width="16"
-                      height="16"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className={`chevronIcon ${isExpanded ? 'rotated' : ''}`}
-                    >
-                      <path d="M6 9l6 6 6-6" />
-                    </svg>
-                  </button>
                 </div>
               </div>
             );
@@ -284,6 +292,12 @@ export default function AnimationIPsSection() {
           min-width: max-content;
           padding-left: max(48px, calc((100vw - 1400px) / 2 + 48px));
           padding-right: max(48px, calc((100vw - 1400px) / 2 + 48px));
+        }
+
+        .cardInner {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
         }
 
         .ipCard {
@@ -454,9 +468,53 @@ export default function AnimationIPsSection() {
           }
         }
 
+        @media (max-width: 768px) {
+          .carouselWrapper {
+            scroll-snap-type: x mandatory !important;
+            -webkit-overflow-scrolling: touch;
+            width: 100% !important;
+          }
+
+          .cardsGrid {
+            display: flex !important;
+            padding: 0 !important;
+            gap: 0 !important;
+            width: 100% !important;
+            min-width: 100% !important;
+          }
+
+          .ipCard {
+            flex: 0 0 100% !important;
+            width: 100% !important;
+            min-width: 100% !important;
+            max-width: 100% !important;
+            margin: 0 !important;
+            padding: 0 24px !important;
+            box-sizing: border-box !important;
+            background: transparent !important;
+            box-shadow: none !important;
+            border-radius: 0 !important;
+            overflow: visible !important;
+            scroll-snap-align: start !important;
+            scroll-snap-stop: always !important;
+          }
+
+          .cardInner {
+            background: #ffffff !important;
+            border-radius: 4px !important;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04) !important;
+            overflow: hidden !important;
+            width: 100% !important;
+          }
+
+          .imageWrapper {
+            height: 260px;
+          }
+        }
+
         @media (max-width: 640px) {
           .section {
-            padding: 60px 0 0;
+            padding: 50px 0 0;
           }
 
           .headerRow {
@@ -471,10 +529,6 @@ export default function AnimationIPsSection() {
             top: auto;
             transform: none;
             align-self: center;
-          }
-
-          .ipCard {
-            width: 290px;
           }
         }
       `}</style>

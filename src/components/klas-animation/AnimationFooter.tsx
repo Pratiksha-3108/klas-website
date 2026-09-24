@@ -76,7 +76,7 @@ export default function AnimationFooter() {
             <h3 className="heading">QUICK LINKS</h3>
             <ul className="linkList">
               <li>
-                <Link href="/animation">Home</Link>
+                <Link href="/">Home</Link>
               </li>
               <li>
                 <Link href="/animation#journey">Journey</Link>

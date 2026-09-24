@@ -230,74 +230,69 @@ export default function AnimationCreativeControlSection() {
 
         @media (max-width: 1024px) {
           .section {
-            padding: 40px 0 40px;
-          }
-
-          .container {
-            padding: 0 32px;
-          }
-
-          .title {
-            font-size: 32px;
-          }
-
-          .subtitle {
-            font-size: 18px;
-          }
-
-          .contentGrid {
-            flex-direction: column-reverse;
-            align-items: stretch;
-          }
-
-          .cardsContainer {
-            width: 100%;
-            max-width: 100%;
-          }
-
-          .imageWrapper {
-            position: relative;
-            top: auto;
-            bottom: auto;
-            right: auto;
-            width: 100%;
-            max-width: 100%;
-            height: 350px;
-            z-index: 1;
-          }
-        }
-
-        @media (max-width: 768px) {
-          .cardsContainer {
-            grid-template-columns: 1fr;
-          }
-
-          .card {
-            border-right: none;
-            border-bottom: 1px solid #EFEAE5;
-            padding: 28px 24px;
-          }
-
-          .card:last-child {
-            border-bottom: none;
-          }
-        }
-
-        @media (max-width: 640px) {
-          .section {
-            padding: 30px 0 30px;
+            padding: 36px 0 40px;
           }
 
           .container {
             padding: 0 20px;
           }
 
+          .headerWrapper {
+            max-width: 56%;
+            margin-top: 0;
+            margin-bottom: 28px;
+          }
+
           .title {
             font-size: 26px;
+            line-height: 1.2;
+            margin-bottom: 12px;
           }
 
           .subtitle {
-            font-size: 16px;
+            font-size: 15px;
+            line-height: 1.45;
+          }
+
+          .imageWrapper {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 230px;
+            max-width: none;
+            clip-path: polygon(30% 0, 100% 0, 100% 100%, 0 100%);
+            z-index: 1;
+          }
+
+          .hanumanImg {
+            object-fit: cover !important;
+            object-position: right center !important;
+          }
+
+          .contentGrid {
+            display: block;
+          }
+
+          .cardsContainer {
+            width: 100%;
+            max-width: 100%;
+            background: transparent;
+            box-shadow: none;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+          }
+
+          .card {
+            background: #ffffff;
+            border: none;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.03);
+            padding: 28px 24px;
+          }
+
+          .card:last-child {
+            border-bottom: none;
           }
         }
       `}</style>

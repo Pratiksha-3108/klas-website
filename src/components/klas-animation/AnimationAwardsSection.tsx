@@ -63,16 +63,19 @@ const awardsData: AwardItem[] = [
         &apos;Hanuman&apos; (Mar 2006)
       </>
     ),
+    image: '/assets/klas-animation/black-award.jpg',
   },
   {
     id: '06',
     number: '06 /',
     title: 'Limca Book of Records',
+    image: '/assets/klas-animation/black-award.jpg',
   },
   {
     id: '07',
     number: '07 /',
     title: 'ToonBoom Award',
+    image: '/assets/klas-animation/black-award.jpg',
   },
   {
     id: '08',

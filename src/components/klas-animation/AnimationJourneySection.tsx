@@ -133,13 +133,15 @@ export default function AnimationJourneySection() {
                   <span>Explore Silvertoons →</span>
                   <span>Explore Silvertoons →</span>
                 </span>
-                <Image
-                  src="/assets/klas-animation/YT.png"
-                  alt="Silvertoons YouTube"
-                  width={270}
-                  height={54}
-                  className="ytImg"
-                />
+                <span className="ytBtnWrapper">
+                  <Image
+                    src="/assets/klas-animation/YT.png"
+                    alt="Silvertoons YouTube"
+                    width={270}
+                    height={54}
+                    className="ytImg"
+                  />
+                </span>
               </a>
             </div>
           </motion.div>
@@ -279,8 +281,28 @@ export default function AnimationJourneySection() {
           transition: transform 0.3s ease;
         }
 
-        .ytExploreWrapper:hover .ytImg {
-          transform: scale(1.05);
+        .ytBtnWrapper {
+          position: relative;
+          display: inline-flex;
+          align-items: center;
+          padding-bottom: 4px;
+        }
+
+        .ytBtnWrapper::after {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          width: 100%;
+          height: 2px;
+          background-color: #4A423D;
+          transform: translateX(-50%) scaleX(0);
+          transform-origin: center center;
+          transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .ytExploreWrapper:hover .ytBtnWrapper::after {
+          transform: translateX(-50%) scaleX(1);
         }
 
         .exploreBtn {
@@ -355,21 +377,38 @@ export default function AnimationJourneySection() {
         @media (max-width: 1024px) {
           .grid {
             grid-template-columns: 1fr;
-            gap: 40px;
+            gap: 20px;
+          }
+
+          :global(.contentCol) {
+            padding-top: 16px;
           }
 
           .itemContent {
-            padding-left: 0;
+            padding-left: 48px;
           }
 
           .actionRow {
             padding-left: 0;
+            margin-top: 40px;
+          }
+
+          .ytExploreWrapper {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 20px;
+            width: 100%;
+          }
+
+          .ytImg {
+            max-width: 100%;
+            height: auto;
           }
         }
 
         @media (max-width: 640px) {
           .section {
-            padding: 60px 0 0;
+            padding: 50px 0 0;
           }
 
           .container {
@@ -377,24 +416,29 @@ export default function AnimationJourneySection() {
           }
 
           .sectionTitle {
-            font-size: 26px;
+            font-size: 24px;
           }
 
           .itemHeader {
-            grid-template-columns: 50px 1fr 30px;
+            grid-template-columns: 36px 1fr 24px;
             gap: 12px;
           }
 
           .itemNumber {
-            font-size: 20px;
+            font-size: 18px;
           }
 
           .itemTitle {
             font-size: 18px;
           }
 
+          .itemContent {
+            padding-left: 48px;
+            padding-top: 14px;
+          }
+
           .description {
-            font-size: 15px;
+            font-size: 14.5px;
           }
         }
       `}</style>
