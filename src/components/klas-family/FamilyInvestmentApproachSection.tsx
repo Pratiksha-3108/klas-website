@@ -12,8 +12,9 @@ interface ScrollWordProps {
 }
 
 function ScrollWord({ word, index, total, progress, isHovered }: ScrollWordProps) {
-  const start = index / total;
-  const end = Math.min((index + 0.8) / total, 1);
+  const fraction = index / Math.max(total - 1, 1);
+  const start = fraction * 0.75;
+  const end = Math.min(start + 0.25, 1);
 
   const animatedColor = useTransform(progress, [start, end], ['#9A8A80', '#756A62']);
   const animatedFontWeight = useTransform(progress, [start, end], [400, 700]);
@@ -38,7 +39,7 @@ export default function FamilyInvestmentApproachSection() {
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ['start 0.75', 'end 0.35'],
+    offset: ['start 0.65', 'end 0.15'],
   });
 
   useEffect(() => {
@@ -143,8 +144,8 @@ export default function FamilyInvestmentApproachSection() {
 
         .titleCol {
           opacity: 0;
-          transform: translateY(30px);
-          transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+          transform: translateY(20px);
+          transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
           padding-top: 0;
         }
 
@@ -192,7 +193,7 @@ export default function FamilyInvestmentApproachSection() {
           background-color: #4A423D;
           transform: scaleY(0);
           transform-origin: top;
-          transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
+          transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.15s;
         }
 
         .descCol {

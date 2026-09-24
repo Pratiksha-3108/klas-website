@@ -27,7 +27,7 @@ export default function FamilyFocusAreaSection() {
           setIsVisible(true);
         }
       },
-      { threshold: 0.2 }
+      { threshold: 0.15 }
     );
 
     if (sectionRef.current) {
@@ -54,7 +54,7 @@ export default function FamilyFocusAreaSection() {
             <div
               key={item.id}
               className={`gridItem ${isVisible ? 'animatedInCard' : ''}`}
-              style={{ transitionDelay: `${index * 0.1}s` }}
+              style={{ transitionDelay: `${0.06 + index * 0.05}s` }}
             >
               <div className="numberWrapper">
                 <span className="number">{item.id}</span>
@@ -84,8 +84,8 @@ export default function FamilyFocusAreaSection() {
           text-align: center;
           margin-bottom: 72px;
           opacity: 0;
-          transform: translateY(30px);
-          transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+          transform: translateY(18px);
+          transition: opacity 0.38s cubic-bezier(0.22, 1, 0.36, 1), transform 0.38s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
         .title {
@@ -122,8 +122,8 @@ export default function FamilyFocusAreaSection() {
           align-items: flex-start;
           border-right: 1px solid rgba(74, 66, 61, 0.12);
           opacity: 0;
-          transform: translateY(30px);
-          transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease;
+          transform: translateY(18px);
+          transition: opacity 0.38s cubic-bezier(0.22, 1, 0.36, 1), transform 0.38s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.3s ease;
         }
 
         .gridItem:nth-child(-n+3) {

@@ -9,6 +9,7 @@ function AnimatedValue({
   suffix = '',
   hasSup = false,
   sup = '',
+  isDecimal = false,
   isVisible = false,
 }: {
   target: number;
@@ -16,12 +17,14 @@ function AnimatedValue({
   suffix?: string;
   hasSup?: boolean;
   sup?: string;
+  isDecimal?: boolean;
   isVisible: boolean;
 }) {
-  const [count, setCount] = React.useState(0);
+  const initialValue = target <= 1 ? target : 1;
+  const [count, setCount] = React.useState<number>(initialValue);
 
   React.useEffect(() => {
-    if (!isVisible) return;
+    if (!isVisible || target <= 1) return;
 
     let startTimestamp: number | null = null;
     let animationFrameId: number;
@@ -31,9 +34,14 @@ function AnimatedValue({
       const progress = Math.min((timestamp - startTimestamp) / duration, 1);
       // Smooth ease-out cubic
       const easeOutProgress = 1 - Math.pow(1 - progress, 3);
-      const currentCount = Math.floor(easeOutProgress * target);
 
-      setCount(currentCount);
+      if (isDecimal) {
+        const val = parseFloat((1 + easeOutProgress * (target - 1)).toFixed(1));
+        setCount(val);
+      } else {
+        const currentCount = Math.floor(1 + easeOutProgress * (target - 1));
+        setCount(currentCount);
+      }
 
       if (progress < 1) {
         animationFrameId = requestAnimationFrame(step);
@@ -45,11 +53,13 @@ function AnimatedValue({
     animationFrameId = requestAnimationFrame(step);
 
     return () => cancelAnimationFrame(animationFrameId);
-  }, [isVisible, target, duration]);
+  }, [isVisible, target, duration, isDecimal]);
+
+  const displayVal = target <= 1 ? target : count;
 
   return (
     <>
-      {count}
+      {displayVal}
       {hasSup ? <sup className="supText">{sup}</sup> : suffix}
     </>
   );
@@ -64,10 +74,9 @@ export default function AboutStatsSection() {
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
-          if (sectionRef.current) observer.unobserve(sectionRef.current);
         }
       },
-      { threshold: 0.15 }
+      { threshold: 0.1 }
     );
 
     if (sectionRef.current) {
@@ -84,13 +93,14 @@ export default function AboutStatsSection() {
       label: <span style={{ whiteSpace: 'nowrap' }}>JOURNEY DATES BACK TO</span>,
     },
     {
-      target: 330,
+      target: 232,
       suffix: 'K+ Sq.Ft.',
       label: 'REAL ESTATE DELIVERED',
     },
     {
       target: 1,
       suffix: 'M+ Sq.Ft.',
+      isDecimal: true,
       label: 'REAL ESTATE DELIVERED',
     },
     {
@@ -153,6 +163,7 @@ export default function AboutStatsSection() {
                   suffix={stat.suffix}
                   hasSup={stat.hasSup}
                   sup={stat.sup}
+                  isDecimal={stat.isDecimal}
                   isVisible={isVisible}
                 />
               </div>

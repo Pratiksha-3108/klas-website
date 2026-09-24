@@ -165,7 +165,8 @@ export default function KlasHero({ initialCategory = 'Realty' }: KlasHeroProps) 
               </h1>
               <p
                 className="description"
-                style={{ animationDelay: '1.6s' }}
+                key={`desc-${activeCategory}`}
+                style={{ animationDelay: '0.8s' }}
               >
                 {currentContent.descLines.map((line, idx) => (
                   <span key={idx} className="descLine">{line}</span>
@@ -173,7 +174,8 @@ export default function KlasHero({ initialCategory = 'Realty' }: KlasHeroProps) 
               </p>
               <div
                 className="exploreBtnWrap"
-                style={{ animationDelay: '2.2s' }}
+                key={`explore-${activeCategory}`}
+                style={{ animationDelay: '1.1s' }}
               >
                 <Link href={exploreHref} className="exploreBtn">
                   <span className="exploreBtnText">Explore</span>
@@ -350,16 +352,16 @@ export default function KlasHero({ initialCategory = 'Realty' }: KlasHeroProps) 
         }
 
         .category-animation {
-          width: 96%;
-          right: -2%;
-          top: -5%;
-          height: 110%;
+          width: 66%;
+          right: 6%;
+          top: -4%;
+          height: 100%;
         }
 
         .category-animation .fullHeroImg {
           object-fit: contain !important;
           object-position: right center !important;
-          transform: scale(1.12);
+          transform: scale(0.86) translate(-30px, -24px);
           transform-origin: right center;
         }
 

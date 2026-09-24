@@ -46,6 +46,7 @@ export default function Hero() {
         }
 
         .container {
+          width: 97%;
           max-width: 1440px;
           margin: 0 auto;
           padding: 0 24px;
@@ -53,9 +54,9 @@ export default function Hero() {
 
         .imageWrapper {
           position: relative;
-          width: 97%;
-          aspect-ratio: 1760 / 912;
-          max-height: calc(100vh - 100px);
+          width: 100%;
+          aspect-ratio: 16 / 9.2;
+          min-height: 560px;
           margin: 0 auto;
           overflow: hidden;
           border-radius: 0;
@@ -64,19 +65,15 @@ export default function Hero() {
 
         :global(.heroImage) {
           object-fit: cover !important;
-          object-position: bottom center !important;
-          transform: scale(1.15);
+          object-position: center center !important;
           transform-origin: center center;
+          animation: heroZoomOut 5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
           will-change: transform;
         }
 
-        :global(.hero.animate .heroImage) {
-          animation: zoomOut 6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-        }
-
-        @keyframes zoomOut {
+        @keyframes heroZoomOut {
           0% {
-            transform: scale(1.15);
+            transform: scale(1.14);
           }
           100% {
             transform: scale(1.0);
@@ -84,7 +81,7 @@ export default function Hero() {
         }
 
         .textGrid {
-          width: 97%;
+          width: 100%;
           margin: 72px auto 0;
           display: grid;
           grid-template-columns: 1fr 1fr;
@@ -177,6 +174,7 @@ export default function Hero() {
         @media (max-width: 1024px) {
           .imageWrapper {
             width: 100%;
+            min-height: 420px;
           }
 
           .container {
@@ -204,6 +202,10 @@ export default function Hero() {
           .hero {
             padding-top: 64px;
             padding-bottom: 40px;
+          }
+
+          .imageWrapper {
+            min-height: 280px;
           }
           
           .textGrid {

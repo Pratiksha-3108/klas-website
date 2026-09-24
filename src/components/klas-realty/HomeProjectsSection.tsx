@@ -191,11 +191,6 @@ export default function HomeProjectsSection() {
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 420px"
                         className={`cardImage ${project.isUpcoming ? 'blurredImage' : ''}`}
                       />
-                      {project.isUpcoming && (
-                        <div className="upcomingOverlay">
-                          <span>Upcoming Project</span>
-                        </div>
-                      )}
                     </div>
                   </div>
 

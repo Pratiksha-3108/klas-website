@@ -24,15 +24,20 @@ export default function FamilyHeader() {
   return (
     <header className={`header ${isScrolled ? 'scrolled' : ''}`}>
       <div className="container">
-        <Link href="/family" className="logo">
-          <Image
-            src="/assets/klas-family/Family Office.png"
-            alt="Family Office"
-            width={180}
-            height={36}
-            className="logoImg"
-            priority
-          />
+        <Link
+          href="/family"
+          className="logo"
+          style={{
+            fontFamily: "'Montserrat', sans-serif",
+            fontSize: '36px',
+            fontWeight: 700,
+            color: '#4F4742',
+            lineHeight: '100%',
+            letterSpacing: '0%',
+            textDecoration: 'none',
+          }}
+        >
+          Family Office
         </Link>
 
         <nav className="nav">
@@ -115,16 +120,13 @@ export default function FamilyHeader() {
         }
 
         .logo {
-          display: flex;
-          align-items: center;
+          font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+          font-size: 36px !important;
+          font-weight: 700;
+          color: #4F4742;
           text-decoration: none;
-        }
-
-        .logoImg {
-          height: 36px;
-          width: auto;
-          object-fit: contain;
-          display: block;
+          line-height: 100%;
+          letter-spacing: 0%;
         }
 
         .nav {

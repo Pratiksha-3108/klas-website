@@ -392,7 +392,7 @@ export default function ContactForm() {
 
         .formCard {
           background-color: #F5F0EC;
-          border-radius: 16px;
+          border-radius: 0;
           padding: 36px 32px;
         }
 
@@ -404,7 +404,7 @@ export default function ContactForm() {
 
         .sidebarCard {
           background-color: #F5F0EC;
-          border-radius: 16px;
+          border-radius: 0;
           padding: 32px;
         }
 

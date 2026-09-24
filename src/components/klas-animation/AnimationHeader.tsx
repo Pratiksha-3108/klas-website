@@ -28,7 +28,7 @@ export default function AnimationHeader() {
           className="logo"
           style={{
             fontFamily: "'Montserrat', sans-serif",
-            fontSize: '40px',
+            fontSize: '36px',
             fontWeight: 700,
             color: '#4F4742',
             lineHeight: '100%',
@@ -126,8 +126,8 @@ export default function AnimationHeader() {
 
         .logo {
           font-family: 'Montserrat', var(--font-montserrat), sans-serif !important;
-          font-size: 42px;
-          font-weight: 800;
+          font-size: 36px !important;
+          font-weight: 700;
           line-height: 100%;
           letter-spacing: 0%;
           color: #4F4742;

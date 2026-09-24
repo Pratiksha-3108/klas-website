@@ -197,7 +197,7 @@ export default function HomeResultsSection() {
           font-family: var(--font-sans);
           font-size: 44px;
           font-weight: 600;
-          color: #3B3432;
+          color: #4F4742;
           letter-spacing: -0.5px;
           line-height: 1.15;
         }
@@ -206,7 +206,7 @@ export default function HomeResultsSection() {
           font-family: var(--font-sans);
           font-size: 18px;
           line-height: 1.4;
-          color: #6E6763;
+          color: #756A62;
           font-weight: 400;
         }
 
