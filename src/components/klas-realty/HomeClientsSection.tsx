@@ -5,7 +5,7 @@ import Image from 'next/image';
 
 const clientLogos = [
   { id: 1, src: '/assets/klas-realty/client1.png', alt: 'Client 1' },
-  { id: 2, src: '/assets/klas-realty/client2.png', alt: 'Client 2' },
+  { id: 2, src: '/assets/klas-realty/client2.png', alt: 'Cybage', isCybage: true },
   { id: 3, src: '/assets/klas-realty/client3.png', alt: 'Client 3' },
   { id: 4, src: '/assets/klas-realty/client4.png', alt: 'Client 4' },
   { id: 5, src: '/assets/klas-realty/client5.png', alt: 'Client 5' },
@@ -56,7 +56,7 @@ export default function HomeClientsSection() {
                     alt={logo.alt}
                     width={240}
                     height={100}
-                    className="clientImage"
+                    className={`clientImage ${logo.isCybage ? 'cybageLogo' : ''}`}
                   />
                 </div>
               ))}
@@ -168,9 +168,9 @@ export default function HomeClientsSection() {
           display: flex;
           align-items: center;
           justify-content: center;
-          height: 100px;
-          min-width: 140px;
-          padding: 4px 12px;
+          height: 44px;
+          min-width: 68px;
+          padding: 2px 8px;
           flex-shrink: 0;
           opacity: 0.95;
           transition: opacity 0.3s ease, transform 0.3s ease;
@@ -182,12 +182,17 @@ export default function HomeClientsSection() {
         }
 
         .clientImage {
-          max-height: 84px;
-          max-width: 135px;
+          max-height: 28px;
+          max-width: 68px;
           width: auto;
           height: auto;
           object-fit: contain;
           display: block;
+        }
+
+        :global(.cybageLogo) {
+          max-height: 22px !important;
+          max-width: 80px !important;
         }
 
         @keyframes autoScroll {
