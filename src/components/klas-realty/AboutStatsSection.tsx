@@ -327,7 +327,7 @@ export default function AboutStatsSection() {
           }
         }
 
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
           .statsSection {
             min-height: 480px;
             padding: 80px 0 40px;
@@ -340,7 +340,7 @@ export default function AboutStatsSection() {
           }
 
           .container {
-            padding: 0 16px 32px;
+            padding: 0 24px 32px;
           }
 
           .statItem {
@@ -349,7 +349,7 @@ export default function AboutStatsSection() {
           }
 
           .statItem:first-child {
-            padding-left: 8px;
+            padding-left: 0;
           }
 
           .value {

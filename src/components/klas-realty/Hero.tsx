@@ -204,6 +204,12 @@ export default function Hero() {
             padding-bottom: 40px;
           }
 
+          .container {
+            width: 100%;
+            padding: 0 24px !important;
+            box-sizing: border-box;
+          }
+
           .imageWrapper {
             min-height: 280px;
           }
@@ -212,24 +218,51 @@ export default function Hero() {
             grid-template-columns: 1fr;
             gap: 20px;
             margin-top: 32px;
+            width: 100%;
+            box-sizing: border-box;
+          }
+
+          .titleColumn {
+            width: 100%;
+            box-sizing: border-box;
+          }
+
+          .lineMask {
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
           }
           
           .title {
-            font-size: 36px;
+            font-size: 28px !important;
+            letter-spacing: -0.2px !important;
+            line-height: 1.25;
+            width: 100%;
+            box-sizing: border-box;
+          }
+
+          .lineText {
+            white-space: normal !important;
+            display: inline !important;
           }
           
           .descColumn {
             padding-top: 0;
+            width: 100%;
+            box-sizing: border-box;
           }
           
           .description {
             font-size: 15px;
+            max-width: 100% !important;
+            width: 100%;
+            box-sizing: border-box;
           }
         }
 
         @media (max-width: 480px) {
           .title {
-            font-size: 30px;
+            font-size: 25px !important;
           }
         }
       `}</style>

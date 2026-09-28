@@ -247,10 +247,13 @@ export default function HomeProjectsSection() {
         }
 
         .headerRow {
-          width: 97%;
-          margin: 0 auto 56px;
+          width: 100%;
+          margin: 0 0 56px;
+          padding-left: 52px;
+          padding-right: 52px;
+          box-sizing: border-box;
           display: flex;
-          align-items: flex-start;
+          align-items: center;
           justify-content: space-between;
           gap: 40px;
         }
@@ -289,7 +292,7 @@ export default function HomeProjectsSection() {
           font-size: 15px;
           line-height: 1.5;
           color: #6E6763;
-          max-width: 520px;
+          max-width: 480px;
           margin: 0;
           padding: 0;
           border: none;
@@ -299,9 +302,15 @@ export default function HomeProjectsSection() {
         .filterGroup {
           display: flex;
           align-items: center;
-          gap: 12px;
-          flex-wrap: wrap;
           justify-content: flex-end;
+          gap: 12px;
+          flex-wrap: nowrap;
+          white-space: nowrap;
+          flex-shrink: 0;
+        }
+
+        .filterGroup::-webkit-scrollbar {
+          display: none;
         }
 
         .filterPill {
@@ -315,6 +324,8 @@ export default function HomeProjectsSection() {
           border: 1px solid rgba(59, 52, 50, 0.3);
           cursor: pointer;
           transition: var(--transition-smooth);
+          white-space: nowrap !important;
+          flex-shrink: 0 !important;
         }
 
         .filterPill:hover {
@@ -474,6 +485,8 @@ export default function HomeProjectsSection() {
             flex-direction: column;
             align-items: flex-start;
             gap: 24px;
+            padding-left: 0;
+            padding-right: 0;
           }
           
           .titleGroup {
@@ -490,6 +503,22 @@ export default function HomeProjectsSection() {
         }
 
         @media (max-width: 768px) {
+          .section {
+            padding: 40px 0 40px;
+          }
+
+          .container {
+            width: 100%;
+            padding: 0 24px !important;
+            box-sizing: border-box;
+          }
+
+          .headerRow {
+            width: 100%;
+            margin: 0 0 32px 0;
+            box-sizing: border-box;
+          }
+
           .title {
             font-size: 32px;
           }
@@ -500,6 +529,26 @@ export default function HomeProjectsSection() {
 
           .cardContainer {
             flex: 0 0 100%;
+          }
+
+          .filterGroup {
+            display: grid !important;
+            grid-template-columns: 1fr 1fr !important;
+            width: 100% !important;
+            gap: 10px 10px !important;
+            box-sizing: border-box !important;
+          }
+
+          .filterPill {
+            width: 100% !important;
+            box-sizing: border-box !important;
+            text-align: center !important;
+            justify-content: center !important;
+            display: flex !important;
+            align-items: center !important;
+            white-space: nowrap !important;
+            padding: 9px 6px !important;
+            font-size: 13px !important;
           }
 
           .navArrow {

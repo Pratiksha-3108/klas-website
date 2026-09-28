@@ -225,33 +225,17 @@ export default function AboutVisionMissionSection() {
           }
         }
 
-        @media (max-width: 850px) {
+        @media (max-width: 768px) {
           .cardsGrid {
             grid-template-columns: 1fr;
           }
 
-          .container {
-            padding: 0 28px;
-            gap: 60px;
-          }
-
-          .visionMissionSection {
-            padding: 70px 0 0;
-          }
-
-          .heading {
-            font-size: 26px;
-            line-height: 1.3;
-          }
-        }
-
-        @media (max-width: 480px) {
           .visionMissionSection {
             padding: 48px 0 0;
           }
 
           .container {
-            padding: 0 20px;
+            padding: 0 24px;
             gap: 44px;
           }
 

@@ -729,23 +729,24 @@ export default function AboutValuesSection() {
           }
         }
 
-        @media (max-width: 640px) {
+        @media (max-width: 768px) {
           .subLine {
             display: inline;
             white-space: normal;
           }
 
           .valuesSection {
-            padding: 48px 0 0;
+            padding: 40px 0 0;
           }
 
           .divisionsSection {
-            padding: 48px 0;
+            padding: 40px 0;
           }
 
           .container,
           .divisionsContainer {
-            padding: 0 20px;
+            padding: 0 24px !important;
+            box-sizing: border-box;
           }
 
           .headerContainer {
@@ -756,6 +757,7 @@ export default function AboutValuesSection() {
             grid-template-columns: 1fr;
             gap: 6px;
             padding: 18px 0;
+            margin: 0 !important;
           }
 
           .title,

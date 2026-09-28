@@ -262,7 +262,18 @@ export default function HomeResultsSection() {
 
         @media (max-width: 768px) {
           .section {
-            padding: 60px 0 80px;
+            padding: 40px 0 40px;
+          }
+
+          .container {
+            width: 100%;
+            padding: 0 24px !important;
+            box-sizing: border-box;
+          }
+
+          .mainGrid {
+            width: 100%;
+            margin: 0;
           }
 
           .title {

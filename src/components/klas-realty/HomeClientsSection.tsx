@@ -216,7 +216,18 @@ export default function HomeClientsSection() {
 
         @media (max-width: 768px) {
           .section {
-            padding: 30px 0 40px;
+            padding: 40px 0 40px;
+          }
+
+          .container {
+            width: 100%;
+            padding: 0 24px !important;
+            box-sizing: border-box;
+          }
+
+          .mainGrid {
+            width: 100%;
+            margin: 0;
           }
 
           .title {

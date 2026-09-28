@@ -227,13 +227,13 @@ export default function AboutWhoWeAreSection() {
           }
         }
 
-        @media (max-width: 640px) {
+        @media (max-width: 768px) {
           .whoWeAreSection {
-            padding: 48px 0;
+            padding: 40px 0;
           }
 
           .container {
-            padding: 0 20px;
+            padding: 0 24px;
           }
 
           .grid {
