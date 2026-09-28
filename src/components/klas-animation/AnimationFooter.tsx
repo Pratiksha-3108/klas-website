@@ -11,7 +11,23 @@ export default function AnimationFooter() {
         <div className="grid">
           {/* Brand Column */}
           <div className="brandCol">
-            <div className="brandLogo">KLAS</div>
+            <Link
+              href="/"
+              className="brandLogo"
+              style={{
+                fontFamily: "'Times New Roman', Times, serif",
+                fontSize: '46px',
+                fontWeight: 500,
+                color: '#F3CD8A',
+                letterSpacing: '2px',
+                marginBottom: '16px',
+                lineHeight: 1,
+                textDecoration: 'none',
+                display: 'inline-block',
+              }}
+            >
+              KLAS
+            </Link>
             <p className="brandTagline">
               Illustrating Imagination<br />to Life
             </p>
@@ -173,13 +189,21 @@ export default function AnimationFooter() {
           flex-direction: column;
         }
 
-        .brandLogo {
-          font-family: var(--font-playfair), 'Playfair Display', Georgia, serif;
-          font-size: 42px;
-          font-weight: 500;
-          color: #dfbd6c;
-          letter-spacing: 0.04em;
-          line-height: 1;
+        :global(.brandLogo) {
+          font-family: 'Times New Roman', Times, serif !important;
+          font-size: 46px !important;
+          font-weight: 500 !important;
+          color: #F3CD8A !important;
+          letter-spacing: 2px !important;
+          margin-bottom: 16px !important;
+          line-height: 1 !important;
+          text-decoration: none !important;
+          display: inline-block !important;
+          transition: opacity 0.2s ease !important;
+        }
+
+        :global(.brandLogo:hover) {
+          opacity: 0.9 !important;
         }
 
         .brandTagline {
@@ -339,8 +363,8 @@ export default function AnimationFooter() {
             gap: 36px;
           }
 
-          .brandLogo {
-            font-size: 36px;
+          :global(.brandLogo) {
+            font-size: 36px !important;
           }
 
           .brandTagline {

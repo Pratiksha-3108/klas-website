@@ -49,7 +49,9 @@ export default function Footer() {
           <div className={styles.grid}>
             {/* Brand Column */}
             <div className={styles.brandCol}>
-              <div className={styles.brandLogo}>KLAS</div>
+              <Link href="/" className={styles.brandLogo}>
+                KLAS
+              </Link>
               <p className={styles.brandTagline}>{tagline}</p>
               <div className={styles.socials}>
                 <a

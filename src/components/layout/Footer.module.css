@@ -33,6 +33,13 @@
   letter-spacing: 2px;
   margin-bottom: 16px;
   line-height: 1;
+  text-decoration: none;
+  display: inline-block;
+  transition: opacity 0.2s ease;
+}
+
+.brandLogo:hover {
+  opacity: 0.9;
 }
 
 .brandTagline {

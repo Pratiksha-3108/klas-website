@@ -25,7 +25,7 @@ export default function FamilyHeader() {
     <header className={`header ${isScrolled ? 'scrolled' : ''}`}>
       <div className="container">
         <Link
-          href="/family"
+          href="/"
           className="logo"
           style={{
             fontFamily: "'Montserrat', sans-serif",

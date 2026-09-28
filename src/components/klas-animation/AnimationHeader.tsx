@@ -24,7 +24,7 @@ export default function AnimationHeader() {
     <header className={`header ${isScrolled ? 'scrolled' : ''}`}>
       <div className="container">
         <Link
-          href="/animation"
+          href="/"
           className="logo"
           style={{
             fontFamily: "'Montserrat', sans-serif",
