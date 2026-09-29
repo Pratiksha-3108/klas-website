@@ -135,7 +135,7 @@ export default function TermsContent() {
               <strong className="companyName">KLAS Group</strong>
               <p>Mumbai, Maharashtra, India</p>
               <p>Email: <a href="mailto:info@klasgroup.com" className="link">info@klasgroup.com</a></p>
-              <p>Phone: <a href="tel:+91 9867007181" className="link">+1 (009) 544-7818</a></p>
+              <p>Phone: <a href="tel:+91 9867007181" className="link">+91 9867007181</a></p>
             </div>
           </section>
         </div>
