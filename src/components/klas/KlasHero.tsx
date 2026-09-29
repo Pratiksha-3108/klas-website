@@ -15,13 +15,15 @@ export default function KlasHero({ initialCategory = 'Realty' }: KlasHeroProps) 
 
   const handleCategoryScrollLeft = () => {
     if (categoryNavRef.current) {
-      categoryNavRef.current.scrollBy({ left: -140, behavior: 'smooth' });
+      const scrollAmount = categoryNavRef.current.clientWidth / 2;
+      categoryNavRef.current.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
     }
   };
 
   const handleCategoryScrollRight = () => {
     if (categoryNavRef.current) {
-      categoryNavRef.current.scrollBy({ left: 140, behavior: 'smooth' });
+      const scrollAmount = categoryNavRef.current.clientWidth / 2;
+      categoryNavRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
     }
   };
 
@@ -859,13 +861,13 @@ export default function KlasHero({ initialCategory = 'Realty' }: KlasHeroProps) 
             align-items: center;
             justify-content: space-between;
             margin-top: 56px;
-            padding: 0 10px 5px;
+            padding: 0 8px 5px;
             position: relative;
           }
 
           .categoryNavContainer {
-            padding: 0 8px;
-            gap: 16px;
+            padding: 0 !important;
+            gap: 0 !important;
             overflow-x: auto;
             scrollbar-width: none;
             -ms-overflow-style: none;
@@ -879,10 +881,19 @@ export default function KlasHero({ initialCategory = 'Realty' }: KlasHeroProps) 
           }
 
           .categoryTab {
-            padding: 0 16px 8px 16px;
-            font-size: 15px;
-            scroll-snap-align: center;
-            flex-shrink: 0;
+            flex: 0 0 50% !important;
+            width: 50% !important;
+            min-width: 50% !important;
+            max-width: 50% !important;
+            box-sizing: border-box !important;
+            padding: 0 6px 8px 6px !important;
+            font-size: 15px !important;
+            text-align: center !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            scroll-snap-align: start !important;
+            white-space: nowrap !important;
           }
 
           .categoryArrowBtn {
