@@ -9,9 +9,9 @@ export default function TermsContent() {
         <div className="headerBlock">
           <h1 className="title">Terms &amp; Conditions</h1>
           <div className="metaRow">
-            <span>Effective Date: 31 October 2025</span>
+            <span>Effective Date: 29 September 2026</span>
             <span className="dot">•</span>
-            <span>Last Updated: 31 October 2025</span>
+            <span>Last Updated: 29 September 2026</span>
           </div>
         </div>
 
@@ -135,7 +135,7 @@ export default function TermsContent() {
               <strong className="companyName">KLAS Group</strong>
               <p>Mumbai, Maharashtra, India</p>
               <p>Email: <a href="mailto:info@klasgroup.com" className="link">info@klasgroup.com</a></p>
-              <p>Phone: <a href="tel:+10095447818" className="link">+1 (009) 544-7818</a></p>
+              <p>Phone: <a href="tel:+91 9867007181" className="link">+1 (009) 544-7818</a></p>
             </div>
           </section>
         </div>
