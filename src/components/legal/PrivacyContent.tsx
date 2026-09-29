@@ -152,7 +152,7 @@ export default function PrivacyContent() {
               <strong className="companyName">KLAS Group</strong>
               <p className="cardText">Mumbai, Maharashtra, India</p>
               <p className="cardText">Email: <a href="mailto:info@klasgroup.com" className="link">info@klasgroup.com</a></p>
-              <p className="cardText">Phone: <a href="tel:+10095447818" className="link">+1 (009) 544-7818</a></p>
+              <p className="cardText">Phone: <a href="tel:+91 9867007181" className="link">+1 (009) 544-7818</a></p>
             </div>
           </section>
         </div>

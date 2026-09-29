@@ -395,7 +395,7 @@ export default function ContactForm() {
                 </a>
 
                 <a
-                  href="https://youtube.com"
+                  href="https://youtube.com/@silvertoonstudios"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="socialSquare"
