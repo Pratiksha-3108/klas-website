@@ -168,7 +168,7 @@ export default function HomeClientsSection() {
           display: flex;
           align-items: center;
           justify-content: center;
-          height: 52px;
+          height: 60px;
           min-width: 120px;
           padding: 4px 12px;
           flex-shrink: 0;
@@ -182,8 +182,8 @@ export default function HomeClientsSection() {
         }
 
         .clientImage {
-          max-height: 40px;
-          max-width: 130px;
+          max-height: 44px;
+          max-width: 140px;
           width: auto;
           height: auto;
           object-fit: contain;
