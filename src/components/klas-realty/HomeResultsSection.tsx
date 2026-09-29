@@ -55,12 +55,11 @@ function CountUpNumber({
   isVisible: boolean;
 }) {
   const [count, setCount] = useState(0);
+  const hasAnimated = useRef(false);
 
   useEffect(() => {
-    if (!isVisible) {
-      setCount(0);
-      return;
-    }
+    if (!isVisible || hasAnimated.current) return;
+    hasAnimated.current = true;
 
     let animationFrameId: number;
     let startTimestamp: number | null = null;
@@ -114,7 +113,9 @@ export default function HomeResultsSection() {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        setIsVisible(entry.isIntersecting);
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
       },
       { threshold: 0.2 }
     );
@@ -158,7 +159,7 @@ export default function HomeResultsSection() {
 
       <style jsx>{`
         .section {
-          padding: 80px 0 70px;
+          padding: 30px 0 70px;
           background-color: #FFFFFF;
         }
 
@@ -262,7 +263,7 @@ export default function HomeResultsSection() {
 
         @media (max-width: 768px) {
           .section {
-            padding: 40px 0 40px;
+            padding: 20px 0 40px;
           }
 
           .container {

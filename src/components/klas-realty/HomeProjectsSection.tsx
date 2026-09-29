@@ -274,7 +274,7 @@ export default function HomeProjectsSection() {
 
       <style jsx>{`
         .section {
-          padding: 80px 0 120px;
+          padding: 80px 0 50px;
           background-color: #FFFFFF;
           scroll-margin-top: 80px;
         }
