@@ -29,7 +29,7 @@ const ipData: IPCard[] = [
     genre: 'ADVENTURE, ACTION',
     image: '/assets/klas-animation/animation2nd.png',
     description:
-      'Hanuman (2005) is India’s first animated feature film, portraying the life of Lord Hanuman—from his divine birth to his pivotal role in the Ramayana.\n\nBlessed by the Gods with unmatched strength, intelligence, and immortality, Hanuman embodies courage and devotion. The film traces his playful childhood, the discovery of his extraordinary powers, and his pivotal role in aiding Lord Ram—culminating in the epic triumph over Ravana and the rescue of Sita.',
+      'Hanuman (2005) is India’s first animated feature film, portraying the life of Lord Hanuman from his divine birth to his pivotal role in the Ramayana.\n\nBlessed by the Gods with unmatched strength, intelligence, and immortality, Hanuman embodies courage and devotion. The film traces his playful childhood, the discovery of his extraordinary powers, and his pivotal role in aiding Lord Ram culminating in the epic triumph over Ravana and the rescue of Sita.',
   },
   {
     id: 'hanu-the-hero',
@@ -38,7 +38,7 @@ const ipData: IPCard[] = [
     genre: 'ADVENTURE, ACTION, COMEDY',
     image: '/assets/klas-animation/animation3rd.png',
     description:
-      'Set in the enchanting Anjan Kingdom, a lush river-valley realm where humans, animals, and Vanars coexist, Hanu the Hero follows the adventures of Hanu, a powerful young Vanar who watches over the kingdom from his sky-high treehouse. Alongside his brilliant best friend Jamy, the inventive son of the Bear Guard commander, Hanu protects Princess Aarya and the citizens of Anjan with a mix of strength, strategy, and cutting-edge gadgets.\n\nFrom daring rescues to playful escapades in the kingdom’s unique treehouse school, the series blends action, friendship, and humour—celebrating courage, creativity, and the harmony between nature and humanity.',
+      'Set in the enchanting Anjan Kingdom, a lush river valley realm where humans, animals, and Vanars coexist, Hanu the Hero follows the adventures of Hanu, a powerful young Vanar who watches over the kingdom from his sky-high treehouse. Alongside his brilliant best friend Jamy, the inventive son of the Bear Guard commander, Hanu protects Princess Aarya and the citizens of Anjan with a mix of strength, strategy, and cutting-edge gadgets.\n\nFrom daring rescues to playful escapades in the kingdom’s unique treehouse school, the series blends action, friendship, and humour celebrating courage, creativity, and the harmony between nature and humanity.',
   },
   {
     id: 'deva',
@@ -61,8 +61,8 @@ export default function AnimationIPsSection() {
 
   const handleScrollLeft = () => {
     if (scrollContainerRef.current) {
-      const scrollAmount = window.innerWidth <= 768 
-        ? scrollContainerRef.current.clientWidth 
+      const scrollAmount = window.innerWidth <= 768
+        ? scrollContainerRef.current.clientWidth
         : 388;
       scrollContainerRef.current.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
     }
@@ -70,8 +70,8 @@ export default function AnimationIPsSection() {
 
   const handleScrollRight = () => {
     if (scrollContainerRef.current) {
-      const scrollAmount = window.innerWidth <= 768 
-        ? scrollContainerRef.current.clientWidth 
+      const scrollAmount = window.innerWidth <= 768
+        ? scrollContainerRef.current.clientWidth
         : 388;
       scrollContainerRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
     }

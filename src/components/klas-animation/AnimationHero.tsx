@@ -4,7 +4,7 @@ import React from 'react';
 
 export default function AnimationHero() {
   return (
-    <section className="hero">
+    <section id="hero" className="hero">
       <div className="videoWrapper">
         <video
           className="bgVideo"

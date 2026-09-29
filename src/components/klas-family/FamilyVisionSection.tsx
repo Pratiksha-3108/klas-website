@@ -74,6 +74,7 @@ export default function FamilyVisionSection() {
           align-items: center;
           padding-top: 115px;
           width: 100%;
+          min-width: 0;
         }
 
         .dividerLine {
@@ -105,6 +106,7 @@ export default function FamilyVisionSection() {
           opacity: 0;
           transform: translateX(60px);
           transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+          min-width: 0;
         }
 
         .title {
@@ -162,6 +164,12 @@ export default function FamilyVisionSection() {
 
           .rightCol {
             order: 1;
+          }
+
+          .dividerLine {
+            width: 100%;
+            margin-left: 0;
+            margin-right: 0;
           }
         }
 

@@ -95,7 +95,7 @@ export default function AboutValuesSection() {
       title: 'FAMILY OFFICE',
       subtitle: 'Capital Markets, Wealth Stewardship & Investments',
       image: '/assets/about/office-about.png',
-      href: '/klas-family',
+      href: '/family',
     },
     {
       number: '03',
@@ -103,7 +103,7 @@ export default function AboutValuesSection() {
       title: 'ANIMATION',
       subtitle: 'Creative Media Studio & Digital Content',
       image: '/assets/about/animation-about.png',
-      href: '/klas-animation',
+      href: '/animation',
     },
     {
       number: '04',
@@ -111,7 +111,7 @@ export default function AboutValuesSection() {
       title: 'TECHNOLOGY',
       subtitle: 'Digital Solutions, AI Ventures & Innovation',
       image: encodeURI('/assets/about/Technology -about.png'),
-      href: '/klas-technology',
+      href: 'https://klasinfotech.com/',
     },
   ];
 
@@ -125,7 +125,7 @@ export default function AboutValuesSection() {
             <div className="leftCol">
               <h2 className="title">OUR VALUES</h2>
               <p className="subtitle">
-                <span className="subLine">Our values are the foundation of everything we do —</span>
+                <span className="subLine">Our values are the foundation of everything we do </span>
                 <span className="subLine">guiding our decisions, shaping our culture, and</span>
                 <span className="subLine">defining our relationships.</span>
               </p>
@@ -211,6 +211,8 @@ export default function AboutValuesSection() {
                 <Link
                   key={index}
                   href={item.href}
+                  target={item.href.startsWith('http') ? '_blank' : undefined}
+                  rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                   className={`card ${isHovered ? 'active' : 'inactive'}`}
                   onMouseEnter={() => setHoveredIndex(index)}
                   onFocus={() => setHoveredIndex(index)}
@@ -412,7 +414,12 @@ export default function AboutValuesSection() {
         .leftCol {
           display: flex;
           flex-direction: column;
-          position: relative;
+          position: -webkit-sticky;
+          position: sticky;
+          top: 100px;
+          height: fit-content;
+          align-self: start;
+          z-index: 10;
         }
 
         .title {

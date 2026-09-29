@@ -44,7 +44,11 @@ export default function Header() {
     setIsMobileMenuOpen(false);
   };
 
-  const isAboutOrContactPage = pathname === '/about' || pathname === '/contact';
+  const isAboutOrContactPage =
+    pathname === '/about' ||
+    pathname === '/contact' ||
+    pathname === '/privacy' ||
+    pathname === '/terms';
 
   return (
     <header className={`${styles.header} ${isScrolled ? styles.scrolled : ''}`}>

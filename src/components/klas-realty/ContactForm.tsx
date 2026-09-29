@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
@@ -11,16 +12,112 @@ export default function ContactForm() {
     phone: '',
     company: '',
     message: '',
+    consent: false,
   });
+
+  const [errors, setErrors] = useState<{
+    fullName?: string;
+    email?: string;
+    phone?: string;
+    company?: string;
+    message?: string;
+    consent?: string;
+  }>({});
+
+  const validateField = (name: string, value: string): string => {
+    const trimmed = value.trim();
+
+    if (name === 'fullName') {
+      if (!trimmed) return 'Full Name is required';
+      if (!/^[a-zA-Z\s'.-]+$/.test(trimmed)) {
+        return 'Full Name must contain letters only';
+      }
+      if (trimmed.length < 2) {
+        return 'Full Name must be at least 2 characters';
+      }
+    }
+
+    if (name === 'email') {
+      if (!trimmed) return 'Email Address is required';
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(trimmed)) {
+        return 'Please enter a valid email address (e.g. name@example.com)';
+      }
+    }
+
+    if (name === 'phone') {
+      if (!trimmed) return 'Phone Number is required';
+      const digitsOnly = trimmed.replace(/\D/g, '');
+      if (!/^[0-9+\s()\-]+$/.test(trimmed) || digitsOnly.length < 10 || digitsOnly.length > 12) {
+        return 'Please enter a valid 10-digit phone number';
+      }
+    }
+
+    if (name === 'message') {
+      if (!trimmed) return 'Message is required';
+      if (trimmed.length < 10) {
+        return 'Message must be at least 10 characters long';
+      }
+    }
+
+    return '';
+  };
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+
+    if (errors[name as keyof typeof errors]) {
+      const errorMsg = validateField(name, value);
+      setErrors((prev) => ({ ...prev, [name]: errorMsg }));
+    }
+  };
+
+  const handleBlur = (
+    e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    const errorMsg = validateField(name, value);
+    setErrors((prev) => ({ ...prev, [name]: errorMsg }));
+  };
+
+  const handleConsentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const checked = e.target.checked;
+    setFormData((prev) => ({ ...prev, consent: checked }));
+    if (checked && errors.consent) {
+      setErrors((prev) => ({ ...prev, consent: undefined }));
+    }
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    const newErrors: typeof errors = {};
+
+    const fnErr = validateField('fullName', formData.fullName);
+    if (fnErr) newErrors.fullName = fnErr;
+
+    const emailErr = validateField('email', formData.email);
+    if (emailErr) newErrors.email = emailErr;
+
+    const phoneErr = validateField('phone', formData.phone);
+    if (phoneErr) newErrors.phone = phoneErr;
+
+    const msgErr = validateField('message', formData.message);
+    if (msgErr) newErrors.message = msgErr;
+
+    if (!formData.consent) {
+      newErrors.consent = 'You must agree to the Privacy Policy and Terms before submitting.';
+    }
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+
+    setErrors({});
     setSubmitted(true);
   };
 
@@ -96,12 +193,12 @@ export default function ContactForm() {
                 <div className="successIcon">✓</div>
                 <h3>Message Sent Successfully</h3>
                 <p>Thank you for reaching out! A member of the KLAS team will respond to your inquiry shortly.</p>
-                <button type="button" onClick={() => setSubmitted(false)} className="resetBtn">
+                <button type="button" onClick={() => { setSubmitted(false); setErrors({}); }} className="resetBtn">
                   Send Another Message
                 </button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="formElement">
+              <form onSubmit={handleSubmit} noValidate className="formElement">
                 {/* Row 1: Full Name & Email */}
                 <div className="formRow">
                   <div className="inputGroup">
@@ -110,12 +207,13 @@ export default function ContactForm() {
                       id="fullName"
                       name="fullName"
                       type="text"
-                      required
                       placeholder="John Doe"
                       value={formData.fullName}
                       onChange={handleChange}
-                      className="formInput"
+                      onBlur={handleBlur}
+                      className={`formInput ${errors.fullName ? 'hasError' : ''}`}
                     />
+                    {errors.fullName && <span className="errorText">{errors.fullName}</span>}
                   </div>
 
                   <div className="inputGroup">
@@ -124,19 +222,20 @@ export default function ContactForm() {
                       id="email"
                       name="email"
                       type="email"
-                      required
                       placeholder="john@example.com"
                       value={formData.email}
                       onChange={handleChange}
-                      className="formInput"
+                      onBlur={handleBlur}
+                      className={`formInput ${errors.email ? 'hasError' : ''}`}
                     />
+                    {errors.email && <span className="errorText">{errors.email}</span>}
                   </div>
                 </div>
 
                 {/* Row 2: Phone Number & Company Name */}
                 <div className="formRow">
                   <div className="inputGroup">
-                    <label htmlFor="phone" className="fieldLabel">Phone Number</label>
+                    <label htmlFor="phone" className="fieldLabel">Phone Number *</label>
                     <input
                       id="phone"
                       name="phone"
@@ -144,8 +243,10 @@ export default function ContactForm() {
                       placeholder="1234567890"
                       value={formData.phone}
                       onChange={handleChange}
-                      className="formInput"
+                      onBlur={handleBlur}
+                      className={`formInput ${errors.phone ? 'hasError' : ''}`}
                     />
+                    {errors.phone && <span className="errorText">{errors.phone}</span>}
                   </div>
 
                   <div className="inputGroup">
@@ -169,12 +270,38 @@ export default function ContactForm() {
                     id="message"
                     name="message"
                     rows={4}
-                    required
                     placeholder="Tell us about your inquiry..."
                     value={formData.message}
                     onChange={handleChange}
-                    className="formTextarea"
+                    onBlur={handleBlur}
+                    className={`formTextarea ${errors.message ? 'hasError' : ''}`}
                   />
+                  {errors.message && <span className="errorText">{errors.message}</span>}
+                </div>
+
+                {/* Consent Checkbox */}
+                <div className="consentGroup">
+                  <label className="consentLabel">
+                    <input
+                      type="checkbox"
+                      name="consent"
+                      checked={formData.consent}
+                      onChange={handleConsentChange}
+                      className="consentCheckbox"
+                    />
+                    <span>
+                      I agree to the processing of my personal data in accordance with the{' '}
+                      <Link href="/privacy" className="consentLink" target="_blank">
+                        Privacy Policy
+                      </Link>{' '}
+                      and{' '}
+                      <Link href="/terms" className="consentLink" target="_blank">
+                        Terms of Service
+                      </Link>
+                      . *
+                    </span>
+                  </label>
+                  {errors.consent && <span className="errorText">{errors.consent}</span>}
                 </div>
 
                 {/* Submit Button */}
@@ -256,7 +383,7 @@ export default function ContactForm() {
                 </a>
 
                 <a
-                  href="https://instagram.com"
+                  href="https://www.instagram.com/silvertoonstudios/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="socialSquare"
@@ -387,25 +514,33 @@ export default function ContactForm() {
           grid-template-columns: 1.15fr 0.85fr;
           gap: 28px;
           margin-bottom: 64px;
-          align-items: start;
+          align-items: stretch;
         }
 
         .formCard {
           background-color: #F5F0EC;
           border-radius: 0;
           padding: 36px 32px;
+          height: 100%;
+          box-sizing: border-box;
         }
 
         .sidebarCol {
           display: flex;
           flex-direction: column;
           gap: 24px;
+          height: 100%;
         }
 
         .sidebarCard {
           background-color: #F5F0EC;
           border-radius: 0;
-          padding: 32px;
+          padding: 36px 32px;
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          box-sizing: border-box;
         }
 
         .sectionHeaderTitle {
@@ -466,6 +601,59 @@ export default function ContactForm() {
         .formTextarea:focus {
           border-color: #4F4742;
           box-shadow: 0 0 0 3px rgba(79, 71, 66, 0.12);
+        }
+
+        :global(.formInput.hasError),
+        :global(.formTextarea.hasError) {
+          border-color: #D32F2F !important;
+          background-color: #FFF9F9 !important;
+        }
+
+        .errorText {
+          display: block;
+          font-family: var(--font-inter), 'Inter', sans-serif;
+          font-size: 12px;
+          font-weight: 600;
+          color: #D32F2F;
+          margin-top: 2px;
+        }
+
+        .consentGroup {
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+          margin-top: 4px;
+        }
+
+        .consentLabel {
+          display: flex;
+          align-items: flex-start;
+          gap: 10px;
+          font-size: 13px;
+          color: #5C5852;
+          cursor: pointer;
+          line-height: 1.45;
+          user-select: none;
+        }
+
+        .consentCheckbox {
+          width: 17px;
+          height: 17px;
+          margin-top: 2px;
+          accent-color: #4F4742;
+          cursor: pointer;
+          flex-shrink: 0;
+        }
+
+        :global(.consentLink) {
+          color: #4F4742;
+          font-weight: 600;
+          text-decoration: underline;
+          transition: color 0.2s ease;
+        }
+
+        :global(.consentLink:hover) {
+          color: #111111;
         }
 
         .formSelect {
@@ -668,6 +856,13 @@ export default function ContactForm() {
 
           .mainFormGrid {
             grid-template-columns: 1fr;
+          }
+
+          .formCard,
+          .sidebarCol,
+          .sidebarCard {
+            height: auto;
+            flex: none;
           }
         }
 

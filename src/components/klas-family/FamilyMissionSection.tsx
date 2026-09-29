@@ -73,6 +73,7 @@ export default function FamilyMissionSection() {
           opacity: 0;
           transform: translateX(-60px);
           transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+          min-width: 0;
         }
 
         .title {
@@ -103,6 +104,7 @@ export default function FamilyMissionSection() {
           opacity: 0;
           transform: translateX(60px);
           transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1) 0.15s, transform 1s cubic-bezier(0.16, 1, 0.3, 1) 0.15s;
+          min-width: 0;
         }
 
         .dividerLine {
@@ -166,6 +168,12 @@ export default function FamilyMissionSection() {
 
           .rightCol {
             padding-top: 0;
+          }
+
+          .dividerLine {
+            width: 100%;
+            margin-right: 0;
+            margin-left: 0;
           }
         }
 

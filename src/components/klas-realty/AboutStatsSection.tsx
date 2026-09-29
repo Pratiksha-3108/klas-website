@@ -118,10 +118,10 @@ export default function AboutStatsSection() {
       hasSup: true,
       sup: 'st',
       label: (
-        <>
+        <div style={{ marginTop: '-8px' }}>
           <span style={{ display: 'block', whiteSpace: 'nowrap' }}>LISTED INDIA&apos;S FIRST TECH</span>
           <span style={{ display: 'block', whiteSpace: 'nowrap' }}>COMPANY IN THE NYSE</span>
-        </>
+        </div>
       ),
     },
     {
@@ -130,7 +130,7 @@ export default function AboutStatsSection() {
       label: (
         <>
           <span style={{ display: 'block', whiteSpace: 'nowrap' }}>EXPERIENCE ACROSS GLOBAL</span>
-          <span style={{ display: 'block' }}>SE&apos;S (NYSE, LuxSE, NSE, BSE)</span>
+          <span style={{ display: 'block' }}>SE&apos;s (NYSE, LuxSE, NSE, BSE)</span>
         </>
       ),
     },
@@ -259,6 +259,7 @@ export default function AboutStatsSection() {
           vertical-align: super;
           font-weight: 600;
           margin-left: 1px;
+          line-height: 0;
         }
 
         .label {
@@ -267,7 +268,7 @@ export default function AboutStatsSection() {
           font-weight: 600;
           line-height: 1.35;
           letter-spacing: 0.04em;
-          text-transform: uppercase;
+          text-transform: none;
           color: rgba(255, 255, 255, 0.85);
           word-break: normal;
           overflow-wrap: break-word;

@@ -163,6 +163,12 @@ export default function AboutWhoWeAreSection() {
         .leftCol {
           display: flex;
           flex-direction: column;
+          position: -webkit-sticky;
+          position: sticky;
+          top: 100px;
+          height: fit-content;
+          align-self: start;
+          z-index: 10;
         }
 
         .title {
@@ -211,6 +217,10 @@ export default function AboutWhoWeAreSection() {
 
           .container {
             padding: 0 32px;
+          }
+
+          .leftCol {
+            position: static;
           }
 
           .grid {

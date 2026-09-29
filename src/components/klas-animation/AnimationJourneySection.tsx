@@ -15,7 +15,7 @@ const journeyData: JourneyItem[] = [
     id: '01',
     title: "INDIA'S FIRST\n2D ANIMATED FILM",
     description:
-      'Hanuman (2005) is India’s first animated feature film, portraying the life of Lord Hanuman—from his divine birth to his pivotal role in the Ramayana.\n\nBlessed by the Gods with unmatched strength, intelligence, and immortality, Hanuman embodies courage and devotion. The film traces his playful childhood, the discovery of his extraordinary powers, and his pivotal role in aiding Lord Ram—culminating in the epic triumph over Ravana and the rescue of Sita.',
+      'Hanuman (2005) is India’s first animated feature film, portraying the life of Lord Hanuman from his divine birth to his pivotal role in the Ramayana.\n\nBlessed by the Gods with unmatched strength, intelligence, and immortality, Hanuman embodies courage and devotion. The film traces his playful childhood, the discovery of his extraordinary powers, and his pivotal role in aiding Lord Ram culminating in the epic triumph over Ravana and the rescue of Sita.',
   },
   {
     id: '02',

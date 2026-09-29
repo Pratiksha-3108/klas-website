@@ -27,9 +27,9 @@ export default function KlasHero({ initialCategory = 'Realty' }: KlasHeroProps) 
 
   const categories = [
     { id: 'realty', label: 'Realty', href: '/realty' },
-    { id: 'family', label: 'Family Office', href: '/klas-family' },
-    { id: 'animation', label: 'Animation', href: '/klas-animation' },
-    { id: 'technology', label: 'Technology', href: '/klas-technology' },
+    { id: 'family', label: 'Family Office', href: '/family' },
+    { id: 'animation', label: 'Animation', href: '/animation' },
+    { id: 'technology', label: 'Technology', href: 'https://klasinfotech.com/' },
   ];
 
   const contentMap: Record<string, { titleLines: string[]; mobileTitleLines?: string[]; descLines: string[] }> = {
@@ -38,7 +38,7 @@ export default function KlasHero({ initialCategory = 'Realty' }: KlasHeroProps) 
       descLines: [
         'KLAS holds a robust portfolio of high-value assets across India which',
         'are currently under Joint Venture Development of Residential &',
-        'Commercial projects – totalling 1+ million sq. ft. of planned built-up area.'
+        'Commercial projects totalling 1+ million sq. ft. of planned built-up area.'
       ]
     },
     'Family Office': {
@@ -53,7 +53,7 @@ export default function KlasHero({ initialCategory = 'Realty' }: KlasHeroProps) 
       titleLines: ['ANIMATION ILLUSTRATING', 'IMAGINATION TO LIFE'],
       descLines: [
         'KLAS own a strong Intellectual Property (IP) portfolio, inclusive of India’s First',
-        'Animated Film IP — Bal Hanuman, along with other original properties such as',
+        'Animated Film IP Bal Hanuman, along with other original properties such as',
         'KinderHeroes, Deva and more.',
         'The film “Hanuman” has won over 10+ awards nationally and globally for the film,',
         'including the “ToonBoom Award” (the Animation Technology Award from Canada),',

@@ -5,7 +5,7 @@ import Image from 'next/image';
 
 export default function FamilyHero() {
   return (
-    <section className="hero">
+    <section id="home" className="hero">
       <div className="imageWrapper">
         <Image
           src="/assets/klas-family/familyhero.png"
