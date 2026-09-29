@@ -164,9 +164,9 @@
   z-index: 1005;
   transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  padding: 80px 24px 24px;
+  padding: 130px 24px 24px;
 }
 
 .drawerOpen {

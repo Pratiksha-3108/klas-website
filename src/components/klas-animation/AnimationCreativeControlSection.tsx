@@ -24,7 +24,9 @@ export default function AnimationCreativeControlSection() {
         <div className="headerWrapper">
           <h2 className="title">FULL CREATIVE CONTROL</h2>
           <p className="subtitle">
-            Translating ideas into emotional narratives, from the first concept to the final cut.
+            Translating ideas into emotional narratives, from the first
+            <br className="desktopBr" />
+            concept to the final cut.
           </p>
         </div>
 
@@ -293,6 +295,12 @@ export default function AnimationCreativeControlSection() {
 
           .card:last-child {
             border-bottom: none;
+          }
+        }
+
+        @media (max-width: 640px) {
+          .desktopBr {
+            display: none;
           }
         }
       `}</style>

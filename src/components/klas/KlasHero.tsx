@@ -135,25 +135,24 @@ export default function KlasHero({ initialCategory = 'Realty' }: KlasHeroProps) 
           >
             <span className="burgerLine"></span>
             <span className="burgerLine"></span>
+            <span className="burgerLine"></span>
           </button>
         </div>
 
         {/* Mobile Navigation Drawer */}
-        {isMobileMenuOpen && (
-          <div className="mobileNavDrawer">
-            <nav className="mobileDrawerLinks">
-              <Link href="/" className="mobileDrawerItem" onClick={() => setIsMobileMenuOpen(false)}>
-                Home
-              </Link>
-              <Link href="/about" className="mobileDrawerItem" onClick={() => setIsMobileMenuOpen(false)}>
-                About
-              </Link>
-              <Link href="/contact" className="mobileDrawerItem" onClick={() => setIsMobileMenuOpen(false)}>
-                Contact
-              </Link>
-            </nav>
-          </div>
-        )}
+        <div className={`mobileDrawer ${isMobileMenuOpen ? 'drawerOpen' : ''}`}>
+          <nav className="mobileNav">
+            <Link href="/" className="mobileNavLink" onClick={() => setIsMobileMenuOpen(false)}>
+              Home
+            </Link>
+            <Link href="/about" className="mobileNavLink" onClick={() => setIsMobileMenuOpen(false)}>
+              About
+            </Link>
+            <Link href="/contact" className="mobileNavLink" onClick={() => setIsMobileMenuOpen(false)}>
+              Contact
+            </Link>
+          </nav>
+        </div>
       </header>
 
       {/* KLAS Cormorant Garamond Text below navbar middle */}
@@ -778,52 +777,77 @@ export default function KlasHero({ initialCategory = 'Realty' }: KlasHeroProps) 
           .mobileBurgerBtn {
             display: flex !important;
             flex-direction: column !important;
-            justify-content: center !important;
-            align-items: center !important;
-            gap: 5px !important;
-            width: 36px !important;
-            height: 36px !important;
+            justify-content: space-between !important;
+            width: 24px !important;
+            height: 16px !important;
             background: transparent !important;
             border: none !important;
             cursor: pointer !important;
             padding: 0 !important;
+            z-index: 1010 !important;
+            position: relative !important;
           }
 
           .burgerLine {
             display: block !important;
-            width: 20px !important;
+            width: 100% !important;
             height: 2px !important;
             background-color: #4F4742 !important;
-            transition: all 0.25s ease !important;
+            border-radius: 2px !important;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
           }
 
           .mobileBurgerBtn.active .burgerLine:nth-child(1) {
-            transform: translateY(3.5px) rotate(45deg) !important;
+            transform: translateY(7px) rotate(45deg) !important;
           }
 
           .mobileBurgerBtn.active .burgerLine:nth-child(2) {
-            transform: translateY(-3.5px) rotate(-45deg) !important;
+            opacity: 0 !important;
           }
 
-          .mobileNavDrawer {
-            display: block !important;
-            background-color: #ffffff !important;
-            border-bottom: 1px solid #F0EFEE !important;
-            padding: 16px 20px !important;
+          .mobileBurgerBtn.active .burgerLine:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg) !important;
           }
 
-          .mobileDrawerLinks {
+          .mobileDrawer {
+            position: fixed !important;
+            top: 0 !important;
+            right: -100% !important;
+            width: 100% !important;
+            height: 100vh !important;
+            background: #ffffff !important;
+            z-index: 1005 !important;
+            transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+            display: flex !important;
+            align-items: flex-start !important;
+            justify-content: center !important;
+            padding: 130px 24px 24px !important;
+          }
+
+          .mobileDrawer.drawerOpen {
+            right: 0 !important;
+          }
+
+          .mobileNav {
             display: flex !important;
             flex-direction: column !important;
-            gap: 14px !important;
+            align-items: center !important;
+            gap: 20px !important;
+            width: 100% !important;
           }
 
-          .mobileDrawerItem {
+          .mobileNavLink {
             font-family: var(--font-inter), 'Inter', sans-serif !important;
-            font-size: 16px !important;
+            font-size: 20px !important;
             font-weight: 500 !important;
-            color: #4F4742 !important;
+            color: #978E89 !important;
             text-decoration: none !important;
+            padding: 8px 12px !important;
+            transition: color 0.2s ease !important;
+          }
+
+          .mobileNavLink:hover {
+            color: #4F4742 !important;
           }
 
           .klasBannerContainer {
@@ -964,9 +988,9 @@ export default function KlasHero({ initialCategory = 'Realty' }: KlasHeroProps) 
           .mobileTitle {
             display: block !important;
             order: 2 !important;
-            font-size: 24px !important;
-            line-height: 1.35 !important;
-            margin: 0 0 16px 0 !important;
+            font-size: 19px !important;
+            line-height: 1.3 !important;
+            margin: 0 0 14px 0 !important;
           }
 
           .mobileTitle .titleLineReveal {

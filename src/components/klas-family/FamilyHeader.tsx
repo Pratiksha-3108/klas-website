@@ -69,8 +69,9 @@ export default function FamilyHeader() {
         </button>
       </div>
 
-      {isMobileMenuOpen && (
-        <div className="mobileNav">
+      {/* Mobile Navigation Drawer */}
+      <div className={`mobileDrawer ${isMobileMenuOpen ? 'drawerOpen' : ''}`}>
+        <nav className="mobileNav">
           <Link href="/family" className="mobileNavLink" onClick={() => setIsMobileMenuOpen(false)}>
             Home
           </Link>
@@ -86,8 +87,8 @@ export default function FamilyHeader() {
           <Link href="/family#focus-area" className="mobileNavLink" onClick={() => setIsMobileMenuOpen(false)}>
             Focus Area
           </Link>
-        </div>
-      )}
+        </nav>
+      </div>
 
       <style jsx>{`
         .header {
@@ -173,11 +174,13 @@ export default function FamilyHeader() {
           flex-direction: column;
           justify-content: space-between;
           width: 24px;
-          height: 18px;
+          height: 16px;
           background: transparent;
           border: none;
           cursor: pointer;
           padding: 0;
+          z-index: 1010;
+          position: relative;
         }
 
         .burger span {
@@ -185,29 +188,60 @@ export default function FamilyHeader() {
           height: 2px;
           background-color: #2b2725;
           border-radius: 2px;
-          transition: all 0.3s ease;
+          transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .burgerActive span:nth-child(1) {
+          transform: translateY(7px) rotate(45deg);
+        }
+
+        .burgerActive span:nth-child(2) {
+          opacity: 0;
+        }
+
+        .burgerActive span:nth-child(3) {
+          transform: translateY(-7px) rotate(-45deg);
+        }
+
+        .mobileDrawer {
+          position: fixed;
+          top: 0;
+          right: -100%;
+          width: 100%;
+          height: 100vh;
+          background: #ffffff;
+          z-index: 1005;
+          transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+          display: flex;
+          align-items: flex-start;
+          justify-content: center;
+          padding: 130px 24px 24px;
+        }
+
+        .drawerOpen {
+          right: 0;
         }
 
         .mobileNav {
-          position: absolute;
-          top: 100%;
-          left: 0;
-          width: 100%;
           display: flex;
           flex-direction: column;
-          background: #ffffff;
-          padding: 20px 32px;
-          gap: 16px;
-          border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+          align-items: center;
+          gap: 20px;
+          width: 100%;
         }
 
         .mobileNavLink {
           font-family: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
-          font-size: 16px;
+          font-size: 20px;
           font-weight: 500;
-          color: #2b2725;
+          color: #978E89;
           text-decoration: none;
+          padding: 8px 12px;
+          transition: color 0.2s ease;
+        }
+
+        .mobileNavLink:hover {
+          color: #4F4742;
         }
 
         @media (max-width: 992px) {

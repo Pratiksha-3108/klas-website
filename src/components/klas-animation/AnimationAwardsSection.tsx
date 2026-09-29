@@ -446,36 +446,106 @@ export default function AnimationAwardsSection() {
         }
 
         @media (max-width: 768px) {
+          .section {
+            padding: 40px 0 30px;
+          }
+
+          .container {
+            padding: 0 16px;
+          }
+
+          .sectionTitle {
+            font-size: 20px;
+            margin-bottom: 20px;
+          }
+
           .statsGrid {
             grid-template-columns: 1fr;
-            gap: 16px;
+            gap: 12px;
+          }
+
+          .statCard {
+            width: 100%;
+            padding: 16px 14px;
+          }
+
+          .statNumber {
+            font-size: 26px;
+            margin-bottom: 4px;
+          }
+
+          .statLabel {
+            font-size: 11px;
           }
 
           .awardRow {
-            padding: 16px 16px;
+            padding: 10px 8px;
+          }
+
+          .awardLeft {
+            gap: 8px;
+            padding-right: 8px;
           }
 
           .awardTitle {
-            font-size: 15px;
+            font-size: 11px;
+            line-height: 1.3;
           }
 
           .awardNumber {
-            font-size: 18px;
+            font-size: 11px;
+          }
+
+          .awardRow:hover .awardTitle,
+          .awardRow.hovered .awardTitle {
+            transform: none;
+            font-size: 9px !important;
+          }
+
+          .awardRow:hover .awardNumber,
+          .awardRow.hovered .awardNumber {
+            transform: none;
+            font-size: 9px !important;
+          }
+
+          .awardRight {
+            width: 60px;
+            height: 50px;
+          }
+
+          .trophyBox {
+            width: 60px;
+            height: 50px;
+          }
+
+          .iconBox {
+            width: 30px;
+            height: 30px;
           }
         }
 
         @media (max-width: 640px) {
-          .section {
-            padding: 60px 0 50px;
-          }
-
-          .container {
-            padding: 0 20px;
-          }
-
           .sectionTitle {
-            font-size: 26px;
-            margin-bottom: 32px;
+            font-size: 18px;
+            margin-bottom: 18px;
+          }
+
+          .awardTitle {
+            font-size: 10px;
+          }
+
+          .awardRow:hover .awardTitle,
+          .awardRow.hovered .awardTitle {
+            font-size: 8.5px !important;
+          }
+
+          .awardNumber {
+            font-size: 10px;
+          }
+
+          .awardRow:hover .awardNumber,
+          .awardRow.hovered .awardNumber {
+            font-size: 8.5px !important;
           }
         }
       `}</style>

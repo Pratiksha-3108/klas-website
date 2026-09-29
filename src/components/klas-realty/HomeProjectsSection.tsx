@@ -100,6 +100,8 @@ export default function HomeProjectsSection() {
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const sectionRef = useRef<HTMLDivElement>(null);
 
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -112,7 +114,16 @@ export default function HomeProjectsSection() {
       observer.observe(sectionRef.current);
     }
 
-    return () => observer.disconnect();
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('resize', checkMobile);
+    };
   }, []);
 
   const categories = ['All', 'Residential', 'Retail, Commercial & IT', 'Warehousing'];
@@ -121,7 +132,9 @@ export default function HomeProjectsSection() {
     ? projectsData 
     : projectsData.filter((p) => p.category === activeCategory);
 
-  const maxIndex = Math.max(0, filteredProjects.length - 3);
+  const maxIndex = isMobile
+    ? Math.max(0, filteredProjects.length - 1)
+    : Math.max(0, filteredProjects.length - 3);
 
   const handlePrev = () => {
     setStartIndex((prev) => Math.max(0, prev - 1));
@@ -148,16 +161,41 @@ export default function HomeProjectsSection() {
             </p>
           </div>
 
-          <div className="filterGroup">
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                className={`filterPill ${activeCategory === cat ? 'activePill' : ''}`}
-                onClick={() => handleCategoryChange(cat)}
+          <div className="filterWrapper">
+            <div className="filterGroup">
+              {categories.map((cat) => (
+                <button
+                  key={cat}
+                  className={`filterPill ${activeCategory === cat ? 'activePill' : ''}`}
+                  onClick={() => handleCategoryChange(cat)}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
+
+            <div className="mobileNavArrows">
+              <button 
+                className={`mobileNavArrow ${startIndex === 0 ? 'disabledArrow' : ''}`} 
+                onClick={handlePrev}
+                disabled={startIndex === 0}
+                aria-label="Previous Projects"
               >
-                {cat}
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+                  <path d="M19 12H5M12 19l-7-7 7-7" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
               </button>
-            ))}
+              <button 
+                className={`mobileNavArrow ${startIndex >= maxIndex ? 'disabledArrow' : ''}`} 
+                onClick={handleNext}
+                disabled={startIndex >= maxIndex}
+                aria-label="Next Projects"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+                  <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
 
@@ -480,6 +518,17 @@ export default function HomeProjectsSection() {
           color: #6E6763;
         }
 
+        .filterWrapper {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-end;
+          gap: 12px;
+        }
+
+        .mobileNavArrows {
+          display: none;
+        }
+
         @media (max-width: 1024px) {
           .headerRow {
             flex-direction: column;
@@ -491,6 +540,11 @@ export default function HomeProjectsSection() {
           
           .titleGroup {
             padding-left: 0;
+          }
+
+          .filterWrapper {
+            width: 100%;
+            align-items: flex-start;
           }
 
           .filterGroup {
@@ -531,6 +585,11 @@ export default function HomeProjectsSection() {
             flex: 0 0 100%;
           }
 
+          .filterWrapper {
+            width: 100%;
+            align-items: flex-end;
+          }
+
           .filterGroup {
             display: grid !important;
             grid-template-columns: 1fr 1fr !important;
@@ -551,8 +610,45 @@ export default function HomeProjectsSection() {
             font-size: 13px !important;
           }
 
+          .mobileNavArrows {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 12px;
+            margin-top: 10px;
+            width: 100%;
+          }
+
+          .mobileNavArrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            border: 1px solid rgba(59, 52, 50, 0.3);
+            background: transparent;
+            color: #3B3432;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+          }
+
+          .mobileNavArrow:hover:not(:disabled) {
+            border-color: #3B3432;
+            background-color: rgba(59, 52, 50, 0.05);
+          }
+
+          .mobileNavArrow.disabledArrow {
+            opacity: 0.3;
+            cursor: not-allowed;
+          }
+
           .navArrow {
             display: none;
+          }
+
+          .sliderTrack {
+            transform: translateX(calc(-${startIndex} * (100% + 24px))) !important;
           }
         }
       `}</style>

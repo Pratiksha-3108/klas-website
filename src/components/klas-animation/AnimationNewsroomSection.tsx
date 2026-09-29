@@ -150,9 +150,9 @@ export default function AnimationNewsroomSection() {
         {/* Section Header */}
         <div className="headerRow">
           <h2 className="title">NEWSROOM</h2>
-          <a href="#newsroom" className="seeAllLink">
+          {/* <a href="#newsroom" className="seeAllLink">
             SEE ALL NEWS
-          </a>
+          </a> */}
         </div>
       </div>
 
