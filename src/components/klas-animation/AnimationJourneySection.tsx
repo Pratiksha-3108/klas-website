@@ -123,17 +123,22 @@ export default function AnimationJourneySection() {
 
             {/* Bottom Button with YouTube Image on Right */}
             <div className="actionRow">
-              <a
-                href="https://youtube.com/@silvertoonstudios"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="ytExploreWrapper"
-              >
-                <span className="exploreBtn">
+              <div className="ytExploreWrapper">
+                <a
+                  href="https://www.silvertoons.in/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="exploreBtn"
+                >
                   <span>Explore Silvertoons →</span>
                   <span>Explore Silvertoons →</span>
-                </span>
-                <span className="ytBtnWrapper">
+                </a>
+                <a
+                  href="https://youtube.com/@silvertoonstudios"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="ytBtnWrapper"
+                >
                   <Image
                     src="/assets/klas-animation/YT.png"
                     alt="Silvertoons YouTube"
@@ -141,8 +146,8 @@ export default function AnimationJourneySection() {
                     height={54}
                     className="ytImg"
                   />
-                </span>
-              </a>
+                </a>
+              </div>
             </div>
           </motion.div>
         </div>
@@ -301,8 +306,12 @@ export default function AnimationJourneySection() {
           transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
-        .ytExploreWrapper:hover .ytBtnWrapper::after {
+        .ytBtnWrapper:hover::after {
           transform: translateX(-50%) scaleX(1);
+        }
+
+        .ytBtnWrapper:hover .ytImg {
+          transform: scale(1.02);
         }
 
         .exploreBtn {

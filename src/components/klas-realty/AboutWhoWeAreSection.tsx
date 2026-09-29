@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 
 const TEXT_1 = "technology companies, becoming one of the pioneers of the Indian I.T. industry.";
 const TEXT_2 = "From 2000 onwards, KLAS expanded into Real Estate and Animation, laying the foundation for the group's next phase of growth. The film Hanuman ignited the wave of Indian animation and paved the way for future IPs to be born in the country.";
-const TEXT_3 = "Today, KLAS operates across Technology, Capital Markets, Real Estate and Animation — a diversified group built on decades of pioneering ventures and still expanding into new industries.";
+const TEXT_3 = "Today, KLAS operates across Technology, Capital Markets, Real Estate and Animation a diversified group built on decades of pioneering ventures and still expanding into new industries.";
 
 interface ScrollWordsProps {
   text: string;
