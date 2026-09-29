@@ -92,9 +92,9 @@ export default function Header() {
           </Link>
         ) : (
           <Link
-            href="/realty#home"
+            href="/"
             className={styles.realtyLogo}
-            onClick={(e) => handleNavLinkClick(e, '/realty#home')}
+            onClick={closeMobileMenu}
           >
             Realty
           </Link>
