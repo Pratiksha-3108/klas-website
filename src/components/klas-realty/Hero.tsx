@@ -1,9 +1,35 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import Image from 'next/image';
 
 export default function Hero() {
+  useEffect(() => {
+    const handleHash = () => {
+      const hash = window.location.hash.replace('#', '');
+      if (hash === 'about' || hash === 'projects') {
+        const target = document.getElementById(hash);
+        if (target) {
+          const headerOffset = 90;
+          const elementPosition = target.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth',
+          });
+        }
+      }
+    };
+
+    if (window.location.hash) {
+      setTimeout(handleHash, 150);
+      setTimeout(handleHash, 400); // Second check after image layout settles
+    }
+
+    window.addEventListener('hashchange', handleHash);
+    return () => window.removeEventListener('hashchange', handleHash);
+  }, []);
+
   return (
     <section id="home" className="hero">
       <div className="container">
@@ -17,7 +43,7 @@ export default function Hero() {
             className="heroImage"
           />
         </div>
-        <div className="textGrid">
+        <div id="about" className="textGrid">
           <div className="titleColumn">
             <h1 className="title">
               <div className="lineMask line1">
@@ -87,6 +113,7 @@ export default function Hero() {
           grid-template-columns: 1fr 1fr;
           gap: 40px;
           align-items: start;
+          scroll-margin-top: 100px;
           animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 

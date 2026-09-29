@@ -44,11 +44,44 @@ export default function Header() {
     setIsMobileMenuOpen(false);
   };
 
+  const handleNavLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    closeMobileMenu();
+    if (href.includes('#')) {
+      const hash = href.split('#')[1];
+      if (pathname === '/realty' || pathname?.startsWith('/realty')) {
+        if (hash === 'home') {
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          window.history.pushState(null, '', href);
+          return;
+        }
+        const target = document.getElementById(hash);
+        if (target) {
+          e.preventDefault();
+          const headerOffset = 80;
+          const elementPosition = target.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth',
+          });
+          window.history.pushState(null, '', href);
+        }
+      }
+    }
+  };
+
   const isAboutOrContactPage =
     pathname === '/about' ||
     pathname === '/contact' ||
     pathname === '/privacy' ||
     pathname === '/terms';
+
+  const realtyNavLinks = [
+    { label: 'Home', href: '/realty#home' },
+    { label: 'About', href: '/realty#about' },
+    { label: 'Projects', href: '/realty#projects' },
+  ];
 
   return (
     <header className={`${styles.header} ${isScrolled ? styles.scrolled : ''}`}>
@@ -58,7 +91,11 @@ export default function Header() {
             KLAS
           </Link>
         ) : (
-          <Link href="/" className={styles.realtyLogo} onClick={closeMobileMenu}>
+          <Link
+            href="/realty#home"
+            className={styles.realtyLogo}
+            onClick={(e) => handleNavLinkClick(e, '/realty#home')}
+          >
             Realty
           </Link>
         )}
@@ -80,15 +117,16 @@ export default function Header() {
               </>
             ) : (
               <>
-                <Link href="/" className={styles.navLink}>
-                  Home
-                </Link>
-                <Link href="/about" className={styles.navLink}>
-                  About
-                </Link>
-                <Link href="/projects" className={styles.navLink}>
-                  Projects
-                </Link>
+                {realtyNavLinks.map((item) => (
+                  <Link
+                    key={item.label}
+                    href={item.href}
+                    className={styles.navLink}
+                    onClick={(e) => handleNavLinkClick(e, item.href)}
+                  >
+                    {item.label}
+                  </Link>
+                ))}
               </>
             )}
           </nav>
@@ -123,15 +161,16 @@ export default function Header() {
             </>
           ) : (
             <>
-              <Link href="/" className={styles.mobileNavLink} onClick={closeMobileMenu}>
-                Home
-              </Link>
-              <Link href="/about" className={styles.mobileNavLink} onClick={closeMobileMenu}>
-                About
-              </Link>
-              <Link href="/projects" className={styles.mobileNavLink} onClick={closeMobileMenu}>
-                Projects
-              </Link>
+              {realtyNavLinks.map((item) => (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  className={styles.mobileNavLink}
+                  onClick={(e) => handleNavLinkClick(e, item.href)}
+                >
+                  {item.label}
+                </Link>
+              ))}
             </>
           )}
         </nav>
