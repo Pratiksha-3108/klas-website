@@ -89,9 +89,6 @@ export default function Header() {
                 <Link href="/projects" className={styles.navLink}>
                   Projects
                 </Link>
-                <Link href="/contact" className={styles.contactPill}>
-                  Contact us
-                </Link>
               </>
             )}
           </nav>
@@ -134,9 +131,6 @@ export default function Header() {
               </Link>
               <Link href="/projects" className={styles.mobileNavLink} onClick={closeMobileMenu}>
                 Projects
-              </Link>
-              <Link href="/contact" className={styles.mobileContactPill} onClick={closeMobileMenu}>
-                Contact us
               </Link>
             </>
           )}

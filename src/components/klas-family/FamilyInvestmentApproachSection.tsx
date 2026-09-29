@@ -1,46 +1,95 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, useScroll, useTransform, MotionValue } from 'framer-motion';
 
-interface ScrollWordProps {
-  word: string;
-  index: number;
-  total: number;
-  progress: MotionValue<number>;
-  isHovered?: boolean;
+const LINES = [
+  "Each investment is guided by",
+  "disciplined research, informed market",
+  "perspective, and a focus on",
+  "sustainable long-term performance,",
+  "which aligns with our goals of long-",
+  "term growth and stability."
+];
+
+interface ScrollWordsProps {
+  text: string;
+  sectionProgress: number;
+  startIndex: number;
+  totalWords: number;
 }
 
-function ScrollWord({ word, index, total, progress, isHovered }: ScrollWordProps) {
-  const fraction = index / Math.max(total - 1, 1);
-  const start = fraction * 0.75;
-  const end = Math.min(start + 0.25, 1);
-
-  const animatedColor = useTransform(progress, [start, end], ['#9A8A80', '#756A62']);
-  const animatedFontWeight = useTransform(progress, [start, end], [400, 700]);
+function ScrollWords({ text, sectionProgress, startIndex, totalWords }: ScrollWordsProps) {
+  const words = text.split(' ');
 
   return (
-    <motion.span
-      style={{
-        color: isHovered ? '#756A62' : animatedColor,
-        fontWeight: isHovered ? 700 : animatedFontWeight,
-      }}
-      className="scrollWord"
-    >
-      {word}{' '}
-    </motion.span>
+    <>
+      {words.map((word, idx) => {
+        const globalWordIdx = startIndex + idx;
+        const fraction = globalWordIdx / Math.max(totalWords - 1, 1);
+
+        // Window size determines how gradually each word transitions
+        const windowSize = 0.22;
+        const wordStart = fraction * (1 - windowSize);
+
+        const rawProgress = (sectionProgress - wordStart) / windowSize;
+        const p = Math.min(Math.max(rawProgress, 0), 1);
+
+        // Cubic easing for silky smooth visual feel
+        const easedP = p * p * (3 - 2 * p);
+
+        // RGB interpolation from #A69B95 (166, 155, 149) to #4F4742 (79, 71, 66)
+        const r = Math.round(166 - easedP * (166 - 79));
+        const g = Math.round(155 - easedP * (155 - 71));
+        const b = Math.round(149 - easedP * (149 - 66));
+
+        const fontWeight = Math.round(400 + easedP * 300); // 400 -> 700 Bold
+        const opacity = 0.75 + easedP * 0.25;
+
+        return (
+          <span
+            key={idx}
+            style={{
+              color: `rgb(${r}, ${g}, ${b})`,
+              fontWeight: fontWeight,
+              opacity: opacity,
+              transition: 'color 0.1s ease-out, opacity 0.1s ease-out, font-weight 0.1s ease-out',
+            }}
+          >
+            {word}{idx < words.length - 1 ? ' ' : ''}
+          </span>
+        );
+      })}
+    </>
   );
 }
 
 export default function FamilyInvestmentApproachSection() {
   const [isVisible, setIsVisible] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start 0.65', 'end 0.15'],
-  });
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!sectionRef.current) return;
+      const rect = sectionRef.current.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+
+      // Start highlighting when top of section enters at 85% of viewport
+      // Complete highlight when bottom of section reaches 30% of viewport
+      const startPoint = windowHeight * 0.85;
+      const endPoint = windowHeight * 0.30;
+      const totalDist = startPoint - endPoint + rect.height;
+      const currentDist = startPoint - rect.top;
+
+      const p = Math.min(Math.max(currentDist / totalDist, 0), 1);
+      setScrollProgress(p);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -59,15 +108,13 @@ export default function FamilyInvestmentApproachSection() {
     return () => observer.disconnect();
   }, []);
 
-  const totalWords = 28;
+  const totalWords = LINES.reduce((acc, line) => acc + line.split(' ').length, 0);
 
   return (
     <section
       id="investment-approach"
       ref={sectionRef}
       className="section"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
     >
       <div className="container">
         <div className="grid">
@@ -92,29 +139,20 @@ export default function FamilyInvestmentApproachSection() {
           {/* Right Description Column */}
           <div className="descCol">
             <p className="description">
-              {['Each', 'investment', 'is', 'guided', 'by'].map((w, i) => (
-                <ScrollWord key={`l1-${i}`} word={w} index={0 + i} total={totalWords} progress={scrollYProgress} isHovered={isHovered} />
-              ))}
-              <br />
-              {['disciplined', 'research,', 'informed', 'market'].map((w, i) => (
-                <ScrollWord key={`l2-${i}`} word={w} index={5 + i} total={totalWords} progress={scrollYProgress} isHovered={isHovered} />
-              ))}
-              <br />
-              {['perspective,', 'and', 'a', 'focus', 'on'].map((w, i) => (
-                <ScrollWord key={`l3-${i}`} word={w} index={9 + i} total={totalWords} progress={scrollYProgress} isHovered={isHovered} />
-              ))}
-              <br />
-              {['sustainable', 'long-term', 'performance,'].map((w, i) => (
-                <ScrollWord key={`l4-${i}`} word={w} index={14 + i} total={totalWords} progress={scrollYProgress} isHovered={isHovered} />
-              ))}
-              <br />
-              {['which', 'aligns', 'with', 'our', 'goals', 'of', 'long-'].map((w, i) => (
-                <ScrollWord key={`l5-${i}`} word={w} index={17 + i} total={totalWords} progress={scrollYProgress} isHovered={isHovered} />
-              ))}
-              <br />
-              {['term', 'growth', 'and', 'stability.'].map((w, i) => (
-                <ScrollWord key={`l6-${i}`} word={w} index={24 + i} total={totalWords} progress={scrollYProgress} isHovered={isHovered} />
-              ))}
+              {LINES.map((line, lineIdx) => {
+                const startIndex = LINES.slice(0, lineIdx).reduce((acc, l) => acc + l.split(' ').length, 0);
+                return (
+                  <React.Fragment key={lineIdx}>
+                    <ScrollWords
+                      text={line}
+                      sectionProgress={scrollProgress}
+                      startIndex={startIndex}
+                      totalWords={totalWords}
+                    />
+                    {lineIdx < LINES.length - 1 && <br />}
+                  </React.Fragment>
+                );
+              })}
             </p>
           </div>
         </div>

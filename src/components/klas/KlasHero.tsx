@@ -698,7 +698,7 @@ export default function KlasHero({ initialCategory = 'Realty' }: KlasHeroProps) 
 
         .mobileHeaderLogo,
         .mobileBurgerBtn,
-        .mobileNavDrawer {
+        .mobileDrawer {
           display: none;
         }
 

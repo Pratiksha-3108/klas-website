@@ -699,40 +699,11 @@ export default function AboutValuesSection() {
 
           .cardsAccordion {
             height: 440px;
-            gap: 12px;
+            gap: 0;
           }
 
           :global(.divisionsSection .cardTitle) {
             font-size: 22px;
-          }
-        }
-
-        @media (max-width: 860px) {
-          .cardsAccordion {
-            flex-direction: column;
-            height: auto;
-            gap: 16px;
-          }
-
-          :global(.divisionsSection .card) {
-            height: 220px !important;
-            flex: none !important;
-            width: 100%;
-          }
-
-          :global(.divisionsSection .card.active) {
-            height: 260px !important;
-          }
-
-          :global(.divisionsSection .cardSubtitle) {
-            max-height: 60px;
-            opacity: 1;
-            transform: translateY(0);
-            margin-top: 6px;
-          }
-
-          :global(.divisionsSection .titleUnderline) {
-            width: 44px;
           }
         }
 
@@ -747,12 +718,12 @@ export default function AboutValuesSection() {
           }
 
           .divisionsSection {
-            padding: 40px 0;
+            padding: 40px 0 60px;
           }
 
           .container,
           .divisionsContainer {
-            padding: 0 24px !important;
+            padding: 0 20px !important;
             box-sizing: border-box;
           }
 
@@ -770,6 +741,8 @@ export default function AboutValuesSection() {
           .title,
           :global(.divisionsTitle) {
             font-size: 28px !important;
+            line-height: 1.15 !important;
+            margin-bottom: 10px !important;
           }
 
           .subtitle,
@@ -785,6 +758,77 @@ export default function AboutValuesSection() {
           .itemContent {
             font-size: 14px;
             line-height: 1.55;
+          }
+
+          /* Mobile Cards Stack matching design */
+          .cardsAccordion {
+            display: flex !important;
+            flex-direction: column !important;
+            height: auto !important;
+            gap: 12px !important;
+            overflow: visible !important;
+          }
+
+          :global(.divisionsSection .card) {
+            height: 185px !important;
+            flex: none !important;
+            width: 100% !important;
+            display: block !important;
+            border-radius: 0 !important;
+          }
+
+          :global(.divisionsSection .cardInner) {
+            height: 100% !important;
+            border-right: none !important;
+            border-radius: 0 !important;
+            padding: 20px 20px !important;
+            box-sizing: border-box !important;
+          }
+
+          :global(.divisionsSection .cardImage) {
+            filter: grayscale(85%) brightness(0.65) contrast(1.1) !important;
+          }
+
+          :global(.divisionsSection .cardBadge) {
+            font-size: 11.5px !important;
+            font-weight: 700 !important;
+            letter-spacing: 0.12em !important;
+            color: #FFFFFF !important;
+            opacity: 0.95 !important;
+          }
+
+          :global(.divisionsSection .arrowCircle) {
+            width: 32px !important;
+            height: 32px !important;
+            border: 1px solid rgba(255, 255, 255, 0.45) !important;
+            background-color: rgba(255, 255, 255, 0.08) !important;
+            backdrop-filter: blur(4px) !important;
+          }
+
+          :global(.divisionsSection .arrowIcon) {
+            width: 13px !important;
+            height: 13px !important;
+          }
+
+          :global(.divisionsSection .cardTitle) {
+            font-size: 20px !important;
+            font-weight: 700 !important;
+            letter-spacing: 0.02em !important;
+            color: #FFFFFF !important;
+            line-height: 1.2 !important;
+            margin: 0 !important;
+          }
+
+          :global(.divisionsSection .cardSubtitle) {
+            display: none !important;
+          }
+
+          :global(.divisionsSection .titleUnderline) {
+            width: 32px !important;
+            height: 2px !important;
+            background-color: #C2B49D !important;
+            margin-top: 8px !important;
+            display: block !important;
           }
         }
       `}</style>

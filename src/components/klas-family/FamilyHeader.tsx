@@ -29,7 +29,7 @@ export default function FamilyHeader() {
           className="logo"
           style={{
             fontFamily: "'Montserrat', sans-serif",
-            fontSize: '36px',
+            fontSize: '24px',
             fontWeight: 700,
             color: '#4F4742',
             lineHeight: '100%',
@@ -122,7 +122,7 @@ export default function FamilyHeader() {
 
         .logo {
           font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
-          font-size: 36px !important;
+          font-size: 24px !important;
           font-weight: 700;
           color: #4F4742;
           text-decoration: none;
@@ -255,6 +255,10 @@ export default function FamilyHeader() {
 
           .container {
             padding: 0 24px;
+          }
+
+          .logo {
+            font-size: 20px !important;
           }
 
           .nav {
