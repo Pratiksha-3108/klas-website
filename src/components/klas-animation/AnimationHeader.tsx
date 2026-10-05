@@ -55,7 +55,7 @@ export default function AnimationHeader() {
           <Link href="/animation#awards" className="navLink">
             Awards
           </Link>
-          <Link href="/animation#newsroom" className="navLink">
+          <Link href="/animation/newsroom" className="navLink">
             Newsroom
           </Link>
         </nav>
@@ -89,7 +89,7 @@ export default function AnimationHeader() {
           <Link href="/animation#awards" className="mobileNavLink" onClick={() => setIsMobileMenuOpen(false)}>
             Awards
           </Link>
-          <Link href="/animation#newsroom" className="mobileNavLink" onClick={() => setIsMobileMenuOpen(false)}>
+          <Link href="/animation/newsroom" className="mobileNavLink" onClick={() => setIsMobileMenuOpen(false)}>
             Newsroom
           </Link>
         </nav>

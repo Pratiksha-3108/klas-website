@@ -51,23 +51,7 @@ const projectsData: Project[] = [
     image: '/assets/klas-realty/our_project5.png',
     location: 'T Nagar, Chennai'
   },
-  {
-    id: 6,
-    title: 'Upcoming Project',
-    category: 'Retail, Commercial & IT',
-    image: '/assets/klas-realty/our_project6.png',
-    location: 'Ghodbunder Road, Thane (W)',
-    area: 'Sq. Ft 300,000',
-    isUpcoming: true
-  },
-  {
-    id: 7,
-    title: 'Upcoming Project',
-    category: 'Residential',
-    image: '/assets/klas-realty/our_project3.png',
-    location: 'Ghodbunder Road, Thane (W)',
-    isUpcoming: true
-  },
+
   {
     id: 8,
     title: 'Upcoming Project',
@@ -80,7 +64,7 @@ const projectsData: Project[] = [
     id: 9,
     title: 'Upcoming Project',
     category: 'Residential',
-    image: '/assets/klas-realty/our_project6.png',
+    image: '/assets/klas-realty/our_project7.png',
     location: 'Bandra (W), Mumbai',
     isUpcoming: true
   },

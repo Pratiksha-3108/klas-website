@@ -324,7 +324,7 @@ export default function AnimationJourneySection() {
           font-size: 16px;
           font-weight: 600;
           line-height: 1.2;
-          padding: 16px 36px;
+          padding: 28px 46px;
           text-decoration: none;
           cursor: pointer;
           background: #ffffff;

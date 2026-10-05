@@ -3,7 +3,7 @@ import KlasHero from '@/components/klas/KlasHero';
 
 export const metadata: Metadata = {
   title: 'KLAS Technology | Purpose-Driven Alliances',
-  description: 'KLAS Infotech is a visionary partner for tech startups, empowering them to scale both locally and globally.',
+  description: 'Guided by one of the pioneers of India’s I.T. industry, KLAS Infotech delivers Digital Transformation and Artificial Intelligence (AI) Solutions. Through strategic joint ventures, we are deploying next-gen AI platforms to drive efficiency and intelligent automation.',
 };
 
 export default function KlasTechnologyPage() {

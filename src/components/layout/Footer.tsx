@@ -14,15 +14,18 @@ export default function Footer() {
   }
 
   const isFamily = pathname?.startsWith('/family') || pathname?.startsWith('/klas-family');
+  const isRealty = pathname?.startsWith('/realty');
 
   const tagline = isFamily ? (
     <>
       Capital Stewarded for <br /> Generations
     </>
-  ) : (
+  ) : isRealty ? (
     <>
       Transforming Land Into <br /> Landmark Projects
     </>
+  ) : (
+    'Vision To Legacy'
   );
 
   const quickLinks = isFamily
@@ -194,7 +197,7 @@ export default function Footer() {
                     <circle cx="12" cy="10" r="3"></circle>
                   </svg>
                   <span className={styles.contactText}>
-                    <strong>KLAS Group - Bizznet Unit Mohan</strong> <br /> Mill Compound Kolshet Majiwada <br /> Thane (W)
+                    <strong>KLAS Group - Bizznet Unit</strong> <br /> Mohan Mill Compound Kolshet Majiwada <br /> Thane (W)
                   </span>
                 </div>
 

@@ -63,19 +63,16 @@ const awardsData: AwardItem[] = [
         &apos;Hanuman&apos; (Mar 2006)
       </>
     ),
-    image: '/assets/klas-animation/black-award.jpg',
   },
   {
     id: '06',
     number: '06 /',
     title: 'Limca Book of Records',
-    image: '/assets/klas-animation/black-award.jpg',
   },
   {
     id: '07',
     number: '07 /',
     title: 'ToonBoom Award',
-    image: '/assets/klas-animation/black-award.jpg',
   },
   {
     id: '08',
@@ -184,15 +181,27 @@ export default function AnimationAwardsSection() {
                     />
                   </div>
 
-                  {/* Hover Trophy Image */}
+                  {/* Hover Trophy Card */}
                   <div className="trophyBox">
-                    <Image
-                      src={award.image || '/assets/klas-animation/award.png'}
-                      alt="Award Trophy"
-                      fill
-                      sizes="(max-width: 768px) 100vw, 300px"
-                      className="trophyImg"
-                    />
+                    {award.image ? (
+                      <Image
+                        src={award.image}
+                        alt="Award Trophy"
+                        fill
+                        sizes="(max-width: 768px) 100vw, 300px"
+                        className="trophyImg"
+                      />
+                    ) : (
+                      <div className="diamondHoverCard">
+                        <Image
+                          src="/assets/klas-animation/awardicon.png"
+                          alt="Award Icon"
+                          fill
+                          sizes="110px"
+                          className="diamondHoverImg"
+                        />
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
@@ -338,6 +347,8 @@ export default function AnimationAwardsSection() {
         .iconImg {
           object-fit: contain;
           mix-blend-mode: multiply;
+          width: 46px;
+          height: 46px;
         }
 
         .awardRow:hover .iconBox,
@@ -358,12 +369,26 @@ export default function AnimationAwardsSection() {
           transform: scale(0.92);
           transition: opacity 0.25s ease, transform 0.25s ease;
           box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+          background-color: #FAF8F5;
         }
 
         .awardRow:hover .trophyBox,
         .awardRow.hovered .trophyBox {
           opacity: 1;
           transform: scale(1);
+        }
+
+        .diamondHoverCard {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          overflow: hidden;
+        }
+
+        .diamondHoverImg {
+          object-fit: cover;
+          width: 100% !important;
+          height: 100% !important;
         }
 
         .trophyImg {

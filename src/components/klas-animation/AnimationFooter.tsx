@@ -123,7 +123,7 @@ export default function AnimationFooter() {
                   <Link href="/animation#awards">Awards</Link>
                 </li>
                 <li>
-                  <Link href="/animation#newsroom">Newsroom</Link>
+                  <Link href="/animation/newsroom">Newsroom</Link>
                 </li>
               </ul>
             </div>
@@ -158,8 +158,8 @@ export default function AnimationFooter() {
                     <circle cx="12" cy="10" r="3"></circle>
                   </svg>
                   <span className="contactText">
-                    <strong className="boldTitle">KLAS Group - Bizznet Unit Mohan</strong>
-                    <span className="subAddress">Mill Compound Kolshet Majiwada</span>
+                    <strong className="boldTitle">KLAS Group - Bizznet Unit</strong>
+                    <span className="subAddress">Mohan Mill Compound Kolshet Majiwada</span>
                     <span className="subAddress">Thane (W)</span>
                   </span>
                 </div>

@@ -1,0 +1,137 @@
+export interface NewsroomItem {
+  id: string;
+  title: string;
+  publisher: string;
+  date: string;
+  category: 'ANIMATION' | 'BOX OFFICE' | 'CORPORATE' | 'RECOGNITION' | 'MEDIA';
+  excerpt: string;
+  image: string;
+  link: string;
+  isFeatured?: boolean;
+}
+
+export const newsroomData: NewsroomItem[] = [
+  {
+    id: 'news-1',
+    title: '10 Enjoyable Animated Movies That Impart Knowledge About Indian Culture and Mythology',
+    publisher: 'ANIMATIONXPRESS',
+    date: 'JULY 14, 2026',
+    category: 'ANIMATION',
+    excerpt: 'AnimationXpress highlights India\'s pioneering animated movies, celebrating KLAS Animation\'s iconic Hanuman for bringing rich cultural heritage to audiences worldwide.',
+    image: '/assets/klas-animation/Newsroom1.png',
+    link: 'https://www.animationxpress.com/animation/10-enjoyable-animated-movies-that-impart-knowledge-about-the-indian-culture-and-mythology/?amp=1',
+    isFeatured: true,
+  },
+  {
+    id: 'news-2',
+    title: 'Hanuman sets the Cash Registers Ringing Across Theatrical Box Office',
+    publisher: 'ANIMATIONXPRESS',
+    date: 'APRIL 25, 2026',
+    category: 'BOX OFFICE',
+    excerpt: 'The groundbreaking theatrical release of Hanuman shattered record expectations, establishing a brand new benchmark for commercially successful Indian animation.',
+    image: '/assets/klas-animation/Newsroom2.png',
+    link: 'https://www.animationxpress.com/animation/hanuman-sets-the-cash-registers-ringing/?amp=1',
+    isFeatured: true,
+  },
+  {
+    id: 'news-3',
+    title: 'The Hanuman Effect: How An Animated Theatrical Transformed An Entire Industry',
+    publisher: 'ANIMATIONXPRESS',
+    date: 'MAY 12, 2026',
+    category: 'MEDIA',
+    excerpt: 'An inside look at how the phenomenal release of Hanuman ignited a new wave of investor interest and creative confidence across Indian feature animation.',
+    image: '/assets/klas-animation/Newsroom3.png',
+    link: 'https://www.animationxpress.com/animation/animated-theatricals-in-india-and-the-hanuman-effect/',
+    isFeatured: true,
+  },
+  {
+    id: 'news-4',
+    title: 'Animated Hanuman Gets Major Nationwide Theatrical Release in India',
+    publisher: 'AWN (ANIMATION WORLD NETWORK)',
+    date: 'AUGUST 25, 2026',
+    category: 'ANIMATION',
+    excerpt: 'AWN reports on the unprecedented wide theatrical release of Hanuman, marking a monumental milestone for feature animation studios in India.',
+    image: '/assets/klas-animation/Newsroom4.png',
+    link: 'https://www.awn.com/news/animated-hanuman-gets-major-theatrical-release-india',
+  },
+  {
+    id: 'news-5',
+    title: 'Sahara\'s Chance to Push Feature Animation Forward with Hanuman',
+    publisher: 'ANIMATIONXPRESS',
+    date: 'AUGUST 17, 2026',
+    category: 'CORPORATE',
+    excerpt: 'Exploring strategic distribution partnerships and how nationwide marketing campaigns expanded the reach of Hanuman to mainstream cinema lovers.',
+    image: '/assets/klas-animation/Newsroom5.png',
+    link: 'https://www.animationxpress.com/animation/saharas-chance-to-push-animation-with-hanuman/?amp=1',
+  },
+  {
+    id: 'news-6',
+    title: 'Can Hanuman Lift the Whole Indian Animation Industry to Global Heights?',
+    publisher: 'THE ECONOMIC TIMES',
+    date: 'AUGUST 13, 2026',
+    category: 'MEDIA',
+    excerpt: 'The Economic Times evaluates how Hanuman proved that original Indian animated storytelling can command box-office dominance and international acclaim.',
+    image: '/assets/klas-animation/Newsroom6.png',
+    link: 'https://m.economictimes.com/can-hanuman-lift-animation-industry/articleshow/1277719.cms',
+  },
+  {
+    id: 'news-7',
+    title: 'Amo Communications & Godrej Aadhaar Take \'Hanuman\' to Rural India',
+    publisher: 'EXCHANGE4MEDIA',
+    date: 'AUGUST 8, 2026',
+    category: 'CORPORATE',
+    excerpt: 'Innovative rural outreach programs brought the magical story of Hanuman directly to thousands of families across tier-2 and tier-3 regions.',
+    image: '/assets/klas-animation/Newsroom7.png',
+    link: "https://www.exchange4media.com/marketing-news/amo-communications-and-godrej-aadhaar-take-'hanuman'-to-rural-india-19105.html",
+  },
+  {
+    id: 'news-8',
+    title: 'Hanuman, a Hit in Metros, Grosses Over Rs 70 Million in Initial Run',
+    publisher: 'INDIAN TELEVISION',
+    date: 'JULY 30, 2026',
+    category: 'BOX OFFICE',
+    excerpt: 'Indian Television coverage details the surging box office figures and enthusiastic audience response across major metropolitan multiplexes.',
+    image: '/assets/klas-animation/Newsroom8.png',
+    link: 'https://indiantelevision.com/news-headline/hanuman-a-hit-in-metros-grosses-rs-70-million-051114/',
+  },
+  {
+    id: 'news-9',
+    title: 'Hanuman Lands into Limca Book of Records as Highest Grossing Animated Film',
+    publisher: 'NEWS18',
+    date: 'JULY 28, 2026',
+    category: 'RECOGNITION',
+    excerpt: 'News18 confirms Hanuman\'s historic induction into the Limca Book of Records for setting unprecedented theatrical earnings and viewership records.',
+    image: '/assets/klas-animation/Newsroom9.png',
+    link: 'https://www.news18.com/news/india/hanuman-lands-into-limca-book-of-records-228027.html',
+  },
+  {
+    id: 'news-10',
+    title: 'Indian Feature Animation Explodes into Mainstream Cinema Culture',
+    publisher: 'AWN (ANIMATION WORLD NETWORK)',
+    date: 'JULY 14, 2026',
+    category: 'ANIMATION',
+    excerpt: 'Animation World Network profiles the landmark shift in audience perceptions as high quality original animation gains prime spot in theatrical venues.',
+    image: '/assets/klas-animation/Newsroom10.png',
+    link: 'https://www.awn.com/animationworld/indian-feature-animation-explodes',
+  },
+  {
+    id: 'news-11',
+    title: 'Mahavatar Narsimha Overtakes Hanuman\'s Long-Standing Box-Office Benchmark',
+    publisher: 'HOLLYWOOD REPORTER INDIA',
+    date: 'JULY 10, 2026',
+    category: 'BOX OFFICE',
+    excerpt: 'Hollywood Reporter India reflects on Hanuman\'s legendary decade-long legacy as the standard of excellence for Indian animated box office benchmarks.',
+    image: '/assets/klas-animation/Newsroom11.png',
+    link: 'https://www.hollywoodreporterindia.com/features/insight/mahavatar-narsimha-earns-17-crore-at-box-office-becomes-highest-grossing-indian-animated-film-ever',
+  },
+  {
+    id: 'news-12',
+    title: 'Gulf News Names Hanuman as the 20-Year Prior Record-Holder in Animation',
+    publisher: 'GULF NEWS',
+    date: 'JUNE 10, 2026',
+    category: 'RECOGNITION',
+    excerpt: 'Gulf News highlights the international footprint and enduring cultural impact of Hanuman, honoring its pioneer status in global cinema archives.',
+    image: '/assets/klas-animation/Newsroom12.png',
+    link: 'https://gulfnews.com/entertainment/south-indian/mahavatar-narsimha-becomes-indias-first-1-billion-animated-film-1.500221700',
+  },
+];

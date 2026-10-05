@@ -38,36 +38,28 @@ export default function KlasHero({ initialCategory = 'Realty' }: KlasHeroProps) 
     'Realty': {
       titleLines: ['TRANSFORMING LAND INTO', 'LANDMARK PROJECTS'],
       descLines: [
-        'KLAS holds a robust portfolio of high-value assets across India which',
-        'are currently under Joint Venture Development of Residential &',
-        'Commercial projects totalling 1+ million sq. ft. of planned built-up area.'
+        'KLAS holds a robust portfolio of high-value assets across India which are currently under Joint Venture Development of Residential & Commercial projects – totalling 1+ million sq. ft. of planned built-up area.'
       ]
     },
     'Family Office': {
       titleLines: ['CAPITAL STEWARDED FOR', 'GENERATIONS'],
       descLines: [
-        'KLAS Family Office is the private investment arm of the family behind Silverline,',
-        'one of India’s pioneering Tech companies. Our investments are anchored in',
-        'stable and sustainable asset classes, guided by a long-term commitment to growth.'
+        'KLAS Family Office is the private investment arm of the family behind Silverline, one of India’s pioneering Tech companies. Our investments are anchored in stable and sustainable asset classes, guided by a long-term commitment to growth.'
       ]
     },
     'Animation': {
       titleLines: ['ANIMATION ILLUSTRATING', 'IMAGINATION TO LIFE'],
       descLines: [
-        'KLAS own a strong Intellectual Property (IP) portfolio, inclusive of India’s First',
-        'Animated Film IP Bal Hanuman, along with other original properties such as',
-        'KinderHeroes, Deva and more.',
-        'The film “Hanuman” has won over 10+ awards nationally and globally for the film,',
-        'including the “ToonBoom Award” (the Animation Technology Award from Canada),',
-        'Limca Book of Records Recognition and India’s Animation Industry Creator Award, to name a few.'
+        'KLAS own a strong Intellectual Property (IP) portfolio, inclusive of India’s First Animated Film IP Bal Hanuman, along with other original properties such as KinderHeroes, Deva and more.',
+        'The film “Hanuman” has won over 10+ awards nationally and globally for the film, including the “ToonBoom Award” (the Animation Technology Award from Canada), Limca Book of Records Recognition and India’s Animation Industry Creator Award, to name a few.'
       ]
     },
     'Technology': {
       titleLines: ['TECHNOLOGY', 'PURPOSE-DRIVEN ALLIANCES'],
       mobileTitleLines: ['TECHNOLOGY PURPOSE-', 'DRIVEN ALLIANCES'],
       descLines: [
-        'KLAS Infotech is a visionary partner for tech startups, empowering them to scale both locally and globally.',
-        'Our focus lies in software and technology solutions that tackle impactful and real-world challenges.'
+        'Guided by one of the pioneers of India’s I.T. industry, KLAS Infotech delivers Digital Transformation and Artificial Intelligence (AI) Solutions.',
+        'Through strategic joint ventures, we are deploying next-gen AI platforms to drive efficiency and intelligent automation.'
       ]
     }
   };
@@ -80,134 +72,60 @@ export default function KlasHero({ initialCategory = 'Realty' }: KlasHeroProps) 
   };
 
   const heroImageMap: Record<string, string> = {
-    'Realty': '/assets/klas/klas_hero1.png',
-    'Family Office': '/assets/klas-family/hero_family.png',
+    'Realty': '/assets/klas/klass-hero.png',
+    'Family Office': '/assets/klas/family office.jpeg',
     'Animation': '/assets/klas-animation/animation_hero.png',
-    'Technology': '/assets/klas-animation/tech_hero1.png',
+    'Technology': '/assets/klas/Technology-hero.jpeg',
   };
 
   const currentContent = contentMap[activeCategory as keyof typeof contentMap] || contentMap['Realty'];
   const exploreHref = exploreHrefMap[activeCategory] || '/animation';
-  const heroImage = heroImageMap[activeCategory] || '/assets/klas/klas_hero1.png';
+  const heroImage = heroImageMap[activeCategory] || '/assets/klas/klass-hero.png';
 
   return (
     <section className="klasHeroSection">
-      {/* Top Header Navigation */}
-      <header className="topNavHeader">
-        <div className="navContainer">
-          {/* Mobile Only Gold KLAS Logo */}
-          <Link
-            href="/"
-            className="mobileHeaderLogo"
-            style={{
-              fontFamily: "'Times New Roman', Times, serif",
-              fontWeight: 400,
-              fontStyle: 'normal',
-              fontSize: '38px',
-              lineHeight: '100%',
-              letterSpacing: '0px',
-              verticalAlign: 'middle',
-              color: '#F3CD8A',
-              textTransform: 'uppercase',
-              textDecoration: 'none',
-            }}
-          >
+      {/* Top Header Navbar */}
+      <header className="homeTopHeader">
+        <div className="homeNavContainer">
+          {/* Left: KLAS Gold Serif Logo */}
+          <Link href="/" className="navLogo">
             KLAS
           </Link>
 
-          {/* Desktop Navigation Links */}
-          <nav className="navLinks">
-            <Link href="/" className="navItem">
-              Home
-            </Link>
-            <Link href="/about" className="navItem">
+          {/* Center: 4 Category Navigation Tabs */}
+          <div className="navCategoryCenter">
+            {categories.map((cat) => {
+              const isActive = cat.label === activeCategory;
+              return (
+                <button
+                  key={cat.id}
+                  type="button"
+                  className={`categoryTab ${isActive ? 'activeCategoryTab' : ''}`}
+                  onClick={() => setActiveCategory(cat.label as any)}
+                  style={{
+                    borderBottom: isActive ? '2.5px solid #4F4742' : '2.5px solid transparent',
+                    color: isActive ? '#22201E' : '#736B65',
+                    fontWeight: isActive ? 600 : 400,
+                    opacity: isActive ? 1 : 0.8,
+                  }}
+                >
+                  <span>{cat.label}</span>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Right: About and Contact Links */}
+          <nav className="navLinksRight">
+            <Link href="/about" className="rightNavItem">
               About
             </Link>
-            <Link href="/contact" className="navItem">
-              Contact
-            </Link>
-          </nav>
-
-          {/* Mobile Hamburger Button */}
-          <button
-            type="button"
-            className={`mobileBurgerBtn ${isMobileMenuOpen ? 'active' : ''}`}
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Toggle mobile menu"
-          >
-            <span className="burgerLine"></span>
-            <span className="burgerLine"></span>
-            <span className="burgerLine"></span>
-          </button>
-        </div>
-
-        {/* Mobile Navigation Drawer */}
-        <div className={`mobileDrawer ${isMobileMenuOpen ? 'drawerOpen' : ''}`}>
-          <nav className="mobileNav">
-            <Link href="/" className="mobileNavLink" onClick={() => setIsMobileMenuOpen(false)}>
-              Home
-            </Link>
-            <Link href="/about" className="mobileNavLink" onClick={() => setIsMobileMenuOpen(false)}>
-              About
-            </Link>
-            <Link href="/contact" className="mobileNavLink" onClick={() => setIsMobileMenuOpen(false)}>
+            <Link href="/contact" className="rightNavItem">
               Contact
             </Link>
           </nav>
         </div>
       </header>
-
-      {/* KLAS Cormorant Garamond Text below navbar middle */}
-      <div className="klasBannerContainer">
-        <span className="klasBannerText">KLAS</span>
-      </div>
-
-      {/* 4 Category Words Sub-Navigation Line */}
-      <div className="categoryNavWrapper">
-        <button
-          type="button"
-          className="categoryArrowBtn left"
-          onClick={handleCategoryScrollLeft}
-          aria-label="Scroll left categories"
-        >
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-            <path d="M15 18l-6-6 6-6" />
-          </svg>
-        </button>
-
-        <div className="categoryNavContainer" ref={categoryNavRef}>
-          {categories.map((cat) => {
-            const isActive = cat.label === activeCategory;
-            return (
-              <button
-                key={cat.id}
-                type="button"
-                className={`categoryTab ${isActive ? 'activeCategoryTab' : ''}`}
-                onClick={() => setActiveCategory(cat.label as any)}
-                style={{
-                  borderBottom: isActive ? '2.5px solid #4F4742' : '2.5px solid transparent',
-                  color: isActive ? '#22201E' : '#5C5852',
-                  fontWeight: isActive ? 700 : 500,
-                  opacity: isActive ? 1 : 0.75,
-                }}
-              >
-                <span>{cat.label}</span>
-              </button>
-            );
-          })}
-        </div>
-
-        <button
-          type="button"
-          className="categoryArrowBtn right"
-          onClick={handleCategoryScrollRight}
-          aria-label="Scroll right categories"
-        >
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-            <path d="M9 18l6-6-6-6" />
-          </svg>
-        </button>
-      </div>
 
       {/* Main Hero Banner Container */}
       <div className="heroBannerContainer">
@@ -325,7 +243,7 @@ export default function KlasHero({ initialCategory = 'Realty' }: KlasHeroProps) 
 
         .klasHeroSection {
           width: 100%;
-          background-color: #ffffff;
+          background-color: #F9F9F9;
           padding-top: 0;
           overflow: hidden;
           position: relative;
@@ -333,7 +251,7 @@ export default function KlasHero({ initialCategory = 'Realty' }: KlasHeroProps) 
 
         .topNavHeader {
           width: 100%;
-          background-color: #ffffff;
+          background-color: #F9F9F9;
           padding: 24px 0 12px;
         }
 
@@ -373,69 +291,56 @@ export default function KlasHero({ initialCategory = 'Realty' }: KlasHeroProps) 
           opacity: 0.85 !important;
         }
 
-        .klasBannerContainer {
+        .homeTopHeader {
           width: 100%;
-          background-color: #ffffff;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          padding: 0;
-          margin: 0 0 4px;
-        }
-
-        .klasBannerText {
-          font-family: 'Times New Roman', Times, serif;
-          font-weight: 500;
-          font-size: 82px;
-          line-height: 100%;
-          letter-spacing: 0px;
-          color: #F3CD8A;
-          background: transparent;
-          vertical-align: middle;
-          text-transform: uppercase;
-          display: inline-block;
-        }
-
-        .categoryNavWrapper {
-          width: 100%;
+          background-color: #F9F9F9;
           border-bottom: 1px solid #F0EFEE;
-          margin-top: 64px;
-          margin-bottom: 0;
-          padding-bottom: 5px;
-          background-color: #ffffff;
+          padding: 18px 0 14px 0;
         }
 
-        .categoryNavContainer {
-          max-width: 1400px;
+        .homeNavContainer {
+          max-width: 1680px;
           margin: 0 auto;
-          padding: 0 160px;
+          padding: 0 48px;
           display: flex;
           align-items: center;
           justify-content: space-between;
-          gap: 24px;
+        }
+
+        :global(.navLogo) {
+          font-family: 'Times New Roman', Times, serif !important;
+          font-size: 34px !important;
+          font-weight: 400 !important;
+          color: #E2C080 !important;
+          letter-spacing: 1px !important;
+          text-transform: uppercase !important;
+          text-decoration: none !important;
+          line-height: 1 !important;
+          display: inline-block !important;
+        }
+
+        .navCategoryCenter {
+          display: flex;
+          align-items: center;
+          gap: 40px;
         }
 
         .categoryTab {
           position: relative;
           display: inline-flex;
-          flex-direction: column;
           align-items: center;
           justify-content: center;
-          padding: 0 30px 10px 30px;
-          margin-bottom: 0;
+          padding: 4px 4px 10px 4px;
           font-family: var(--font-inter), 'Inter', sans-serif;
           font-size: 16px;
-          font-weight: 500;
-          color: #5C5852;
+          color: #736B65;
           text-decoration: none;
           white-space: nowrap;
           background: transparent;
           border: none;
           border-bottom: 2.5px solid transparent;
           transition: border-color 0.2s ease, color 0.2s ease, opacity 0.2s ease;
-          opacity: 0.75;
           cursor: pointer;
-          z-index: 2;
         }
 
         .categoryTab:hover {
@@ -445,9 +350,27 @@ export default function KlasHero({ initialCategory = 'Realty' }: KlasHeroProps) 
 
         .activeCategoryTab {
           color: #22201E;
-          font-weight: 700;
-          opacity: 1;
+          font-weight: 600;
           border-bottom: 2.5px solid #4F4742;
+        }
+
+        .navLinksRight {
+          display: flex;
+          align-items: center;
+          gap: 32px;
+        }
+
+        :global(.rightNavItem) {
+          font-family: var(--font-inter), 'Inter', sans-serif !important;
+          font-size: 15px !important;
+          font-weight: 500 !important;
+          color: #6E6763 !important;
+          text-decoration: none !important;
+          transition: color 0.2s ease !important;
+        }
+
+        :global(.rightNavItem:hover) {
+          color: #22201E !important;
         }
 
         .heroBannerContainer {
@@ -468,22 +391,36 @@ export default function KlasHero({ initialCategory = 'Realty' }: KlasHeroProps) 
           pointer-events: none;
         }
 
-        .category-realty {
-          width: 85%;
+        .category-realty,
+        .category-family-office,
+        .category-technology {
+          width: 46%;
           right: 0;
           top: 0;
           height: 100%;
-          padding-top: 8px;
+          padding-top: 0;
         }
 
-        .category-realty .fullHeroImg {
+        .category-realty .fullHeroImg,
+        .category-family-office .fullHeroImg,
+        .category-technology .fullHeroImg {
           object-fit: contain !important;
-          object-position: right top !important;
+          object-position: right center !important;
+          mix-blend-mode: normal !important;
         }
 
-        .category-family-office {
-          width: 74%;
-          right: 0;
+        .category-realty::before,
+        .category-family-office::before,
+        .category-technology::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 40%;
+          height: 100%;
+          background: linear-gradient(90deg, rgba(249, 249, 249, 1) 0%, rgba(249, 249, 249, 0.6) 40%, rgba(249, 249, 249, 0.2) 75%, rgba(249, 249, 249, 0) 100%);
+          z-index: 2;
+          pointer-events: none;
         }
 
         .category-animation {
@@ -498,18 +435,6 @@ export default function KlasHero({ initialCategory = 'Realty' }: KlasHeroProps) 
           object-position: right center !important;
           transform: scale(0.86) translate(-30px, -24px);
           transform-origin: right center;
-        }
-
-        .category-technology {
-          width: 90%;
-          right: 0;
-          top: -20px;
-          height: calc(100% + 20px);
-        }
-
-        .category-technology .fullHeroImg {
-          object-fit: contain !important;
-          object-position: right top !important;
         }
 
         .fullHeroImg {
@@ -539,7 +464,7 @@ export default function KlasHero({ initialCategory = 'Realty' }: KlasHeroProps) 
           display: flex;
           flex-direction: column;
           align-items: flex-start;
-          max-width: 680px;
+          max-width: 550px;
         }
 
         @keyframes blurReveal {
@@ -606,11 +531,14 @@ export default function KlasHero({ initialCategory = 'Realty' }: KlasHeroProps) 
 
         .description {
           font-family: var(--font-inter), 'Inter', sans-serif;
-          font-size: 17px;
+          font-size: 16px;
           line-height: 1.65;
-          color: #6E6763;
+          color: #5E5753;
           margin: 0 0 36px 0;
           font-weight: 400;
+          max-width: 535px;
+          border-left: 2.5px solid #8C7C70;
+          padding-left: 18px;
           opacity: 0;
           transform: translateY(24px);
           animation: fadeInUp 1s cubic-bezier(0.22, 1, 0.36, 1) both;
@@ -619,6 +547,10 @@ export default function KlasHero({ initialCategory = 'Realty' }: KlasHeroProps) 
 
         .descLine {
           display: block;
+        }
+
+        .descLine + .descLine {
+          margin-top: 14px;
         }
 
         .exploreBtnWrap {
@@ -1017,7 +949,11 @@ export default function KlasHero({ initialCategory = 'Realty' }: KlasHeroProps) 
           }
 
           .descLine {
-            display: inline !important;
+            display: block !important;
+          }
+
+          .descLine + .descLine {
+            margin-top: 10px !important;
           }
 
           .exploreBtnWrap {

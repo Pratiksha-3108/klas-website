@@ -96,7 +96,7 @@ export default function FamilyDisclaimerSection() {
 
         .text {
           font-family: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
-          font-size: 18px;
+          font-size: 16px;
           font-weight: 400;
           color: #8E8178;
           line-height: 1.6;
@@ -114,7 +114,7 @@ export default function FamilyDisclaimerSection() {
           }
 
           .text {
-            font-size: 16px;
+            font-size: 14px;
           }
 
           .icon {
@@ -137,7 +137,7 @@ export default function FamilyDisclaimerSection() {
           }
 
           .text {
-            font-size: 15px;
+            font-size: 13px;
             line-height: 1.55;
           }
         }

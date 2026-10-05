@@ -3,6 +3,7 @@
 
 import React, { useRef, useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 interface NewsCard {
   id: string;
@@ -150,9 +151,9 @@ export default function AnimationNewsroomSection() {
         {/* Section Header */}
         <div className="headerRow">
           <h2 className="title">NEWSROOM</h2>
-          {/* <a href="#newsroom" className="seeAllLink">
+          <Link href="/animation/newsroom" className="seeAllLink">
             SEE ALL NEWS
-          </a> */}
+          </Link>
         </div>
       </div>
 
